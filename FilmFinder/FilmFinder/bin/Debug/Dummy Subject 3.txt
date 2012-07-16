@@ -1,0 +1,14 @@
+0,2,Actor,0,121155,False,False
+0,2,Actor,0,220,False
+1,2,Actor,1,25,False
+2,2,Actor,2,49,False
+3,2,Actress,0,0,False
+4,2,Actress,1,183,False
+5,2,Actress,2,185,False
+6,2,Director,0,494,False
+7,2,Director,1,50,False
+8,2,Director,2,492,False
+9,3,Actor,0,47,False
+10,3,Actor,1,47,False
+11,3,Actor,2,3059,False
+12,3,Actress,0,15967,False
