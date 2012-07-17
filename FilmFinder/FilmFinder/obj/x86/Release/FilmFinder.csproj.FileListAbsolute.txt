@@ -28,3 +28,6 @@ C:\Users\paymahn\Dropbox\HCI Research\FilmFinder\FilmFinder\obj\x86\Release\Film
 C:\Users\paymahn\Dropbox\HCI Research\FilmFinder\FilmFinder\bin\Release\PaymahnAlphaslider.dll
 C:\Users\paymahn\Dropbox\HCI Research\FilmFinder\FilmFinder\bin\Release\PaymahnAlphaslider.pdb
 C:\Users\paymahn\Dropbox\HCI Research\FilmFinder\FilmFinder\bin\Release\FilmFinder.exe.config
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\FilmFinder.exe.config
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.exe
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.pdb

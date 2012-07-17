@@ -1,0 +1,16 @@
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.dll
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.pdb
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.dll
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.pdb
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\MB.Controls.ColorSlider.resources
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.dll
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.pdb
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\MB.Controls.ColorSlider.resources
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.dll
+C:\Users\nikon\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.pdb
