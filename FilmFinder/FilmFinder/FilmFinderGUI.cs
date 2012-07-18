@@ -174,7 +174,7 @@ namespace FilmFinder
 				chart1.Series[i].MarkerStyle = MarkerStyle.Circle;
 				chart1.Series[i].ChartType = SeriesChartType.Point;
 				chart1.Series[i].Color = Color.FromArgb(red, green, blue);
-				chart1.Series[i].MarkerSize = 6;
+				chart1.Series[i].MarkerSize = 8;
 				chart1.Series[i].IsVisibleInLegend = false;
 				chart1.Series[i].ToolTip = "#VALX, #VALY";
 				chart1.Series[i].Name = genreList[i];

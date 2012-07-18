@@ -100,11 +100,11 @@ namespace CustomSlider
 				clickedOnSecondarySlider = true;
 				drawSlider = false;
 			}
-			//else
-			//{
-				
-			//}
-			base.OnMouseDown(e);
+			else
+			{
+				base.OnMouseDown(e);
+			}
+			
 			//if (e.Button == MouseButtons.Right && clickedOnSlider)
 			//    rightButtonDown = true;
 

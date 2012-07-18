@@ -42,8 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MongoDB\CSharpDriver 1.4.2\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="PaymahnAlphaslider">
-      <HintPath>..\..\PaymahnAlphaslider\PaymahnAlphaslider\bin\Release\PaymahnAlphaslider.dll</HintPath>
+    <Reference Include="PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Sliders\PaymahnAlphaslider\bin\Release\PaymahnAlphaslider.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

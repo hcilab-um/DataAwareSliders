@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,15 @@ namespace CustomSlider
 	{
 
 		public event EventHandler ValueChanged;
+
+		private UInt32 defaultPointerSpeed = 10;
+		private UInt32 slowedPointSpeed = 1;
+		public const UInt32 SPI_SETMOUSESPEED = 0x0071;
+		public const UInt32 SPI_GETMOUSESPEED = 0x0070;
+		[DllImport("User32.dll")]
+		static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);
+		[DllImport("User32.dll")]
+		static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref uint pvParam, uint fWinIni);
 
 		private GraphicsPath sliderGP = null; 
 		protected GraphicsPath customSliderGP = null;
@@ -247,8 +257,12 @@ namespace CustomSlider
 					Capture = true;
 					clickedOnSlider = true;
 					drawSlider = true;
+
+					//get the speed of the mouse before the change we make then change the speed of the mouse
+					SystemParametersInfo(SPI_GETMOUSESPEED, 0, ref defaultPointerSpeed, 0);
+					SystemParametersInfo(SPI_SETMOUSESPEED, 0, slowedPointSpeed, 0);					
 				}
-				else if(sliderArea.GetBounds().Contains(e.Location))
+				else if (sliderArea.GetBounds().Contains(e.Location))
 				{
 					//simulate a mouse move event
 					Capture = true;
@@ -314,6 +328,10 @@ namespace CustomSlider
 			Capture = false;
 			clickedOnSlider = false;
 			drawSlider = true;
+
+			//reset the speed of the mouse
+			SystemParametersInfo(SPI_SETMOUSESPEED, 0, defaultPointerSpeed, 0);
+			
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)
@@ -568,7 +586,7 @@ namespace CustomSlider
 		protected virtual void updateRangeOfValues()
 		{
 			List<int> temp = new List<int>();
-			for (int i = offset; i > 0; i--)
+			for (int i = offset / 2 + 1; i > 0; i--)
 			{
 				if (Value - i >= 1)
 					temp.Add(Value - i);
@@ -576,7 +594,7 @@ namespace CustomSlider
 
 			temp.Add(Value);
 
-			for (int i = 1; i <= offset; i++)
+			for (int i = 1; i <= offset / 2 + 1; i++)
 			{
 				if (Value + i <= calculateMax())
 					temp.Add(Value + i);
