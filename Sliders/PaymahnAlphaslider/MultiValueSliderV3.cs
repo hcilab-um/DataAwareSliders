@@ -44,6 +44,17 @@ namespace CustomSlider
 			get { return listBox1.SelectedIndex; }
 		}
 
+		public string SelectedItem
+		{
+			get
+			{
+				if (listBox1.Items[listBox1.SelectedIndex] is string)
+					return (string)listBox1.Items[listBox1.SelectedIndex];
+				else
+					return "Data in listbox cannot be cast to a string";
+			}
+		}
+
 		public List<uint> ItemsInIndices
 		{
 			set { multiValueSliderV21.ItemsInIndices = value; }
@@ -95,9 +106,6 @@ namespace CustomSlider
 
 			
 		}
-
-		
-
 		
 
 		void label1_TextChanged(object sender, EventArgs e)

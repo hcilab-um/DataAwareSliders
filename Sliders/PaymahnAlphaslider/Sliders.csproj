@@ -49,14 +49,11 @@
     <Compile Include="ActiveAreaSliderv2.Designer.cs">
       <DependentUpon>ActiveAreaSliderv2.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlphaSlider.cs">
-      <SubType>Component</SubType>
+    <Compile Include="ActiveMultiSlider.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AlphaSliderV2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AlphaSliderV2.Designer.cs">
-      <DependentUpon>AlphaSliderV2.cs</DependentUpon>
+    <Compile Include="ActiveMultiSlider.Designer.cs">
+      <DependentUpon>ActiveMultiSlider.cs</DependentUpon>
     </Compile>
     <Compile Include="AlphasliderV3.cs">
       <SubType>Component</SubType>
@@ -64,23 +61,11 @@
     <Compile Include="AlphasliderV3.Designer.cs">
       <DependentUpon>AlphasliderV3.cs</DependentUpon>
     </Compile>
-    <Compile Include="ColorSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ColorSlider.designer.cs">
-      <DependentUpon>ColorSlider.cs</DependentUpon>
-    </Compile>
     <Compile Include="DensitySlider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DensitySlider.Designer.cs">
       <DependentUpon>DensitySlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HistogramSliderV2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HistogramSliderV2.Designer.cs">
-      <DependentUpon>HistogramSliderV2.cs</DependentUpon>
     </Compile>
     <Compile Include="IDensitySlider.cs" />
     <Compile Include="MouseWheelSlider.cs">
@@ -88,9 +73,6 @@
     </Compile>
     <Compile Include="MouseWheelSlider.Designer.cs">
       <DependentUpon>MouseWheelSlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MultipleValueSlider.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MultiValueSliderV2.cs">
       <SubType>Component</SubType>
@@ -104,26 +86,11 @@
     <Compile Include="MultiValueSliderV3.Designer.cs">
       <DependentUpon>MultiValueSliderV3.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultpleValue.Designer.cs">
-      <DependentUpon>MultipleValueSlider.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HistogramSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HistogramSlider.Designer.cs">
-      <DependentUpon>HistogramSlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ActiveAreaSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ActiveAreaSlider.Designer.cs">
-      <DependentUpon>ActiveAreaSlider.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ColorSlider.resx">
-      <DependentUpon>ColorSlider.cs</DependentUpon>
+    <EmbeddedResource Include="ActiveMultiSlider.resx">
+      <DependentUpon>ActiveMultiSlider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiValueSliderV3.resx">
       <DependentUpon>MultiValueSliderV3.cs</DependentUpon>

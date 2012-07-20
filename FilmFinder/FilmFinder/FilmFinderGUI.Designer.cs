@@ -38,10 +38,8 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.actorTrackBar = new System.Windows.Forms.TrackBar();
 			this.currentActorLabel = new System.Windows.Forms.Label();
 			this.currentDirectorLabel = new System.Windows.Forms.Label();
-			this.directorTrackBar = new System.Windows.Forms.TrackBar();
 			this.certifactionsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.disableAllCertificationsButton = new System.Windows.Forms.Button();
 			this.enableAllCertificationsButton = new System.Windows.Forms.Button();
@@ -52,7 +50,6 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.ratingRangeLabel = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.actressTrackBar = new System.Windows.Forms.TrackBar();
 			this.nextSliderButton = new System.Windows.Forms.Button();
 			this.actorListBox = new System.Windows.Forms.ListBox();
 			this.actressListBox = new System.Windows.Forms.ListBox();
@@ -68,6 +65,9 @@
 			this.confirmSearchButton = new System.Windows.Forms.Button();
 			this.searchConfirmLabel = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
+			this.actressActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
+			this.directorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
+			this.actorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
 			this.directorMouseWheelSlider = new CustomSlider.MouseWheelSlider();
 			this.directorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.directorMultipleValueSlider = new CustomSlider.MultiValueSliderV2();
@@ -76,9 +76,6 @@
 			this.actressAlphaSlider = new CustomSlider.AlphasliderV3();
 			this.directorAlphaSlider = new CustomSlider.AlphasliderV3();
 			this.actressMultipleValueSlider = new CustomSlider.MultiValueSliderV2();
-			this.actorHistogramSlider = new CustomSlider.HistogramSliderV2();
-			this.actressHistogramSlider = new CustomSlider.HistogramSliderV2();
-			this.directorHistogramSlider = new CustomSlider.HistogramSliderV2();
 			this.actorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.actressActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.actorMouseWheelSlider = new CustomSlider.MouseWheelSlider();
@@ -91,10 +88,7 @@
 			this.runningTimeRangeSlider = new FilmFinder.RangeSlider();
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actorTrackBar)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.directorTrackBar)).BeginInit();
 			this.certifactionsPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.actressTrackBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// chart1
@@ -145,12 +139,6 @@
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
 			// 
-			// actorTrackBar
-			// 
-			resources.ApplyResources(this.actorTrackBar, "actorTrackBar");
-			this.actorTrackBar.Name = "actorTrackBar";
-			this.actorTrackBar.ValueChanged += new System.EventHandler(this.actorSlider_ValueChanged);
-			// 
 			// currentActorLabel
 			// 
 			resources.ApplyResources(this.currentActorLabel, "currentActorLabel");
@@ -160,12 +148,6 @@
 			// 
 			resources.ApplyResources(this.currentDirectorLabel, "currentDirectorLabel");
 			this.currentDirectorLabel.Name = "currentDirectorLabel";
-			// 
-			// directorTrackBar
-			// 
-			resources.ApplyResources(this.directorTrackBar, "directorTrackBar");
-			this.directorTrackBar.Name = "directorTrackBar";
-			this.directorTrackBar.ValueChanged += new System.EventHandler(this.directorSlider_ValueChanged);
 			// 
 			// certifactionsPanel
 			// 
@@ -224,11 +206,6 @@
 			// 
 			resources.ApplyResources(this.label7, "label7");
 			this.label7.Name = "label7";
-			// 
-			// actressTrackBar
-			// 
-			resources.ApplyResources(this.actressTrackBar, "actressTrackBar");
-			this.actressTrackBar.Name = "actressTrackBar";
 			// 
 			// nextSliderButton
 			// 
@@ -331,6 +308,30 @@
 			resources.ApplyResources(this.label9, "label9");
 			this.label9.Name = "label9";
 			// 
+			// actressActiveMultiSlider
+			// 
+			this.actressActiveMultiSlider.Data = null;
+			this.actressActiveMultiSlider.IndexNames = null;
+			resources.ApplyResources(this.actressActiveMultiSlider, "actressActiveMultiSlider");
+			this.actressActiveMultiSlider.Name = "actressActiveMultiSlider";
+			this.actressActiveMultiSlider.Value = 0;
+			// 
+			// directorActiveMultiSlider
+			// 
+			this.directorActiveMultiSlider.Data = null;
+			this.directorActiveMultiSlider.IndexNames = null;
+			resources.ApplyResources(this.directorActiveMultiSlider, "directorActiveMultiSlider");
+			this.directorActiveMultiSlider.Name = "directorActiveMultiSlider";
+			this.directorActiveMultiSlider.Value = 0;
+			// 
+			// actorActiveMultiSlider
+			// 
+			this.actorActiveMultiSlider.Data = null;
+			this.actorActiveMultiSlider.IndexNames = null;
+			resources.ApplyResources(this.actorActiveMultiSlider, "actorActiveMultiSlider");
+			this.actorActiveMultiSlider.Name = "actorActiveMultiSlider";
+			this.actorActiveMultiSlider.Value = 0;
+			// 
 			// directorMouseWheelSlider
 			// 
 			resources.ApplyResources(this.directorMouseWheelSlider, "directorMouseWheelSlider");
@@ -397,33 +398,6 @@
 			this.actressMultipleValueSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressMultipleValueSlider.ItemsInIndices")));
 			this.actressMultipleValueSlider.Name = "actressMultipleValueSlider";
 			this.actressMultipleValueSlider.Value = 50;
-			// 
-			// actorHistogramSlider
-			// 
-			resources.ApplyResources(this.actorHistogramSlider, "actorHistogramSlider");
-			this.actorHistogramSlider.IndexNames = null;
-			this.actorHistogramSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorHistogramSlider.ItemsInIndices")));
-			this.actorHistogramSlider.Name = "actorHistogramSlider";
-			this.actorHistogramSlider.TrueValue = 50;
-			this.actorHistogramSlider.Value = 50;
-			// 
-			// actressHistogramSlider
-			// 
-			resources.ApplyResources(this.actressHistogramSlider, "actressHistogramSlider");
-			this.actressHistogramSlider.IndexNames = null;
-			this.actressHistogramSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressHistogramSlider.ItemsInIndices")));
-			this.actressHistogramSlider.Name = "actressHistogramSlider";
-			this.actressHistogramSlider.TrueValue = 50;
-			this.actressHistogramSlider.Value = 50;
-			// 
-			// directorHistogramSlider
-			// 
-			resources.ApplyResources(this.directorHistogramSlider, "directorHistogramSlider");
-			this.directorHistogramSlider.IndexNames = null;
-			this.directorHistogramSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorHistogramSlider.ItemsInIndices")));
-			this.directorHistogramSlider.Name = "directorHistogramSlider";
-			this.directorHistogramSlider.TrueValue = 50;
-			this.directorHistogramSlider.Value = 50;
 			// 
 			// actorActiveAreaSlider
 			// 
@@ -518,6 +492,9 @@
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.actressActiveMultiSlider);
+			this.Controls.Add(this.directorActiveMultiSlider);
+			this.Controls.Add(this.actorActiveMultiSlider);
 			this.Controls.Add(this.searchConfirmLabel);
 			this.Controls.Add(this.confirmSearchButton);
 			this.Controls.Add(this.startSearchButton);
@@ -540,9 +517,6 @@
 			this.Controls.Add(this.directorActiveAreaSlider);
 			this.Controls.Add(this.actressActiveAreaSlider);
 			this.Controls.Add(this.actorActiveAreaSlider);
-			this.Controls.Add(this.directorHistogramSlider);
-			this.Controls.Add(this.actressHistogramSlider);
-			this.Controls.Add(this.actorHistogramSlider);
 			this.Controls.Add(this.nextSliderButton);
 			this.Controls.Add(this.directorMultipleValueSlider);
 			this.Controls.Add(this.actressMultipleValueSlider);
@@ -550,7 +524,6 @@
 			this.Controls.Add(this.directorAlphaSlider);
 			this.Controls.Add(this.actressAlphaSlider);
 			this.Controls.Add(this.actorAlphaSlider);
-			this.Controls.Add(this.actressTrackBar);
 			this.Controls.Add(this.ratingRangeLabel);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.ratingRangeSlider);
@@ -562,8 +535,6 @@
 			this.Controls.Add(this.runningTimeRangeSlider);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.certifactionsPanel);
-			this.Controls.Add(this.directorTrackBar);
-			this.Controls.Add(this.actorTrackBar);
 			this.Controls.Add(this.actressMVSv3);
 			this.Controls.Add(this.directorMVSc3);
 			this.Controls.Add(this.actorMVSv3);
@@ -576,10 +547,7 @@
 			this.Load += new System.EventHandler(this.FilmFinderGUI_Load);
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.actorTrackBar)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.directorTrackBar)).EndInit();
 			this.certifactionsPanel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.actressTrackBar)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -595,10 +563,8 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TrackBar actorTrackBar;
 		private System.Windows.Forms.Label currentActorLabel;
-        private System.Windows.Forms.Label currentDirectorLabel;
-        private System.Windows.Forms.TrackBar directorTrackBar;
+		private System.Windows.Forms.Label currentDirectorLabel;
 		private System.Windows.Forms.FlowLayoutPanel certifactionsPanel;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button disableAllCertificationsButton;
@@ -612,7 +578,6 @@
 		private System.Windows.Forms.Label ratingRangeLabel;
 		private System.Windows.Forms.Label label7;
 		private RangeSlider ratingRangeSlider;
-		private System.Windows.Forms.TrackBar actressTrackBar;
 		private CustomSlider.AlphasliderV3 actorAlphaSlider;
 		private CustomSlider.AlphasliderV3 actressAlphaSlider;
 		private CustomSlider.AlphasliderV3 directorAlphaSlider;
@@ -620,9 +585,6 @@
 		private CustomSlider.MultiValueSliderV2 actressMultipleValueSlider;
 		private CustomSlider.MultiValueSliderV2 directorMultipleValueSlider;
 		private System.Windows.Forms.Button nextSliderButton;
-		private CustomSlider.HistogramSliderV2 actorHistogramSlider;
-		private CustomSlider.HistogramSliderV2 actressHistogramSlider;
-		private CustomSlider.HistogramSliderV2 directorHistogramSlider;
 		private CustomSlider.ActiveAreaSliderv2 actorActiveAreaSlider;
 		private CustomSlider.ActiveAreaSliderv2 actressActiveAreaSlider;
 		private CustomSlider.ActiveAreaSliderv2 directorActiveAreaSlider;
@@ -646,6 +608,9 @@
 		private System.Windows.Forms.Button confirmSearchButton;
 		private System.Windows.Forms.Label searchConfirmLabel;
 		private System.Windows.Forms.Label label9;
+		private CustomSlider.ActiveMultiSlider actorActiveMultiSlider;
+		private CustomSlider.ActiveMultiSlider directorActiveMultiSlider;
+		private CustomSlider.ActiveMultiSlider actressActiveMultiSlider;
 
 
 	}

@@ -20,6 +20,7 @@ namespace FilmFinder
 	public partial class FilmFinderGUI : Form
 	{
 		private static Random randomGenerator = new Random();
+		private const int NUMBER_OF_SLIDERS = 6;
 
 		private MovieHandler movieHandler;
 		private List<string> genreList;
@@ -50,8 +51,6 @@ namespace FilmFinder
             certificationCheckBoxList = new List<CheckBox>();
 			this.movieHandler = app;
 
-			userId = Settings.Default.ParticipantNumber;
-
 			genreList = movieHandler.getUniqueGenres();
 			createAllSeries();
 			createGenreCheckBoxes();
@@ -73,6 +72,8 @@ namespace FilmFinder
 			searchConfirmLabel.Hide();
 			stopwatch = new Stopwatch();
 
+			//Settings.Default.ParticipantNumber = 4;
+			//Settings.Default.Save();
 
 			initializeFileWriting();
 			setTrial();
@@ -80,6 +81,7 @@ namespace FilmFinder
 
 		private void initializeFileWriting()
 		{
+			userId = Settings.Default.ParticipantNumber;
 			string fileName = "Subject " + userId + ".txt";
 			file = new StreamWriter(fileName, true);
 			file.Close();
@@ -226,10 +228,10 @@ namespace FilmFinder
 			actorMultipleValueSlider.Value = 0;
 			actorMultipleValueSlider.ValueChanged += new EventHandler(multiValueActorSlider_ValueChanged);
 
-			actorHistogramSlider.ItemsInIndices = buckets;
-			actorHistogramSlider.IndexNames = firstCharacters;
-			actorHistogramSlider.Value = 0;
-			actorHistogramSlider.TrueValueChanged += new EventHandler(actorSlider_ValueChanged);
+			//actorHistogramSlider.ItemsInIndices = buckets;
+			//actorHistogramSlider.IndexNames = firstCharacters;
+			//actorHistogramSlider.Value = 0;
+			//actorHistogramSlider.TrueValueChanged += new EventHandler(actorSlider_ValueChanged);
 
 			actorActiveAreaSlider.ItemsInIndices = buckets;
 			actorActiveAreaSlider.IndexNames = firstCharacters;
@@ -248,14 +250,21 @@ namespace FilmFinder
 			actorMVSv3.TextChanged += new EventHandler(actorMVSv3_TextChanged);
 			actorMVSv3.Value = 0;
 
-			actorTrackBar.Minimum = 0;
-			actorTrackBar.Maximum = uniqueActors.Count - 1;
-			actorTrackBar.TickStyle = TickStyle.None;
-			actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
+			actorActiveMultiSlider.Data = uniqueActors;
+			actorActiveMultiSlider.ItemsInIndices = buckets;
+			actorActiveMultiSlider.IndexNames = firstCharacters;
+			actorActiveMultiSlider.QueryChanged += new EventHandler(actorActiveMultiSlider_QueryChanged);
+			actorActiveMultiSlider.Value = 0;
+			//actorTrackBar.Minimum = 0;
+			//actorTrackBar.Maximum = uniqueActors.Count - 1;
+			//actorTrackBar.TickStyle = TickStyle.None;
 			//actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-			actorTrackBar.Value = 0;
+
+			////actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
+			//actorTrackBar.Value = 0;
 		}
+
+		
 
 		/// <summary>
 		/// This method, as the name implies, initializes the slider responsible for filtering directors
@@ -297,10 +306,10 @@ namespace FilmFinder
 			directorMultipleValueSlider.Value = 0;
 			directorMultipleValueSlider.ValueChanged += new EventHandler(multiValueDirectorSlider_ValueChanged);
 
-			directorHistogramSlider.ItemsInIndices = buckets;
-			directorHistogramSlider.IndexNames = firstCharacters;
-			directorHistogramSlider.Value = 0;
-			directorHistogramSlider.TrueValueChanged += new EventHandler(directorSlider_ValueChanged);
+			//directorHistogramSlider.ItemsInIndices = buckets;
+			//directorHistogramSlider.IndexNames = firstCharacters;
+			//directorHistogramSlider.Value = 0;
+			//directorHistogramSlider.TrueValueChanged += new EventHandler(directorSlider_ValueChanged);
 
 			directorActiveAreaSlider.ItemsInIndices = buckets;
 			directorActiveAreaSlider.IndexNames = firstCharacters;
@@ -319,13 +328,20 @@ namespace FilmFinder
 			directorMVSc3.ShowLabel = false;
 			directorMVSc3.TextChanged += new EventHandler(directorMVSc3_TextChanged);
 
-            directorTrackBar.Minimum = 0;
-            directorTrackBar.Maximum = uniqueDirectors.Count - 1;
-			directorTrackBar.TickStyle = TickStyle.None;
-			directorTrackBar.ValueChanged += new EventHandler(directorSlider_ValueChanged);
+			directorActiveMultiSlider.Data = uniqueDirectors;
+			directorActiveMultiSlider.ItemsInIndices = buckets;
+			directorActiveMultiSlider.IndexNames = firstCharacters;
+			directorActiveMultiSlider.QueryChanged += new EventHandler(directorActiveMultiSlider_QueryChanged);
+			directorActiveMultiSlider.Value = 0;
+			//directorTrackBar.Minimum = 0;
+			//directorTrackBar.Maximum = uniqueDirectors.Count - 1;
+			//directorTrackBar.TickStyle = TickStyle.None;
+			//directorTrackBar.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
-			directorTrackBar.Value = 0;
+			//directorTrackBar.Value = 0;
         }
+
+		
 
 		private void initializeActressSlider()
 		{
@@ -364,10 +380,10 @@ namespace FilmFinder
 			actressMultipleValueSlider.Value = 0;
 			actressMultipleValueSlider.ValueChanged += new EventHandler(multiValueActressSlider_ValueChanged);
 
-			actressHistogramSlider.ItemsInIndices = buckets;
-			actressHistogramSlider.IndexNames = firstCharacters;
-			actressHistogramSlider.Value = 0;
-			actressHistogramSlider.TrueValueChanged += new EventHandler(actressSlider_ValueChanged);
+			//actressHistogramSlider.ItemsInIndices = buckets;
+			//actressHistogramSlider.IndexNames = firstCharacters;
+			//actressHistogramSlider.Value = 0;
+			//actressHistogramSlider.TrueValueChanged += new EventHandler(actressSlider_ValueChanged);
 
 			actressActiveAreaSlider.ItemsInIndices = buckets;
 			actressActiveAreaSlider.IndexNames = firstCharacters;
@@ -386,14 +402,15 @@ namespace FilmFinder
 			actressMVSv3.ShowLabel = false;
 			actressMVSv3.TextChanged += new EventHandler(actressMVSv3_TextChanged);
 
-			actressTrackBar.Minimum = 0;
-			actressTrackBar.Maximum = uniqueActresses.Count - 1;
-			actressTrackBar.TickStyle = TickStyle.None;
-			actressTrackBar.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
-			//actressTrackBar.ValueChanged += new EventHandler(actressSlider_ValueChanged);
-			actressTrackBar.Value = 0;
+			actressActiveMultiSlider.Data = uniqueActresses;
+			actressActiveMultiSlider.ItemsInIndices = buckets;
+			actressActiveMultiSlider.IndexNames = firstCharacters;
+			actressActiveMultiSlider.QueryChanged += new EventHandler(actressActiveMultiSlider_QueryChanged);
+			actressActiveMultiSlider.Value = 0;
 		}
+
+		
 
 		private void initializeRunningTimeRangeSlider()
 		{
@@ -450,20 +467,20 @@ namespace FilmFinder
 			List<double> ratings = movieHandler.getRatings(); //the rating of each movie
 
 			int minYear, maxYear;
-			double minRating, maxRating;
+			//double minRating, maxRating;
 
 			years.Sort();
-			ratings.Sort();
+			//ratings.Sort();
 
 			minYear = years[0];
 			maxYear = years[years.Count - 1];
 
-			minRating = ratings[0];
-			maxRating = ratings[ratings.Count - 1];
+			//minRating = ratings[0];
+			//maxRating = ratings[ratings.Count - 1];
 
 			
 			chart1.ChartAreas[0].AxisY.Interval = 1;
-			chart1.ChartAreas[0].AxisY.Minimum = minRating;
+			chart1.ChartAreas[0].AxisY.Minimum = 0;
 			chart1.ChartAreas[0].AxisY.Maximum = 10;
 
 			chart1.ChartAreas[0].AxisX.Interval = 20;
@@ -683,8 +700,6 @@ namespace FilmFinder
 				value = slider.Value;
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value;
-				if (slider is HistogramSliderV2)
-					value = (slider as HistogramSliderV2).TrueValue;
 			}
 			else if (sender is TrackBar)
 			{
@@ -709,8 +724,6 @@ namespace FilmFinder
 				value = slider.Value;
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value; 
-				if (slider is HistogramSliderV2)
-					value = (slider as HistogramSliderV2).TrueValue;
 			}
 			else if (sender is TrackBar)
 			{
@@ -730,8 +743,6 @@ namespace FilmFinder
 				value = slider.Value;
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value;
-				if (slider is HistogramSliderV2)
-					value = (slider as HistogramSliderV2).TrueValue;
 			}
 			else if (sender is TrackBar)
 			{
@@ -796,11 +807,36 @@ namespace FilmFinder
 			{
 				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorMVSc3.RangeOfValues[directorMVSc3.SelectedIndex]);
 				drawActiveSet();
-
-
 			}
 		}
-		
+
+		void actorActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		{
+			if (actorActiveMultiSlider.SelectedIndex < actorActiveMultiSlider.RangeOfValues.Count)
+			{
+				currentActorLabel.Text = movieHandler.updateActorFilter(actorActiveMultiSlider.Value + actorActiveMultiSlider.SelectedIndex);
+				drawActiveSet();
+			}
+		}
+
+		void directorActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		{
+			if (directorActiveMultiSlider.SelectedIndex < directorActiveMultiSlider.RangeOfValues.Count)
+			{
+				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorActiveMultiSlider.Value + directorActiveMultiSlider.SelectedIndex);
+				drawActiveSet();
+			}
+		}
+
+		void actressActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		{
+			if (actressActiveMultiSlider.SelectedIndex < actressActiveMultiSlider.RangeOfValues.Count)
+			{
+				currentActressLabel.Text = movieHandler.updateActressFilter(actressActiveMultiSlider.Value + actressActiveMultiSlider.SelectedIndex);
+				drawActiveSet();
+			}
+		}
+
 		private void actressListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			currentActressLabel.Text = movieHandler.updateActressFilter(actressMultipleValueSlider.RangeOfValues[actressListBox.SelectedIndex]);
@@ -976,59 +1012,6 @@ namespace FilmFinder
 			directorMultipleValueSlider.Value = 0;
 		}
 
-		/// <summary>
-		/// hide the default windows sliders
-		/// </summary>
-		private void hideWindowsSlider()
-		{
-			actorTrackBar.Hide();
-			directorTrackBar.Hide();
-			actressTrackBar.Hide();
-		}
-
-		/// <summary>
-		/// show the defualt windows sliders
-		/// </summary>
-		private void showWindowsSlider()
-		{
-			actorTrackBar.Show();
-			actorTrackBar.Value = 0;
-			//actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
-			directorTrackBar.Show();
-			directorTrackBar.Value = 0;
-			//directorTrackBar.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-
-			actressTrackBar.Show();
-			actressTrackBar.Value = 0;
-			//actressTrackBar.ValueChanged += new EventHandler(actressSlider_ValueChanged);
-		}
-
-		private void hideHistogramSliders()
-		{
-			actorHistogramSlider.Hide();
-			actressHistogramSlider.Hide();
-			directorHistogramSlider.Hide();
-		}
-
-		private void showHistogramSliders()
-		{
-			actorHistogramSlider.Show();
-			actorHistogramSlider.Value = 0;
-			actorHistogramSlider.TrueValue = 0;
-			//actorHistogramSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
-			actressHistogramSlider.Show();
-			actressHistogramSlider.Value = 0;
-			actressHistogramSlider.TrueValue = 0;
-			//actressHistogramSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
-
-			directorHistogramSlider.Show();
-			directorHistogramSlider.Value = 0;
-			directorHistogramSlider.TrueValue = 0;
-			//directorHistogramSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-		}
-
 		private void hideActiveAreaSliders()
 		{
 			actorActiveAreaSlider.Hide();
@@ -1100,23 +1083,49 @@ namespace FilmFinder
 			//currentDirectorLabel.Hide();
 		}
 
+		private void hideActiveMultiSliders()
+		{
+			actorActiveMultiSlider.Hide();
+			actressActiveMultiSlider.Hide();
+			directorActiveMultiSlider.Hide();
+
+			//currentActorLabel.Show();
+			//currentActressLabel.Show();
+			//currentDirectorLabel.Show();
+		}
+
+		private void showActiveMultiSliders()
+		{
+			actorActiveMultiSlider.Show();
+			actorActiveMultiSlider.Value = 0;
+
+			actressActiveMultiSlider.Show();
+			actressActiveMultiSlider.Value = 0;
+
+			directorActiveMultiSlider.Show();
+			directorActiveMultiSlider.Value = 0;
+
+			//currentActorLabel.Hide();
+			//currentActressLabel.Hide();
+			//currentDirectorLabel.Hide();
+		}
+
 		/// <summary>
 		/// hides all sliders
 		/// </summary>
 		private void hideAllSliders()
 		{
-			hideWindowsSlider();
 			hideAlphaSliders();
 			hideMultiValueSliders();
-			hideHistogramSliders();
 			hideActiveAreaSliders();
 			hideMouseWheelSliders();
 			hideMSVv3s();
+			hideActiveMultiSliders();
 		}
 
 		private void nextSliderButton_Click(object sender, EventArgs e)
 		{
-			currSlider = (currSlider + 1) % 7;
+			currSlider = (currSlider + 1) % NUMBER_OF_SLIDERS;
 			changeVisibleSlider();
 		}
 
@@ -1126,7 +1135,7 @@ namespace FilmFinder
 
 			currSlider = currSlider - 1;
 			if (currSlider < 0)
-				currSlider = 6;
+				currSlider = NUMBER_OF_SLIDERS - 1;
 
 			Debug.WriteLine(currSlider.ToString());
 			changeVisibleSlider();
@@ -1138,26 +1147,24 @@ namespace FilmFinder
 			switch (currSlider)
 			{
 				case 0:
-					showWindowsSlider();
-					break;
-				case 1:
 					showAlphaSliders();
 					break;
-				case 2:
+				case 1:
 					showMultiValueSliders();
 					break;
-				case 3:
-					showHistogramSliders();
-					break;
-				case 4:
+				case 2:
 					showActiveAreaSliders();
 					break;
-				case 5:
+				case 3:
 					showMouseWheelSliders();
 					break;
-				case 6:
+				case 4:
 					showMVSv3s();
 					break;
+				case 5:
+					showActiveMultiSliders();
+					break;
+
 			}
 		}
 
@@ -1169,10 +1176,11 @@ namespace FilmFinder
 		private void startExperimentButton_Click(object sender, EventArgs e)
 		{
 			experimentStarted = true;
+			//initializeFileWriting();
 
-			nextSliderButton.Dispose();
-			previousSliderButton.Dispose();
-			startExperimentButton.Dispose();
+			nextSliderButton.Hide();
+			previousSliderButton.Hide();
+			startExperimentButton.Hide();
 
 			pleaseFindLabel.Show();
 			searchLabel.Show();
@@ -1186,6 +1194,27 @@ namespace FilmFinder
 
 		}
 
+		private void resetGUIToDefault()
+		{
+			experimentStarted = true;
+			//initializeFileWriting();
+
+			nextSliderButton.Show();
+			previousSliderButton.Show();
+			startExperimentButton.Show();
+
+			pleaseFindLabel.Hide();
+			searchLabel.Hide();
+			//startSearchButton.Show();
+			//confirmSearchButton.Show();
+			searchConfirmLabel.Hide();
+			confirmSearchButton.Enabled = false;
+			//generateNewSearch();
+			//disableAllSliders();
+			enableAllSlider();
+			//Debug.WriteLine(currentSearchCategory.ToString());
+		}
+
 		private void generateNewSearch()
 		{
 			if (currIndex > maxIndex)
@@ -1194,7 +1223,10 @@ namespace FilmFinder
 				file.Flush();
 				Settings.Default.ParticipantNumber = Settings.Default.ParticipantNumber + 1;
 				Settings.Default.Save();
+				file.Close();
 				Environment.Exit(1);
+				
+				resetGUIToDefault();
 			}
 
 			int randomQuery = 0;
@@ -1213,17 +1245,17 @@ namespace FilmFinder
 			if (currentSearchCategory == SearchCategory.Actor)
 			{
 				currentCategory = movieHandler.UniqueActors;
-				sliderToAccess = actorHistogramSlider;
+				sliderToAccess = actorActiveAreaSlider;
 			}
 			else if (currentSearchCategory == SearchCategory.Actress)
 			{
 				currentCategory = movieHandler.UniqueActresses;
-				sliderToAccess = actressHistogramSlider;
+				sliderToAccess = actressActiveAreaSlider;
 			}
 			else
 			{
 				currentCategory = movieHandler.UniqueDirectors;
-				sliderToAccess = directorHistogramSlider;
+				sliderToAccess = actressActiveAreaSlider;
 			}
 
 			itemsPerIndex = sliderToAccess.ItemsInIndices;
@@ -1332,54 +1364,54 @@ namespace FilmFinder
 		{
 			actorActiveAreaSlider.Enabled = false;
 			actorAlphaSlider.Enabled = false;
-			actorHistogramSlider.Enabled = false;
+			//actorHistogramSlider.Enabled = false;
 			actorMouseWheelSlider.Enabled = false;
 			actorMultipleValueSlider.Enabled = false;
 			actorMVSv3.Enabled = false;
-			actorTrackBar.Enabled = false;
+			//actorTrackBar.Enabled = false;
 
 			directorActiveAreaSlider.Enabled = false;
 			directorAlphaSlider.Enabled = false;
-			directorHistogramSlider.Enabled = false;
+			//directorHistogramSlider.Enabled = false;
 			directorMouseWheelSlider.Enabled = false;
 			directorMultipleValueSlider.Enabled = false;
 			directorMVSc3.Enabled = false;
-			directorTrackBar.Enabled = false;
+			//directorTrackBar.Enabled = false;
 
 			actressActiveAreaSlider.Enabled = false;
 			actressAlphaSlider.Enabled = false;
-			actressHistogramSlider.Enabled = false;
+			//actressHistogramSlider.Enabled = false;
 			actressMouseWheelSlider.Enabled = false;
 			actressMultipleValueSlider.Enabled = false;
 			actressMVSv3.Enabled = false;
-			actressTrackBar.Enabled = false;
+			//actressTrackBar.Enabled = false;
 		}
 
 		private void enableAllSlider()
 		{
 			actorActiveAreaSlider.Enabled = true;
 			actorAlphaSlider.Enabled = true;
-			actorHistogramSlider.Enabled = true;
+			//actorHistogramSlider.Enabled = true;
 			actorMouseWheelSlider.Enabled = true;
 			actorMultipleValueSlider.Enabled = true;
 			actorMVSv3.Enabled = true;
-			actorTrackBar.Enabled = true;
+			//actorTrackBar.Enabled = true;
 
 			directorActiveAreaSlider.Enabled = true;
 			directorAlphaSlider.Enabled = true;
-			directorHistogramSlider.Enabled = true;
+			//directorHistogramSlider.Enabled = true;
 			directorMouseWheelSlider.Enabled = true;
 			directorMultipleValueSlider.Enabled = true;
 			directorMVSc3.Enabled = true;
-			directorTrackBar.Enabled = true;
+			//directorTrackBar.Enabled = true;
 
 			actressActiveAreaSlider.Enabled = true;
 			actressAlphaSlider.Enabled = true;
-			actressHistogramSlider.Enabled = true;
+			//actressHistogramSlider.Enabled = true;
 			actressMouseWheelSlider.Enabled = true;
 			actressMultipleValueSlider.Enabled = true;
 			actressMVSv3.Enabled = true;
-			actressTrackBar.Enabled = true;
+			//actressTrackBar.Enabled = true;
 		}
 
 		public void setTrial()
@@ -1387,7 +1419,7 @@ namespace FilmFinder
 			int[,] latinSquare;
 			int index;
 			int numOfBlocks = 1;
-			int numOfTechnique = 7;
+			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
 			int trialPerCondition = 1;
 			int numDifferentDataSize = 3;
@@ -1440,9 +1472,8 @@ namespace FilmFinder
 			topRow.Add(1);
 			topRow.Add(6);
 			topRow.Add(2);
-			topRow.Add(5);
-			topRow.Add(3);
 			topRow.Add(4);
+			topRow.Add(3);
 
 			if (topRow.Count % 2 == 1)
 				latinSquare = new int[2 * topRow.Count, topRow.Count];

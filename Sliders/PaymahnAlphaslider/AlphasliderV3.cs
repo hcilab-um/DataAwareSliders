@@ -397,8 +397,7 @@ namespace CustomSlider
 						clickedOnBottomHalf = true;
 						clickedOnTopHalf = false;
 					}
-
-					OnMouseMove(e);
+					slowDownMouse();
 				}
 				else if (mouseInSlideArea(e.Location))
 				{
@@ -419,9 +418,25 @@ namespace CustomSlider
 					}
 				}
 				else if (leftButton.GetBounds().Contains(e.Location))
+				{
 					Value = Value - 1;
+					Debug.WriteLine(Value.ToString());
+				}
 				else if (rightButton.GetBounds().Contains(e.Location))
+				{
 					Value = Value + 1;
+					Debug.WriteLine(Value.ToString() + "helo");
+				}
+			}
+		}
+
+		protected override void OnMouseClick(MouseEventArgs e)
+		{
+			base.OnMouseClick(e);
+			if (rightButton.GetBounds().Contains(e.Location))
+			{
+				Value = Value + 1;
+				Debug.WriteLine(Value.ToString() + "helo  22");
 			}
 		}
 
@@ -504,6 +519,8 @@ namespace CustomSlider
 			clickedOnTopHalf = false;
 			clickedOnBottomHalf = false;
 			redrawMouse = false;
+
+			resetMouseSpeed();
 		}
 
 		#endregion

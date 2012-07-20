@@ -17,6 +17,7 @@ namespace CustomSlider
 
 		public event EventHandler ValueChanged;
 
+		//The following is for changing the pointer speed
 		private UInt32 defaultPointerSpeed = 10;
 		private UInt32 slowedPointSpeed = 1;
 		public const UInt32 SPI_SETMOUSESPEED = 0x0071;
@@ -81,7 +82,7 @@ namespace CustomSlider
 				if (drawSlider)
 				{
 					centerOfRange = Value;
-					updateOffset();
+					updateOffset(Value);
 				}
 				
 
@@ -137,6 +138,8 @@ namespace CustomSlider
 			largestIndex = findLargestIndex();
 			smallestIndex = findSmallestInex();
 			doPaintingMath();
+
+			SystemParametersInfo(SPI_GETMOUSESPEED, 0, ref defaultPointerSpeed, 0);
 		}
 
 		protected override void OnPaint(PaintEventArgs pe)
@@ -158,6 +161,7 @@ namespace CustomSlider
 			SolidBrush histogramBrush = new SolidBrush(Color.Blue);
 
 			Pen blackPen = new Pen(Color.Black, 2);
+			Pen redPen = new Pen(Color.Red, 2);
 			int index = 0;
 			for (float i = trackXStart; i < trackXEnd - 1; i += spaceBetweenTicks)
 			{
@@ -214,6 +218,8 @@ namespace CustomSlider
 				currSliderGP = customSliderGP;
 			}
 
+			g.DrawLine(redPen, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY - getCurrHistogramHeight(findIndexOfSliderValue()));
+
 			g.FillPath(new SolidBrush(Color.FromArgb(128, Color.Gray)), currSliderGP);
 			g.DrawPath(blackPen, currSliderGP);
 
@@ -258,15 +264,14 @@ namespace CustomSlider
 					clickedOnSlider = true;
 					drawSlider = true;
 
-					//get the speed of the mouse before the change we make then change the speed of the mouse
-					SystemParametersInfo(SPI_GETMOUSESPEED, 0, ref defaultPointerSpeed, 0);
-					SystemParametersInfo(SPI_SETMOUSESPEED, 0, slowedPointSpeed, 0);					
+					slowDownMouse();		
 				}
 				else if (sliderArea.GetBounds().Contains(e.Location))
 				{
 					//simulate a mouse move event
 					Capture = true;
 					clickedOnSlider = true;
+					drawSlider = true;
 					OnMouseMove(e);
 					Capture = false;
 					clickedOnSlider = false;
@@ -311,7 +316,19 @@ namespace CustomSlider
 					int tempValue = calculateSum(mouseIndex - 1);
 					tempValue += (int)(penetration * itemsInIndices[mouseIndex]);
 
-					Value = tempValue;
+					//Value = tempValue;
+					//Through some experimentation I've found that the above code finds the value at the "top" of the pixel.
+					//This code corrects for that by pretending to set the value and get the appropriate updated range and then
+					//setting the true Value accordingly.
+					if (tempValue > 0 && tempValue < calculateMax())
+					{
+						updateOffset(tempValue);
+						Value = RangeOfValues[0];
+					}
+					else
+					{
+						Value = tempValue;
+					}
 
 				}
 			}
@@ -329,9 +346,7 @@ namespace CustomSlider
 			clickedOnSlider = false;
 			drawSlider = true;
 
-			//reset the speed of the mouse
-			SystemParametersInfo(SPI_SETMOUSESPEED, 0, defaultPointerSpeed, 0);
-			
+			resetMouseSpeed();
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)
@@ -353,38 +368,16 @@ namespace CustomSlider
 			}
 		}
 
-		protected override void OnGotFocus(EventArgs e)
-		{
-			base.OnGotFocus(e);
-		}
-
 		protected override void OnEnter(EventArgs e)
 		{
-			this.Invalidate();
 			base.OnEnter(e);
+			this.Invalidate();
 		}
 
 		protected override void OnLeave(EventArgs e)
 		{
-			this.Invalidate();
 			base.OnLeave(e);
-		}
-
-		protected override void OnKeyUp(KeyEventArgs e)
-		{
-			base.OnKeyUp(e);
-
-			//switch (e.KeyCode)
-			//{
-			//    case Keys.Down:
-			//    case Keys.Left:
-			//        Value = Value - 1;
-			//        break;
-			//    case Keys.Up:
-			//    case Keys.Right:
-			//        Value = Value + 1;
-			//        break;
-			//}
+			this.Invalidate();
 		}
 
 		/// <summary>
@@ -507,6 +500,21 @@ namespace CustomSlider
 			return result;
 		}
 
+		protected int findIndexOfValue(int value)
+		{
+			int sumSoFar = 0;
+			int result = -1;
+
+			for (int i = 0; i < itemsInIndices.Count && result == -1; i++)
+			{
+				sumSoFar += (int)itemsInIndices[i];
+				if (value <= sumSoFar)
+					result = i;
+			}
+
+			return result;
+		}
+
 		/// <summary>
 		/// Calculates the sum of values up to and including a zero based index
 		/// </summary>
@@ -575,29 +583,43 @@ namespace CustomSlider
 				return customSliderGP.GetBounds().Contains(point);
 		}
 
-		private void updateOffset()
+		private void updateOffset(int value)
 		{
 			if (spaceBetweenTicks > 0)
-				offset = (int)Math.Round(itemsInIndices[findIndexOfSliderValue()] / Math.Round(spaceBetweenTicks) + 0.5) - 1; 
-
-			this.updateRangeOfValues();
-		}
-
-		protected virtual void updateRangeOfValues()
-		{
-			List<int> temp = new List<int>();
-			for (int i = offset / 2 + 1; i > 0; i--)
 			{
-				if (Value - i >= 1)
-					temp.Add(Value - i);
+				float itemsPerPixel = itemsInIndices[findIndexOfValue(value)] / spaceBetweenTicks;
+
+				if (itemsPerPixel <= (float)1)
+				{
+					offset = 0;
+				}
+				else
+				{
+					offset = (int)Math.Round(itemsPerPixel + 0.5);
+
+					if (offset % 2 == 1)
+						offset++;
+				}
 			}
 
-			temp.Add(Value);
+			this.updateRangeAroundValues(value);
+		}
 
-			for (int i = 1; i <= offset / 2 + 1; i++)
+		protected virtual void updateRangeAroundValues(int value)
+		{
+			List<int> temp = new List<int>();
+			for (int i = offset / 2; i > 0; i--)
+			{
+				if (Value - i >= 1)
+					temp.Add(value - i);
+			}
+
+			temp.Add(value);
+
+			for (int i = 1; i <= offset / 2; i++)
 			{
 				if (Value + i <= calculateMax())
-					temp.Add(Value + i);
+					temp.Add(value + i);
 			}
 
 			rangeOfValues = temp;
@@ -606,6 +628,18 @@ namespace CustomSlider
 		protected float getCurrHistogramHeight(int histogramIndex)
 		{
 			return (float)(histogramMaxHeight * (float)((float)itemsInIndices[histogramIndex] / (float)itemsInIndices[largestIndex]));
+		}
+
+		protected void slowDownMouse()
+		{
+			//slow down the mouse
+			SystemParametersInfo(SPI_SETMOUSESPEED, 0, slowedPointSpeed, 0);
+		}
+
+		protected void resetMouseSpeed()
+		{
+			//reset the speed of the mouse
+			SystemParametersInfo(SPI_SETMOUSESPEED, 0, defaultPointerSpeed, 0);
 		}
 
 		#endregion

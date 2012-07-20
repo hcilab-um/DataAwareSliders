@@ -15,12 +15,42 @@ namespace CustomSlider
 	public partial class ActiveAreaSliderv2 : DensitySlider, IDensitySlider
 	{
 		#region Variables
+		private const int MINIMUM_SLIDER_WIDTH = 20;
+		private float itemsPerHistogramPixel = 0;
+		private new int sliderWidth = 0;
+		private int maxItemsInList = 7; //equivalent of max items per thumb pixel
+		private int itemsPerSliderPixel = 0;
+
 		private bool clickedOnSecondarySlider = false;
+		private bool rolledMouseWheel = false;
+		private bool firstTimeBeingDrawn = true;
+		//private bool drawSecondarySlider = 
 		private GraphicsPath secondarySliderGP = null;
 		private GraphicsPath sliderGP;
 
-		Point lastHandledLocation = new Point(-1, -1);  //needed for a bug. Not entirely sure why
+		#endregion
 
+		#region Getters and Setters
+
+		public int SliderWidth
+		{
+			get { return sliderWidth; }
+		}
+
+		public float ItemsPerHistogramPixel
+		{
+			get { return itemsPerHistogramPixel; }
+		}
+
+		public int ItemsPerSliderPixel
+		{
+			get { return itemsPerSliderPixel; }
+		}
+
+		public new GraphicsPath SliderGP
+		{
+			get { return this.sliderGP; }
+		}
 
 		#endregion
 
@@ -32,7 +62,6 @@ namespace CustomSlider
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			
 			Graphics g = e.Graphics;
 			doPaintingMath(); //this needs to be done so that values such as spacebetweenticks isn't 0 during the first paint
 
@@ -55,7 +84,14 @@ namespace CustomSlider
 					proportion = ((float)(Value - calculateSum(indexOfSlider - 1)) / (float)ItemsInIndices[indexOfSlider]);
 					sliderCenterX += proportion * (spaceBetweenTicks);
 				}
-				float sliderWidth = spaceBetweenTicks * ItemsInIndices[indexOfSlider] / ItemsInIndices[largestIndex];
+
+				itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
+				double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsInList;
+				sliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
+				itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / sliderWidth, MidpointRounding.ToEven);
+				if (itemsPerSliderPixel < 2)
+					itemsPerSliderPixel = 2;
+
 				sliderGP = generateSliderPath(sliderCenterX, trackYValue, sliderWidth);
 				
 			}
@@ -66,26 +102,41 @@ namespace CustomSlider
 			float secondarySliderY = trackYValue - sliderHeight / 2;
 			float secondarySliderWidth = 10;
 			float secondarySliderHeight = 10;
-			float secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
-			if (clickedOnSecondarySlider)
+			float secondarySliderHorizontalCenter;
+
+			if (firstTimeBeingDrawn || clickedOnSlider)
 			{
-				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count*1.0f - 1) * sliderGP.GetBounds().Width;
+				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
+				firstTimeBeingDrawn = false;
+			}
+			else if (clickedOnSecondarySlider || rolledMouseWheel)
+			{
+				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * sliderGP.GetBounds().Width;
 
 				if (RangeOfValues.Count == 1)
 				{
 					secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f) * sliderGP.GetBounds().Width; //don't subtract 1
 				}
+
+				rolledMouseWheel = false;
+			}
+			else
+			{
+				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the slider horizontally
 			}
 
 			base.OnPaint(e);
 
 			//draw secondarySlider
 			secondarySliderGP = generateSecondarySliderPath(secondarySliderHorizontalCenter, secondarySliderY, secondarySliderWidth, secondarySliderHeight);
-			g.FillPath(new SolidBrush(Color.Red), secondarySliderGP);
-			g.DrawPath(new Pen(Color.Black), secondarySliderGP);
+			if (secondarySliderGP != null)
+			{
+				g.FillPath(new SolidBrush(Color.Red), secondarySliderGP);
+				g.DrawPath(new Pen(Color.Black), secondarySliderGP);
+			}
 
 
-
+			
 			//base.OnPaint(e);
 		}
 
@@ -101,11 +152,17 @@ namespace CustomSlider
 				clickedOnSlider = false;
 				clickedOnSecondarySlider = true;
 				drawSlider = false;
+				slowDownMouse();
 			}
 			else
 			{
 				base.OnMouseDown(e);
 			}
+		}
+
+		public void simulateMouseWheel(MouseEventArgs e)
+		{
+			OnMouseWheel(e);
 		}
 
 		protected override void OnMouseMove(MouseEventArgs e)
@@ -129,10 +186,13 @@ namespace CustomSlider
 					float penetration = (e.X - sliderGP.GetBounds().X) / sliderGP.GetBounds().Width;
 
 					//calculate value
-					int tempValue = RangeOfValues[0];
-					tempValue += (int)(penetration * RangeOfValues.Count);
+					if (penetration >= 0 && penetration <= 1)
+					{
+						int tempValue = RangeOfValues[0];
+						tempValue += (int)(penetration * RangeOfValues.Count);
 
-					Value = tempValue;
+						Value = tempValue;
+					}
 
 				}
 			}
@@ -144,6 +204,29 @@ namespace CustomSlider
 			clickedOnSecondarySlider = false;
 		}
 
+		protected override void OnMouseWheel(MouseEventArgs e)
+		{
+			base.OnMouseWheel(e);
+			drawSlider = false;
+			rolledMouseWheel = true;
+			int newValue;
+
+			Console.WriteLine(itemsPerSliderPixel);
+
+			if (e.Delta < 0)
+			{
+				newValue = Value - (itemsPerSliderPixel - 1); // minus 1 so that the user is assured that no items are being skipped
+			}
+			else
+			{
+				newValue = Value + (itemsPerSliderPixel - 1);
+			}
+
+			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
+				drawSlider = true;
+			Value = newValue;
+			
+		}
 
 		#region Helper Methods
 
@@ -169,6 +252,7 @@ namespace CustomSlider
 				rightX = sliderCenterX + sliderWidth / 2;
 			else
 				rightX = ClientRectangle.Width - 1;
+
 			topY = sliderCenterY - sliderHeight / 2;
 			bottomY = sliderCenterY + sliderHeight / 2;
 			// slider starts as nothing
@@ -211,8 +295,8 @@ namespace CustomSlider
 			GraphicsPath gp = new GraphicsPath();
 
 			PointF bottomCenter = new PointF(secondarySliderHorizontalCenter, secondarySliderY);
-			PointF topLeft = new PointF(secondarySliderHorizontalCenter - sliderWidth / 4, secondarySliderY - secondarySliderHeight);
-			PointF topRight = new PointF(secondarySliderHorizontalCenter + sliderWidth / 4, secondarySliderY - secondarySliderHeight);
+			PointF topLeft = new PointF(secondarySliderHorizontalCenter - secondarySliderWidth / 2, secondarySliderY - secondarySliderHeight);
+			PointF topRight = new PointF(secondarySliderHorizontalCenter + secondarySliderWidth / 2, secondarySliderY - secondarySliderHeight);
 
 			gp.AddLine(bottomCenter, topLeft);
 			gp.AddLine(topLeft, topRight);
