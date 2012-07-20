@@ -35,7 +35,11 @@ namespace CustomSlider
 		public int Value
 		{
 			get { return activeAreaSlider.Value; }
-			set { activeAreaSlider.Value = value; }
+			set 
+			{
+				activeAreaSlider.DrawSlider = true;
+				activeAreaSlider.Value = value;
+			}
 		}
 
 		public List<uint> ItemsInIndices
@@ -82,6 +86,7 @@ namespace CustomSlider
 			listBox.SelectedIndexChanged += new EventHandler(listBox_SelectedIndexChanged);
 
 			//activeAreaSlider.ItemsInIndices = new List<uint>(new uint[] { 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500 });
+			currentRangeLabel.Hide();
 		}
 
 		void listBox_SelectedIndexChanged(object sender, EventArgs e)

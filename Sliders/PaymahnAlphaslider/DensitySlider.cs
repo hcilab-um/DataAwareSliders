@@ -273,8 +273,9 @@ namespace CustomSlider
 					clickedOnSlider = true;
 					drawSlider = true;
 					OnMouseMove(e);
-					Capture = false;
-					clickedOnSlider = false;
+					//Capture = false;
+					//clickedOnSlider = false;
+					slowDownMouse();
 				}
 			}
 		}
@@ -402,7 +403,7 @@ namespace CustomSlider
 				OnKeyDown(new KeyEventArgs(keyData));
 				return true;
 			}
-
+			drawSlider = true;
 			return base.ProcessDialogKey(keyData);
 		}
 

@@ -1255,7 +1255,7 @@ namespace FilmFinder
 			else
 			{
 				currentCategory = movieHandler.UniqueDirectors;
-				sliderToAccess = actressActiveAreaSlider;
+				sliderToAccess = directorActiveAreaSlider;
 			}
 
 			itemsPerIndex = sliderToAccess.ItemsInIndices;
@@ -1369,6 +1369,7 @@ namespace FilmFinder
 			actorMultipleValueSlider.Enabled = false;
 			actorMVSv3.Enabled = false;
 			//actorTrackBar.Enabled = false;
+			actorActiveMultiSlider.Enabled = false;
 
 			directorActiveAreaSlider.Enabled = false;
 			directorAlphaSlider.Enabled = false;
@@ -1377,6 +1378,7 @@ namespace FilmFinder
 			directorMultipleValueSlider.Enabled = false;
 			directorMVSc3.Enabled = false;
 			//directorTrackBar.Enabled = false;
+			directorActiveMultiSlider.Enabled = false;
 
 			actressActiveAreaSlider.Enabled = false;
 			actressAlphaSlider.Enabled = false;
@@ -1385,6 +1387,7 @@ namespace FilmFinder
 			actressMultipleValueSlider.Enabled = false;
 			actressMVSv3.Enabled = false;
 			//actressTrackBar.Enabled = false;
+			actressActiveMultiSlider.Enabled = false;
 		}
 
 		private void enableAllSlider()
@@ -1396,6 +1399,7 @@ namespace FilmFinder
 			actorMultipleValueSlider.Enabled = true;
 			actorMVSv3.Enabled = true;
 			//actorTrackBar.Enabled = true;
+			actorActiveMultiSlider.Enabled = true;
 
 			directorActiveAreaSlider.Enabled = true;
 			directorAlphaSlider.Enabled = true;
@@ -1404,6 +1408,7 @@ namespace FilmFinder
 			directorMultipleValueSlider.Enabled = true;
 			directorMVSc3.Enabled = true;
 			//directorTrackBar.Enabled = true;
+			directorActiveMultiSlider.Enabled = true;
 
 			actressActiveAreaSlider.Enabled = true;
 			actressAlphaSlider.Enabled = true;
@@ -1412,6 +1417,7 @@ namespace FilmFinder
 			actressMultipleValueSlider.Enabled = true;
 			actressMVSv3.Enabled = true;
 			//actressTrackBar.Enabled = true;
+			actressActiveMultiSlider.Enabled = true;
 		}
 
 		public void setTrial()
@@ -1470,7 +1476,7 @@ namespace FilmFinder
 			//generate the top row
 			topRow.Add(0);
 			topRow.Add(1);
-			topRow.Add(6);
+			topRow.Add(5);
 			topRow.Add(2);
 			topRow.Add(4);
 			topRow.Add(3);

@@ -52,6 +52,12 @@ namespace CustomSlider
 			get { return this.sliderGP; }
 		}
 
+		public bool DrawSlider
+		{
+			get { return drawSlider; }
+			set { drawSlider = value; }
+		}
+
 		#endregion
 
 		public ActiveAreaSliderv2()
@@ -104,7 +110,7 @@ namespace CustomSlider
 			float secondarySliderHeight = 10;
 			float secondarySliderHorizontalCenter;
 
-			if (firstTimeBeingDrawn || clickedOnSlider)
+			if (firstTimeBeingDrawn || clickedOnSlider || drawSlider)
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
 				firstTimeBeingDrawn = false;
@@ -122,7 +128,7 @@ namespace CustomSlider
 			}
 			else
 			{
-				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the slider horizontally
+				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
 			}
 
 			base.OnPaint(e);
