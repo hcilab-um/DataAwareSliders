@@ -31,6 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActiveMultiSlider));
 			this.listBox = new System.Windows.Forms.ListBox();
 			this.activeAreaSlider = new CustomSlider.ActiveAreaSliderv2();
+			this.currentRangeLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// listBox
@@ -57,15 +58,26 @@
 			this.activeAreaSlider.Text = "activeAreaSliderv21";
 			this.activeAreaSlider.Value = 0;
 			// 
+			// currentRangeLabel
+			// 
+			this.currentRangeLabel.AutoSize = true;
+			this.currentRangeLabel.Location = new System.Drawing.Point(3, 62);
+			this.currentRangeLabel.Name = "currentRangeLabel";
+			this.currentRangeLabel.Size = new System.Drawing.Size(35, 13);
+			this.currentRangeLabel.TabIndex = 2;
+			this.currentRangeLabel.Text = "label1";
+			// 
 			// ActiveMultiSlider
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.currentRangeLabel);
 			this.Controls.Add(this.listBox);
 			this.Controls.Add(this.activeAreaSlider);
 			this.Name = "ActiveMultiSlider";
 			this.Size = new System.Drawing.Size(458, 124);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -73,5 +85,6 @@
 
 		private ActiveAreaSliderv2 activeAreaSlider;
 		private System.Windows.Forms.ListBox listBox;
+		private System.Windows.Forms.Label currentRangeLabel;
 	}
 }

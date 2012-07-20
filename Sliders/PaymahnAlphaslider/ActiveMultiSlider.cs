@@ -14,10 +14,13 @@ namespace CustomSlider
 	{
 		public event EventHandler QueryChanged;
 
-		private const int ListBoxY = 0;
-		private const int distanceFromSliderToListBox = 10;
+		private const int LISTBOX_Y = 0;
+		private const int DISTANCE_FROM_SLIDER_TO_LISTBOX = 10;
+		private const int LABEL_BOUND_WIDTH = 5; //how many characters of the upper bound and lower should be shown
 
 		private List<string> data = null;
+
+		#region Getters and setters
 
 		public List<string> Data
 		{
@@ -70,6 +73,8 @@ namespace CustomSlider
 			}
 		}
 
+		#endregion
+
 		public ActiveMultiSlider()
 		{
 			InitializeComponent();
@@ -89,6 +94,55 @@ namespace CustomSlider
 			activeAreaSlider.Refresh();
 			updateListBox();
 			changeListBoxPosition();
+
+			updateCurrentRangeLabel();
+			changeCurrentRangeLabelPosition();
+
+			this.Invalidate();
+		}
+
+		private void updateCurrentRangeLabel()
+		{
+			if (RangeOfValues != null && data != null)
+			{
+				string lowerBound = data[RangeOfValues[0]];
+				string upperBound = data[RangeOfValues[RangeOfValues.Count - 1]];
+
+				if (lowerBound.Length > LABEL_BOUND_WIDTH)
+					lowerBound = lowerBound.Substring(0, LABEL_BOUND_WIDTH);
+
+				if (upperBound.Length > LABEL_BOUND_WIDTH)
+					upperBound = upperBound.Substring(0, LABEL_BOUND_WIDTH);
+
+				currentRangeLabel.Text = lowerBound + " -\n" + upperBound;
+			}
+		}
+
+		private void changeCurrentRangeLabelPosition()
+		{
+			//currentRangeLabel.Left = (int)activeAreaSlider.SliderGP.GetBounds().X;
+			if (activeAreaSlider.SliderGP != null)
+			{
+				Rectangle labelRec = currentRangeLabel.ClientRectangle;
+				Rectangle listboxRec = listBox.ClientRectangle;
+
+				labelRec.Offset((int)activeAreaSlider.SliderGP.GetBounds().X, currentRangeLabel.Location.Y);
+				listboxRec.Offset(listBox.Location);
+
+				Debug.WriteLine("Intersection of label and listbox: {0} ", labelRec.IntersectsWith(listboxRec));
+
+				while (labelRec.IntersectsWith(listboxRec))
+				{
+					labelRec.Offset(-1, 0);
+				}
+
+				while (labelRec.Right > ClientRectangle.Width)
+				{
+					labelRec.Offset(-1, 0);
+				}
+
+				currentRangeLabel.Location = labelRec.Location;
+			}
 		}
 
 		private void updateListBox()
@@ -118,10 +172,10 @@ namespace CustomSlider
 
 			if (activeAreaSlider.SliderGP != null)
 			{
-				if (activeAreaSlider.SliderGP.GetBounds().Right + distanceFromSliderToListBox + listBoxWidth > ClientRectangle.Width)
-					newX = (int)activeAreaSlider.SliderGP.GetBounds().X - distanceFromSliderToListBox - listBoxWidth;
+				if (activeAreaSlider.SliderGP.GetBounds().Right + DISTANCE_FROM_SLIDER_TO_LISTBOX + listBoxWidth > ClientRectangle.Width)
+					newX = (int)activeAreaSlider.SliderGP.GetBounds().X - DISTANCE_FROM_SLIDER_TO_LISTBOX - listBoxWidth;
 				else
-					newX = (int)activeAreaSlider.SliderGP.GetBounds().Right + distanceFromSliderToListBox;
+					newX = (int)activeAreaSlider.SliderGP.GetBounds().Right + DISTANCE_FROM_SLIDER_TO_LISTBOX;
 			}
 			listBox.Location = new Point(newX, listBox.Location.Y);
 		}
