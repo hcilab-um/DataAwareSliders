@@ -38,7 +38,7 @@ namespace FilmFinder
 
             actorFilter = actressFilter = directorFilter = "All";
 
-			System.Diagnostics.Process.Start(@"C:\Users\paymahn\Downloads\mongodb-win32-x86_64-2.0.5\bin\mongod.exe");
+			System.Diagnostics.Process.Start("mongod.exe");
             
 			//readXML("movies.xml");
 			getMoviesFromDB();
