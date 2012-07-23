@@ -17,6 +17,7 @@ namespace CustomSlider
 		private const int LISTBOX_Y = 0;
 		private const int DISTANCE_FROM_SLIDER_TO_LISTBOX = 10;
 		private const int LABEL_BOUND_WIDTH = 5; //how many characters of the upper bound and lower should be shown
+		private const int MINIMUM_ITEMS_IN_LIST = 5;
 
 		private List<string> data = null;
 
@@ -159,7 +160,7 @@ namespace CustomSlider
 				listBox.Items.Clear();
 
 				listBox.Items.Add(data[activeAreaSlider.Value].ToString());
-				for (int i = 1; i < activeAreaSlider.ItemsPerSliderPixel; i++)
+				for (int i = 1; i < Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST); i++)
 				{
 					if(activeAreaSlider.Value + i <= activeAreaSlider.RangeOfValues[activeAreaSlider.RangeOfValues.Count - 1])
 						listBox.Items.Add(data[activeAreaSlider.Value + i].ToString());
@@ -194,7 +195,7 @@ namespace CustomSlider
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			activeAreaSlider.RollChangeValue = activeAreaSlider.ItemsPerSliderPixel - 1;
+			activeAreaSlider.RollChangeValue = Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST) - 1;
 			base.OnPaint(e);
 		}
 	}
