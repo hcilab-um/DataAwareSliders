@@ -1,0 +1,54 @@
+45	0	Actor	0	47810	TRUE		alpha	multi	active	mouse	list	activemulti		
+46	0	Actor	1	21707	TRUE		22024.77778	24263.77778	20135	20756.77778	16626.44444	25470.11111		
+47	0	Actor	2	20187	TRUE									
+48	0	Actress	0	24082	TRUE									
+49	0	Actress	1	33674	TRUE									
+50	0	Actress	2	22946	TRUE									
+51	0	Director	0	3859	TRUE									
+52	0	Director	1	11115	TRUE									
+53	0	Director	2	12843	TRUE									
+36	1	Actor	0	6776	TRUE									
+37	1	Actor	1	36369	TRUE									
+38	1	Actor	2	17353	TRUE									
+39	1	Actress	0	54888	TRUE									
+40	1	Actress	1	13505	FALSE									
+41	1	Actress	2	38312	TRUE									
+42	1	Director	0	8745	TRUE									
+43	1	Director	1	28097	TRUE									
+44	1	Director	2	14329	TRUE									
+18	2	Actor	0	25800	TRUE				Actor	Actress	Director			
+19	2	Actor	1	30968	TRUE			alpha	29901.33333	26900.66667	9272.333333			
+20	2	Actor	2	48576	TRUE			multi	20166	35568.33333	17057			
+21	2	Actress	0	21360	TRUE			active	35114.66667	14198	11092.33333			
+22	2	Actress	1	11321	TRUE			mouse	25168	25325.66667	11776.66667			
+23	2	Actress	2	9913	TRUE			list	17754.33333	22223.33333	9901.666667			
+24	2	Director	0	11369	TRUE			activemulti	17939.66667	31377.33333	27093.33333			
+25	2	Director	1	7649	TRUE									
+26	2	Director	2	14259	TRUE									
+0	3	Actor	0	50695	TRUE									
+1	3	Actor	1	8417	TRUE									
+2	3	Actor	2	16392	TRUE									
+3	3	Actress	0	24168	TRUE									
+4	3	Actress	1	13633	TRUE									
+5	3	Actress	2	38176	TRUE									
+6	3	Director	0	8665	TRUE									
+7	3	Director	1	13360	TRUE				alpha	multi	active	mouse	list	activemulti
+8	3	Director	2	13305	TRUE			Low	25250.33333	23469.66667	19509.66667	27842.66667	18719	19488
+9	4	Actor	0	26249	TRUE			Medium	22165.33333	25990.33333	16646	11803.33333	14915.33333	37551
+10	4	Actor	1	10204	TRUE			High	18658.66667	23331.33333	24249.33333	22624.33333	16245	19371.33333
+11	4	Actor	2	16810	FALSE									
+12	4	Actress	0	25682	TRUE									
+13	4	Actress	1	20697	TRUE									
+14	4	Actress	2	20291	TRUE									
+15	4	Director	0	4226	FALSE									
+16	4	Director	1	13845	TRUE									
+17	4	Director	2	11634	TRUE									
+27	5	Actor	0	19976	TRUE									
+28	5	Actor	1	22785	TRUE									
+29	5	Actor	2	11058	TRUE									
+30	5	Actress	0	32776	TRUE									
+31	5	Actress	1	31612	TRUE									
+32	5	Actress	2	29744	TRUE									
+33	5	Director	0	5712	TRUE									
+34	5	Director	1	58256	TRUE									
+35	5	Director	2	17312	TRUE									

@@ -430,15 +430,6 @@ namespace CustomSlider
 			}
 		}
 
-		protected override void OnMouseClick(MouseEventArgs e)
-		{
-			base.OnMouseClick(e);
-			if (rightButton.GetBounds().Contains(e.Location))
-			{
-				Value = Value + 1;
-				Debug.WriteLine(Value.ToString() + "helo  22");
-			}
-		}
 
 		/// <summary>
 		/// This method allows the slider to be dragged, but only if it's been clicked on
