@@ -218,6 +218,13 @@ namespace CustomSlider
 				currSliderGP = customSliderGP;
 			}
 
+			int queriedPixelX = PointToClient(Cursor.Position).X;
+
+			if (queriedPixelX < trackXStart)
+				queriedPixelX = (int)trackXStart;
+			else if(queriedPixelX > trackXEnd)
+				queriedPixelX = (int)trackXEnd;
+
 			g.DrawLine(redPen, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY - getCurrHistogramHeight(findIndexOfSliderValue()));
 
 			g.FillPath(new SolidBrush(Color.FromArgb(128, Color.Gray)), currSliderGP);
@@ -260,9 +267,14 @@ namespace CustomSlider
 			{
 				if (mouseInSliderRegion(e.Location))
 				{
+					GraphicsPath currSliderGP = sliderGP != null ? sliderGP : customSliderGP;
+					int newXValue = (int)Math.Round(currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2);
+					Cursor.Position = PointToScreen(new Point(newXValue, (int)trackYValue));
+
 					Capture = true;
 					clickedOnSlider = true;
 					drawSlider = true;
+
 
 					slowDownMouse();		
 				}
@@ -469,10 +481,10 @@ namespace CustomSlider
 		{
 			GraphicsPath slideArea = new GraphicsPath();
 
-			PointF topLeft = new PointF(ClientRectangle.X + 1, trackYValue - sliderHeight / 2);
-			PointF topRight = new PointF(ClientRectangle.Width - 1, trackYValue - sliderHeight / 2);
-			PointF bottomLeft = new PointF(ClientRectangle.X + 1, trackYValue + sliderHeight / 2);
-			PointF bottomRight = new PointF(ClientRectangle.Width - 1, trackYValue + sliderHeight / 2);
+			PointF topLeft = new PointF(ClientRectangle.X + 1, trackYValue - sliderHeight);
+			PointF topRight = new PointF(ClientRectangle.Width - 1, trackYValue - sliderHeight);
+			PointF bottomLeft = new PointF(ClientRectangle.X + 1, trackYValue + sliderHeight);
+			PointF bottomRight = new PointF(ClientRectangle.Width - 1, trackYValue + sliderHeight);
 
 			slideArea.AddLine(topLeft, topRight);
 			slideArea.AddLine(topRight, bottomRight);

@@ -30,8 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActiveMultiSlider));
 			this.listBox = new System.Windows.Forms.ListBox();
-			this.activeAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.currentRangeLabel = new System.Windows.Forms.Label();
+			this.activeAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.SuspendLayout();
 			// 
 			// listBox
@@ -42,21 +42,8 @@
 			this.listBox.ItemHeight = 16;
 			this.listBox.Location = new System.Drawing.Point(44, 3);
 			this.listBox.Name = "listBox";
-			this.listBox.Size = new System.Drawing.Size(105, 116);
+			this.listBox.Size = new System.Drawing.Size(105, 100);
 			this.listBox.TabIndex = 1;
-			// 
-			// activeAreaSlider
-			// 
-			this.activeAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.activeAreaSlider.IndexNames = null;
-			this.activeAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSlider.ItemsInIndices")));
-			this.activeAreaSlider.Location = new System.Drawing.Point(3, 14);
-			this.activeAreaSlider.Name = "activeAreaSlider";
-			this.activeAreaSlider.Size = new System.Drawing.Size(452, 45);
-			this.activeAreaSlider.TabIndex = 0;
-			this.activeAreaSlider.Text = "activeAreaSliderv21";
-			this.activeAreaSlider.Value = 0;
 			// 
 			// currentRangeLabel
 			// 
@@ -67,6 +54,22 @@
 			this.currentRangeLabel.TabIndex = 2;
 			this.currentRangeLabel.Text = "label1";
 			// 
+			// activeAreaSlider
+			// 
+			this.activeAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.activeAreaSlider.DrawSlider = true;
+			this.activeAreaSlider.IndexNames = null;
+			this.activeAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSlider.ItemsInIndices")));
+			this.activeAreaSlider.Location = new System.Drawing.Point(3, 4);
+			this.activeAreaSlider.MaxItemsPerSliderPixel = 1;
+			this.activeAreaSlider.Name = "activeAreaSlider";
+			this.activeAreaSlider.RollChangeValue = 1;
+			this.activeAreaSlider.Size = new System.Drawing.Size(452, 45);
+			this.activeAreaSlider.TabIndex = 0;
+			this.activeAreaSlider.Text = "activeAreaSliderv21";
+			this.activeAreaSlider.Value = 0;
+			// 
 			// ActiveMultiSlider
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -75,7 +78,7 @@
 			this.Controls.Add(this.listBox);
 			this.Controls.Add(this.activeAreaSlider);
 			this.Name = "ActiveMultiSlider";
-			this.Size = new System.Drawing.Size(458, 124);
+			this.Size = new System.Drawing.Size(458, 109);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

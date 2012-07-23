@@ -82,6 +82,7 @@ namespace CustomSlider
 		public ActiveMultiSlider()
 		{
 			InitializeComponent();
+			activeAreaSlider.MaxItemsPerSliderPixel = 7;
 			activeAreaSlider.ValueChanged += new EventHandler(activeAreaSlider_ValueChanged);
 			listBox.SelectedIndexChanged += new EventHandler(listBox_SelectedIndexChanged);
 
@@ -189,6 +190,12 @@ namespace CustomSlider
 		{
 			if (QueryChanged != null)
 				QueryChanged(this, new EventArgs());
+		}
+
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			activeAreaSlider.RollChangeValue = activeAreaSlider.ItemsPerSliderPixel - 1;
+			base.OnPaint(e);
 		}
 	}
 }

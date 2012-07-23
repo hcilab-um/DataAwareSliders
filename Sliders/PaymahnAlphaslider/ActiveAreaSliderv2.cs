@@ -18,8 +18,9 @@ namespace CustomSlider
 		private const int MINIMUM_SLIDER_WIDTH = 20;
 		private float itemsPerHistogramPixel = 0;
 		private new int sliderWidth = 0;
-		private int maxItemsInList = 7; //equivalent of max items per thumb pixel
+		private int maxItemsPerSliderPixel = 1; //equivalent of max items per thumb pixel
 		private int itemsPerSliderPixel = 0;
+		private int rollChangeValue = 1;
 
 		private bool clickedOnSecondarySlider = false;
 		private bool rolledMouseWheel = false;
@@ -58,6 +59,26 @@ namespace CustomSlider
 			set { drawSlider = value; }
 		}
 
+		public int RollChangeValue
+		{
+			get { return rollChangeValue; }
+			set
+			{
+				if (value > 0)
+					rollChangeValue = value;
+			}
+		}
+
+		public int MaxItemsPerSliderPixel
+		{
+			get { return maxItemsPerSliderPixel; }
+			set
+			{
+				if (value > 0)
+					maxItemsPerSliderPixel = value;
+			}
+		}
+
 		#endregion
 
 		public ActiveAreaSliderv2()
@@ -92,7 +113,7 @@ namespace CustomSlider
 				}
 
 				itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
-				double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsInList;
+				double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsPerSliderPixel;
 				sliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
 				itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / sliderWidth, MidpointRounding.ToEven);
 				if (itemsPerSliderPixel < 2)
@@ -110,12 +131,7 @@ namespace CustomSlider
 			float secondarySliderHeight = 10;
 			float secondarySliderHorizontalCenter;
 
-			if (firstTimeBeingDrawn || clickedOnSlider || drawSlider)
-			{
-				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
-				firstTimeBeingDrawn = false;
-			}
-			else if (clickedOnSecondarySlider || rolledMouseWheel)
+			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * sliderGP.GetBounds().Width;
 
@@ -126,6 +142,12 @@ namespace CustomSlider
 
 				rolledMouseWheel = false;
 			}
+			else if (/*firstTimeBeingDrawn || */clickedOnSlider || drawSlider)
+			{
+				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
+				firstTimeBeingDrawn = false;
+			}
+			
 			else
 			{
 				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
@@ -221,11 +243,11 @@ namespace CustomSlider
 
 			if (e.Delta < 0)
 			{
-				newValue = Value - (itemsPerSliderPixel - 1); // minus 1 so that the user is assured that no items are being skipped
+				newValue = Value - rollChangeValue;
 			}
 			else
 			{
-				newValue = Value + (itemsPerSliderPixel - 1);
+				newValue = Value + rollChangeValue;
 			}
 
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
