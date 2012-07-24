@@ -51,9 +51,6 @@
 			this.ratingRangeLabel = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.nextSliderButton = new System.Windows.Forms.Button();
-			this.actorListBox = new System.Windows.Forms.ListBox();
-			this.actressListBox = new System.Windows.Forms.ListBox();
-			this.directorListBox = new System.Windows.Forms.ListBox();
 			this.currentActressLabel = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -68,18 +65,12 @@
 			this.actressActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
 			this.directorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
 			this.actorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
-			this.directorMouseWheelSlider = new CustomSlider.MouseWheelSlider();
 			this.directorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
-			this.directorMultipleValueSlider = new CustomSlider.MultiValueSliderV2();
-			this.actorMultipleValueSlider = new CustomSlider.MultiValueSliderV2();
 			this.actorAlphaSlider = new CustomSlider.AlphasliderV3();
 			this.actressAlphaSlider = new CustomSlider.AlphasliderV3();
 			this.directorAlphaSlider = new CustomSlider.AlphasliderV3();
-			this.actressMultipleValueSlider = new CustomSlider.MultiValueSliderV2();
 			this.actorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.actressActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
-			this.actorMouseWheelSlider = new CustomSlider.MouseWheelSlider();
-			this.actressMouseWheelSlider = new CustomSlider.MouseWheelSlider();
 			this.actorMVSv3 = new CustomSlider.MultiValueSliderV3();
 			this.actressMVSv3 = new CustomSlider.MultiValueSliderV3();
 			this.directorMVSc3 = new CustomSlider.MultiValueSliderV3();
@@ -214,36 +205,6 @@
 			this.nextSliderButton.UseVisualStyleBackColor = true;
 			this.nextSliderButton.Click += new System.EventHandler(this.nextSliderButton_Click);
 			// 
-			// actorListBox
-			// 
-			resources.ApplyResources(this.actorListBox, "actorListBox");
-			this.actorListBox.BackColor = System.Drawing.SystemColors.Control;
-			this.actorListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.actorListBox.FormattingEnabled = true;
-			this.actorListBox.MultiColumn = true;
-			this.actorListBox.Name = "actorListBox";
-			this.actorListBox.SelectedIndexChanged += new System.EventHandler(this.actorListBox_SelectedIndexChanged);
-			// 
-			// actressListBox
-			// 
-			resources.ApplyResources(this.actressListBox, "actressListBox");
-			this.actressListBox.BackColor = System.Drawing.SystemColors.Control;
-			this.actressListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.actressListBox.FormattingEnabled = true;
-			this.actressListBox.MultiColumn = true;
-			this.actressListBox.Name = "actressListBox";
-			this.actressListBox.SelectedIndexChanged += new System.EventHandler(this.actressListBox_SelectedIndexChanged);
-			// 
-			// directorListBox
-			// 
-			resources.ApplyResources(this.directorListBox, "directorListBox");
-			this.directorListBox.BackColor = System.Drawing.SystemColors.Control;
-			this.directorListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.directorListBox.FormattingEnabled = true;
-			this.directorListBox.MultiColumn = true;
-			this.directorListBox.Name = "directorListBox";
-			this.directorListBox.SelectedIndexChanged += new System.EventHandler(this.directorListBox_SelectedIndexChanged);
-			// 
 			// currentActressLabel
 			// 
 			resources.ApplyResources(this.currentActressLabel, "currentActressLabel");
@@ -332,37 +293,16 @@
 			this.actorActiveMultiSlider.Name = "actorActiveMultiSlider";
 			this.actorActiveMultiSlider.Value = 0;
 			// 
-			// directorMouseWheelSlider
-			// 
-			resources.ApplyResources(this.directorMouseWheelSlider, "directorMouseWheelSlider");
-			this.directorMouseWheelSlider.IndexNames = null;
-			this.directorMouseWheelSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorMouseWheelSlider.ItemsInIndices")));
-			this.directorMouseWheelSlider.Name = "directorMouseWheelSlider";
-			this.directorMouseWheelSlider.Value = 0;
-			// 
 			// directorActiveAreaSlider
 			// 
 			resources.ApplyResources(this.directorActiveAreaSlider, "directorActiveAreaSlider");
+			this.directorActiveAreaSlider.DrawSlider = true;
 			this.directorActiveAreaSlider.IndexNames = null;
 			this.directorActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorActiveAreaSlider.ItemsInIndices")));
+			this.directorActiveAreaSlider.MaxItemsPerSliderPixel = 2;
 			this.directorActiveAreaSlider.Name = "directorActiveAreaSlider";
+			this.directorActiveAreaSlider.RollChangeValue = 1;
 			this.directorActiveAreaSlider.Value = 50;
-			// 
-			// directorMultipleValueSlider
-			// 
-			resources.ApplyResources(this.directorMultipleValueSlider, "directorMultipleValueSlider");
-			this.directorMultipleValueSlider.IndexNames = null;
-			this.directorMultipleValueSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorMultipleValueSlider.ItemsInIndices")));
-			this.directorMultipleValueSlider.Name = "directorMultipleValueSlider";
-			this.directorMultipleValueSlider.Value = 50;
-			// 
-			// actorMultipleValueSlider
-			// 
-			resources.ApplyResources(this.actorMultipleValueSlider, "actorMultipleValueSlider");
-			this.actorMultipleValueSlider.IndexNames = null;
-			this.actorMultipleValueSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorMultipleValueSlider.ItemsInIndices")));
-			this.actorMultipleValueSlider.Name = "actorMultipleValueSlider";
-			this.actorMultipleValueSlider.Value = 50;
 			// 
 			// actorAlphaSlider
 			// 
@@ -391,45 +331,27 @@
 			this.directorAlphaSlider.Name = "directorAlphaSlider";
 			this.directorAlphaSlider.Value = 50;
 			// 
-			// actressMultipleValueSlider
-			// 
-			resources.ApplyResources(this.actressMultipleValueSlider, "actressMultipleValueSlider");
-			this.actressMultipleValueSlider.IndexNames = null;
-			this.actressMultipleValueSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressMultipleValueSlider.ItemsInIndices")));
-			this.actressMultipleValueSlider.Name = "actressMultipleValueSlider";
-			this.actressMultipleValueSlider.Value = 50;
-			// 
 			// actorActiveAreaSlider
 			// 
 			resources.ApplyResources(this.actorActiveAreaSlider, "actorActiveAreaSlider");
+			this.actorActiveAreaSlider.DrawSlider = true;
 			this.actorActiveAreaSlider.IndexNames = null;
 			this.actorActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorActiveAreaSlider.ItemsInIndices")));
+			this.actorActiveAreaSlider.MaxItemsPerSliderPixel = 2;
 			this.actorActiveAreaSlider.Name = "actorActiveAreaSlider";
+			this.actorActiveAreaSlider.RollChangeValue = 1;
 			this.actorActiveAreaSlider.Value = 50;
 			// 
 			// actressActiveAreaSlider
 			// 
 			resources.ApplyResources(this.actressActiveAreaSlider, "actressActiveAreaSlider");
+			this.actressActiveAreaSlider.DrawSlider = true;
 			this.actressActiveAreaSlider.IndexNames = null;
 			this.actressActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressActiveAreaSlider.ItemsInIndices")));
+			this.actressActiveAreaSlider.MaxItemsPerSliderPixel = 2;
 			this.actressActiveAreaSlider.Name = "actressActiveAreaSlider";
+			this.actressActiveAreaSlider.RollChangeValue = 1;
 			this.actressActiveAreaSlider.Value = 50;
-			// 
-			// actorMouseWheelSlider
-			// 
-			resources.ApplyResources(this.actorMouseWheelSlider, "actorMouseWheelSlider");
-			this.actorMouseWheelSlider.IndexNames = null;
-			this.actorMouseWheelSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorMouseWheelSlider.ItemsInIndices")));
-			this.actorMouseWheelSlider.Name = "actorMouseWheelSlider";
-			this.actorMouseWheelSlider.Value = 0;
-			// 
-			// actressMouseWheelSlider
-			// 
-			resources.ApplyResources(this.actressMouseWheelSlider, "actressMouseWheelSlider");
-			this.actressMouseWheelSlider.IndexNames = null;
-			this.actressMouseWheelSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressMouseWheelSlider.ItemsInIndices")));
-			this.actressMouseWheelSlider.Name = "actressMouseWheelSlider";
-			this.actressMouseWheelSlider.Value = 0;
 			// 
 			// actorMVSv3
 			// 
@@ -508,19 +430,10 @@
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.directorListBox);
-			this.Controls.Add(this.actressListBox);
-			this.Controls.Add(this.actorListBox);
-			this.Controls.Add(this.directorMouseWheelSlider);
-			this.Controls.Add(this.actressMouseWheelSlider);
-			this.Controls.Add(this.actorMouseWheelSlider);
 			this.Controls.Add(this.directorActiveAreaSlider);
 			this.Controls.Add(this.actressActiveAreaSlider);
 			this.Controls.Add(this.actorActiveAreaSlider);
 			this.Controls.Add(this.nextSliderButton);
-			this.Controls.Add(this.directorMultipleValueSlider);
-			this.Controls.Add(this.actressMultipleValueSlider);
-			this.Controls.Add(this.actorMultipleValueSlider);
 			this.Controls.Add(this.directorAlphaSlider);
 			this.Controls.Add(this.actressAlphaSlider);
 			this.Controls.Add(this.actorAlphaSlider);
@@ -581,19 +494,10 @@
 		private CustomSlider.AlphasliderV3 actorAlphaSlider;
 		private CustomSlider.AlphasliderV3 actressAlphaSlider;
 		private CustomSlider.AlphasliderV3 directorAlphaSlider;
-		private CustomSlider.MultiValueSliderV2 actorMultipleValueSlider;
-		private CustomSlider.MultiValueSliderV2 actressMultipleValueSlider;
-		private CustomSlider.MultiValueSliderV2 directorMultipleValueSlider;
 		private System.Windows.Forms.Button nextSliderButton;
 		private CustomSlider.ActiveAreaSliderv2 actorActiveAreaSlider;
 		private CustomSlider.ActiveAreaSliderv2 actressActiveAreaSlider;
 		private CustomSlider.ActiveAreaSliderv2 directorActiveAreaSlider;
-		private CustomSlider.MouseWheelSlider actorMouseWheelSlider;
-		private CustomSlider.MouseWheelSlider actressMouseWheelSlider;
-		private CustomSlider.MouseWheelSlider directorMouseWheelSlider;
-		private System.Windows.Forms.ListBox actorListBox;
-		private System.Windows.Forms.ListBox actressListBox;
-		private System.Windows.Forms.ListBox directorListBox;
 		private System.Windows.Forms.Label currentActressLabel;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label6;

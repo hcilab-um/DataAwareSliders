@@ -141,7 +141,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chart1.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>40</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="disableAllGenreButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -226,7 +226,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>39</value>
   </data>
   <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -262,7 +262,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>38</value>
   </data>
   <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -295,7 +295,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>37</value>
   </data>
   <data name="currentActorLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -439,7 +439,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;certifactionsPanel.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>33</value>
   </data>
   <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -466,7 +466,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>32</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -496,7 +496,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>30</value>
   </data>
   <data name="runningTimeRangeLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -526,7 +526,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;runningTimeRangeLabel.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>29</value>
   </data>
   <data name="yearRangeLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -556,7 +556,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;yearRangeLabel.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>26</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -586,7 +586,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>27</value>
   </data>
   <data name="ratingRangeLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -616,7 +616,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ratingRangeLabel.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>23</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -646,7 +646,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>24</value>
   </data>
   <data name="nextSliderButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -673,88 +673,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nextSliderButton.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="actorListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actorListBox.ColumnWidth" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="actorListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>686, 66</value>
-  </data>
-  <data name="actorListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 65</value>
-  </data>
-  <data name="actorListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="&gt;&gt;actorListBox.Name" xml:space="preserve">
-    <value>actorListBox</value>
-  </data>
-  <data name="&gt;&gt;actorListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;actorListBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actorListBox.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="actressListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actressListBox.ColumnWidth" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="actressListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>686, 214</value>
-  </data>
-  <data name="actressListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 65</value>
-  </data>
-  <data name="actressListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="&gt;&gt;actressListBox.Name" xml:space="preserve">
-    <value>actressListBox</value>
-  </data>
-  <data name="&gt;&gt;actressListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;actressListBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actressListBox.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="directorListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="directorListBox.ColumnWidth" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="directorListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>686, 357</value>
-  </data>
-  <data name="directorListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 65</value>
-  </data>
-  <data name="directorListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="&gt;&gt;directorListBox.Name" xml:space="preserve">
-    <value>directorListBox</value>
-  </data>
-  <data name="&gt;&gt;directorListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;directorListBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;directorListBox.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="currentActressLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1155,41 +1074,6 @@
   <data name="&gt;&gt;actorActiveMultiSlider.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="directorMouseWheelSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="directorMouseWheelSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="directorMouseWheelSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
-  </data>
-  <data name="directorMouseWheelSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="directorMouseWheelSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="directorMouseWheelSlider.Text" xml:space="preserve">
-    <value>mouseWheelSlider3</value>
-  </data>
-  <data name="&gt;&gt;directorMouseWheelSlider.Name" xml:space="preserve">
-    <value>directorMouseWheelSlider</value>
-  </data>
-  <data name="&gt;&gt;directorMouseWheelSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MouseWheelSlider, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;directorMouseWheelSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;directorMouseWheelSlider.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
   <data name="directorActiveAreaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -1223,77 +1107,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;directorActiveAreaSlider.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="directorMultipleValueSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="directorMultipleValueSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="directorMultipleValueSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
-  </data>
-  <data name="directorMultipleValueSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="directorMultipleValueSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="directorMultipleValueSlider.Text" xml:space="preserve">
-    <value>multipleValueSlider3</value>
-  </data>
-  <data name="&gt;&gt;directorMultipleValueSlider.Name" xml:space="preserve">
-    <value>directorMultipleValueSlider</value>
-  </data>
-  <data name="&gt;&gt;directorMultipleValueSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MultiValueSliderV2, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;directorMultipleValueSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;directorMultipleValueSlider.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="actorMultipleValueSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actorMultipleValueSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="actorMultipleValueSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 12</value>
-  </data>
-  <data name="actorMultipleValueSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="actorMultipleValueSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="actorMultipleValueSlider.Text" xml:space="preserve">
-    <value>multipleValueSlider1</value>
-  </data>
-  <data name="&gt;&gt;actorMultipleValueSlider.Name" xml:space="preserve">
-    <value>actorMultipleValueSlider</value>
-  </data>
-  <data name="&gt;&gt;actorMultipleValueSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MultiValueSliderV2, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;actorMultipleValueSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actorMultipleValueSlider.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>16</value>
   </data>
   <data name="actorAlphaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1328,7 +1142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actorAlphaSlider.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>22</value>
   </data>
   <data name="actressAlphaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1363,7 +1177,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actressAlphaSlider.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>21</value>
   </data>
   <data name="directorAlphaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1398,42 +1212,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;directorAlphaSlider.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="actressMultipleValueSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actressMultipleValueSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="actressMultipleValueSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 157</value>
-  </data>
-  <data name="actressMultipleValueSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="actressMultipleValueSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="actressMultipleValueSlider.Text" xml:space="preserve">
-    <value>multipleValueSlider2</value>
-  </data>
-  <data name="&gt;&gt;actressMultipleValueSlider.Name" xml:space="preserve">
-    <value>actressMultipleValueSlider</value>
-  </data>
-  <data name="&gt;&gt;actressMultipleValueSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MultiValueSliderV2, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;actressMultipleValueSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actressMultipleValueSlider.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>20</value>
   </data>
   <data name="actorActiveAreaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1468,7 +1247,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actorActiveAreaSlider.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>18</value>
   </data>
   <data name="actressActiveAreaSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1503,77 +1282,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actressActiveAreaSlider.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="actorMouseWheelSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actorMouseWheelSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="actorMouseWheelSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 12</value>
-  </data>
-  <data name="actorMouseWheelSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="actorMouseWheelSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="actorMouseWheelSlider.Text" xml:space="preserve">
-    <value>mouseWheelSlider1</value>
-  </data>
-  <data name="&gt;&gt;actorMouseWheelSlider.Name" xml:space="preserve">
-    <value>actorMouseWheelSlider</value>
-  </data>
-  <data name="&gt;&gt;actorMouseWheelSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MouseWheelSlider, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;actorMouseWheelSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actorMouseWheelSlider.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="actressMouseWheelSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="actressMouseWheelSlider.ItemsInIndices" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAEAQAAAH9TeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW1N5
-        c3RlbS5VSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVi
-        bGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24HAAAP
-        CAgJAgAAAAcAAAAAAAAADwIAAAAHAAAAD2QAAAD0AQAAhAMAAJYAAABKAQAAzQAAAPoBAAAL
-</value>
-  </data>
-  <data name="actressMouseWheelSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 157</value>
-  </data>
-  <data name="actressMouseWheelSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 45</value>
-  </data>
-  <data name="actressMouseWheelSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="actressMouseWheelSlider.Text" xml:space="preserve">
-    <value>mouseWheelSlider2</value>
-  </data>
-  <data name="&gt;&gt;actressMouseWheelSlider.Name" xml:space="preserve">
-    <value>actressMouseWheelSlider</value>
-  </data>
-  <data name="&gt;&gt;actressMouseWheelSlider.Type" xml:space="preserve">
-    <value>CustomSlider.MouseWheelSlider, PaymahnAlphaslider, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;actressMouseWheelSlider.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;actressMouseWheelSlider.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>17</value>
   </data>
   <data name="actorMVSv3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2035,7 +1744,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actorMVSv3.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>36</value>
   </data>
   <data name="actressMVSv3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2497,7 +2206,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;actressMVSv3.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>34</value>
   </data>
   <data name="directorMVSc3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2959,7 +2668,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;directorMVSc3.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>35</value>
   </data>
   <data name="ratingRangeSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2986,7 +2695,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ratingRangeSlider.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>25</value>
   </data>
   <data name="yearRangeSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -3013,7 +2722,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;yearRangeSlider.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>28</value>
   </data>
   <data name="runningTimeRangeSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -3040,7 +2749,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;runningTimeRangeSlider.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>31</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

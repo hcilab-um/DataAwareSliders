@@ -20,7 +20,7 @@ namespace FilmFinder
 	public partial class FilmFinderGUI : Form
 	{
 		private static Random randomGenerator = new Random();
-		private const int NUMBER_OF_SLIDERS = 6;
+		private const int NUMBER_OF_SLIDERS = 4;
 
 		private MovieHandler movieHandler;
 		private List<string> genreList;
@@ -30,7 +30,6 @@ namespace FilmFinder
 		private enum SearchCategory { Actor, Actress, Director };
 		private SearchCategory currentSearchCategory = 0;
 		private string searchTarget;
-		//private int numberOfSearches = 0;
 		private Stopwatch stopwatch;
 		private int userId = 3;
 		private StreamWriter file;
@@ -41,7 +40,6 @@ namespace FilmFinder
 		private int maxIndex = 0;
 		private int currIndex = 0;
 		private bool experimentStarted = false;
-		private bool usedKeybaord = false;
 
 		public FilmFinderGUI(MovieHandler app)
 		{
@@ -71,9 +69,6 @@ namespace FilmFinder
 			confirmSearchButton.Hide();
 			searchConfirmLabel.Hide();
 			stopwatch = new Stopwatch();
-
-			//Settings.Default.ParticipantNumber = 4;
-			//Settings.Default.Save();
 
 			initializeFileWriting();
 			setTrial();
@@ -112,7 +107,6 @@ namespace FilmFinder
 				Console.WriteLine(e.Message);
 			}
 
-			//File.Create(userId + ".txt").Close(); //clear the current file of all text
 			file = new StreamWriter(fileName, true);
 			file.AutoFlush = true;
 		}
@@ -202,7 +196,6 @@ namespace FilmFinder
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueActors[1][0]; //prime the loop and variables
 			firstCharacters.Add(lastFirstLetter + "");
-			//buckets[0]++; //first actor is accounted for in the buckets
 			for (int i = 1; i < uniqueActors.Count; i++)
 			{
 				if (char.ToUpper(uniqueActors[i][0]) == lastFirstLetter)
@@ -223,25 +216,10 @@ namespace FilmFinder
 			actorAlphaSlider.Value = 0;
 			actorAlphaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
-			actorMultipleValueSlider.ItemsInIndices = buckets;
-			actorMultipleValueSlider.IndexNames = firstCharacters;
-			actorMultipleValueSlider.Value = 0;
-			actorMultipleValueSlider.ValueChanged += new EventHandler(multiValueActorSlider_ValueChanged);
-
-			//actorHistogramSlider.ItemsInIndices = buckets;
-			//actorHistogramSlider.IndexNames = firstCharacters;
-			//actorHistogramSlider.Value = 0;
-			//actorHistogramSlider.TrueValueChanged += new EventHandler(actorSlider_ValueChanged);
-
 			actorActiveAreaSlider.ItemsInIndices = buckets;
 			actorActiveAreaSlider.IndexNames = firstCharacters;
 			actorActiveAreaSlider.Value = 0;
 			actorActiveAreaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
-			actorMouseWheelSlider.ItemsInIndices = buckets;
-			actorMouseWheelSlider.IndexNames = firstCharacters;
-			actorMouseWheelSlider.Value = 0;
-			actorMouseWheelSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
 			actorMVSv3.List = uniqueActors;
 			actorMVSv3.ItemsInIndices = buckets;
@@ -255,13 +233,6 @@ namespace FilmFinder
 			actorActiveMultiSlider.IndexNames = firstCharacters;
 			actorActiveMultiSlider.QueryChanged += new EventHandler(actorActiveMultiSlider_QueryChanged);
 			actorActiveMultiSlider.Value = 0;
-			//actorTrackBar.Minimum = 0;
-			//actorTrackBar.Maximum = uniqueActors.Count - 1;
-			//actorTrackBar.TickStyle = TickStyle.None;
-			//actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
-			////actorTrackBar.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-			//actorTrackBar.Value = 0;
 		}
 
 		
@@ -280,7 +251,6 @@ namespace FilmFinder
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueDirectors[1][0]; //prime the loop and variables
 			firstCharacters.Add(lastFirstLetter + "");
-			//buckets[0]++; //first director is accounted for in the buckets
 			for (int i = 1; i < uniqueDirectors.Count; i++)
 			{
 				if (char.ToUpper(uniqueDirectors[i][0]) == lastFirstLetter)
@@ -301,25 +271,10 @@ namespace FilmFinder
 			directorAlphaSlider.Value = 0;
 			directorAlphaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
-			directorMultipleValueSlider.ItemsInIndices = buckets;
-			directorMultipleValueSlider.IndexNames = firstCharacters;
-			directorMultipleValueSlider.Value = 0;
-			directorMultipleValueSlider.ValueChanged += new EventHandler(multiValueDirectorSlider_ValueChanged);
-
-			//directorHistogramSlider.ItemsInIndices = buckets;
-			//directorHistogramSlider.IndexNames = firstCharacters;
-			//directorHistogramSlider.Value = 0;
-			//directorHistogramSlider.TrueValueChanged += new EventHandler(directorSlider_ValueChanged);
-
 			directorActiveAreaSlider.ItemsInIndices = buckets;
 			directorActiveAreaSlider.IndexNames = firstCharacters;
 			directorActiveAreaSlider.Value = 0;
 			directorActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-
-			directorMouseWheelSlider.ItemsInIndices = buckets;
-			directorMouseWheelSlider.IndexNames = firstCharacters;
-			directorMouseWheelSlider.Value = 0;
-			directorMouseWheelSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
 			directorMVSc3.List = uniqueDirectors;
 			directorMVSc3.ItemsInIndices = buckets;
@@ -333,12 +288,6 @@ namespace FilmFinder
 			directorActiveMultiSlider.IndexNames = firstCharacters;
 			directorActiveMultiSlider.QueryChanged += new EventHandler(directorActiveMultiSlider_QueryChanged);
 			directorActiveMultiSlider.Value = 0;
-			//directorTrackBar.Minimum = 0;
-			//directorTrackBar.Maximum = uniqueDirectors.Count - 1;
-			//directorTrackBar.TickStyle = TickStyle.None;
-			//directorTrackBar.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-
-			//directorTrackBar.Value = 0;
         }
 
 		
@@ -354,7 +303,6 @@ namespace FilmFinder
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueActresses[1][0]; //prime the loop and variables
 			firstCharacters.Add(lastFirstLetter + "");
-			//buckets[0]++; //first actress is accounted for in the buckets
 			for (int i = 1; i < uniqueActresses.Count; i++)
 			{
 				if (char.ToUpper(uniqueActresses[i][0]) == lastFirstLetter)
@@ -375,25 +323,10 @@ namespace FilmFinder
 			actressAlphaSlider.Value = 0;
 			actressAlphaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
-			actressMultipleValueSlider.ItemsInIndices = buckets;
-			actressMultipleValueSlider.IndexNames = firstCharacters;
-			actressMultipleValueSlider.Value = 0;
-			actressMultipleValueSlider.ValueChanged += new EventHandler(multiValueActressSlider_ValueChanged);
-
-			//actressHistogramSlider.ItemsInIndices = buckets;
-			//actressHistogramSlider.IndexNames = firstCharacters;
-			//actressHistogramSlider.Value = 0;
-			//actressHistogramSlider.TrueValueChanged += new EventHandler(actressSlider_ValueChanged);
-
 			actressActiveAreaSlider.ItemsInIndices = buckets;
 			actressActiveAreaSlider.IndexNames = firstCharacters;
 			actressActiveAreaSlider.Value = 0;
 			actressActiveAreaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
-
-			actressMouseWheelSlider.ItemsInIndices = buckets;
-			actressMouseWheelSlider.IndexNames = firstCharacters;
-			actressMouseWheelSlider.Value = 0;
-			actressMouseWheelSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
 			actressMVSv3.List = uniqueActresses;
 			actressMVSv3.ItemsInIndices = buckets;
@@ -415,7 +348,6 @@ namespace FilmFinder
 		private void initializeRunningTimeRangeSlider()
 		{
 			runningTimeRangeSlider.BoundChanged -= runningTimeRangeSlider_BoundChanged;
-			//runningTimeRangeSlider.LowerBound = runningTimeRangeSlider.LowerBound + 1;
 
 			List<int> runningTimes = movieHandler.getRunningTimes();
 			runningTimes.Sort();
@@ -430,7 +362,6 @@ namespace FilmFinder
 		private void initializeYearRangeSlider()
 		{
 			yearRangeSlider.BoundChanged -= yearRangeSlider_BoundChanged;
-			//yearRangeSlider.LowerBound = yearRangeSlider.UpperBound;
 
 			List<int> years = movieHandler.getProductionYears();
 			years.Sort();
@@ -445,7 +376,6 @@ namespace FilmFinder
 		private void initializeRatingRangeSlider()
 		{
 			ratingRangeSlider.BoundChanged -= ratingRangeSlider_BoundChanged;
-			//ratingRangeSlider.LowerBound = ratingRangeSlider.UpperBound;
 
 			List<double> ratings = movieHandler.getRatings();
 			ratings.Sort();
@@ -701,13 +631,12 @@ namespace FilmFinder
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value;
 			}
-			else if (sender is TrackBar)
-			{
-				value = (sender as TrackBar).Value;
-			}
 
-			currentActorLabel.Text = movieHandler.updateActorFilter(value);
-			drawActiveSet();
+			if (value != Int32.MinValue)
+			{
+				currentActorLabel.Text = movieHandler.updateActorFilter(value);
+				drawActiveSet();
+			}
 		}
 
 		/// <summary>
@@ -725,13 +654,12 @@ namespace FilmFinder
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value; 
 			}
-			else if (sender is TrackBar)
-			{
-				value = (sender as TrackBar).Value;
-			}
 
-            currentDirectorLabel.Text = movieHandler.updateDirectorFilter(value);
-            drawActiveSet();
+			if (value != Int32.MinValue)
+			{
+				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(value);
+				drawActiveSet();
+			}
         }
 
 		private void actressSlider_ValueChanged(object sender, EventArgs e)
@@ -744,43 +672,12 @@ namespace FilmFinder
 				if (slider is AlphasliderV3)
 					value = (slider as AlphasliderV3).Value;
 			}
-			else if (sender is TrackBar)
+
+			if (value != Int32.MinValue)
 			{
-				value = (sender as TrackBar).Value;
+				currentActressLabel.Text = movieHandler.updateActressFilter(value);
+				drawActiveSet();
 			}
-
-			currentActressLabel.Text = movieHandler.updateActressFilter(value);
-			drawActiveSet();
-		}
-
-		private void multiValueActorSlider_ValueChanged(object sender, EventArgs e)
-		{
-			updateListBox(actorListBox, actorMultipleValueSlider, movieHandler.UniqueActors);
-		}	
-
-		private void multiValueActressSlider_ValueChanged(object sender, EventArgs e)
-		{
-			updateListBox(actressListBox, actressMultipleValueSlider, movieHandler.UniqueActresses);
-		}
-
-		private void multiValueDirectorSlider_ValueChanged(object sender, EventArgs e)
-		{
-			updateListBox(directorListBox, directorMultipleValueSlider, movieHandler.UniqueDirectors);
-		}
-
-		private void updateListBox(ListBox listBox, MultiValueSliderV2 multiValueSlider, List<string> list)
-		{
-			listBox.BeginUpdate();
-			listBox.Items.Clear();
-			for (int i = multiValueSlider.RangeOfValues[0]; i <= multiValueSlider.RangeOfValues[multiValueSlider.RangeOfValues.Count - 1]; i++)
-			{
-				//if (i == 0)
-				//    listBox.Items.Add("All");
-				//else
-					listBox.Items.Add(list[i /*- 1*/]);
-			}
-			listBox.SelectedIndex = 0;// multiValueSlider.RangeOfValues.Count / 2;
-			listBox.EndUpdate();
 		}
 
 		void actorMVSv3_TextChanged(object sender, EventArgs e)
@@ -836,25 +733,6 @@ namespace FilmFinder
 				drawActiveSet();
 			}
 		}
-
-		private void actressListBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			currentActressLabel.Text = movieHandler.updateActressFilter(actressMultipleValueSlider.RangeOfValues[actressListBox.SelectedIndex]);
-			drawActiveSet();
-		}
-
-		private void actorListBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			currentActorLabel.Text = movieHandler.updateActorFilter(actorMultipleValueSlider.RangeOfValues[actorListBox.SelectedIndex]);
-			drawActiveSet();
-		}
-
-		private void directorListBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorMultipleValueSlider.RangeOfValues[directorListBox.SelectedIndex]);
-			drawActiveSet();
-		}
-
 		
 
 		/// <summary>
@@ -879,7 +757,7 @@ namespace FilmFinder
 
 					//and show it. Unlessit's null, in which case there was an error of some sort
                     if (associatedMovie == null)
-                        MessageBox.Show("There has been an error. The movie you clicked on could not be found. Most likely an error with rounding doubles from the rating axis");
+                        MessageBox.Show("There has been an error. The movie you clicked on could not be found.");
                     else
                         new MovieInformationWindow(associatedMovie);
                 }
@@ -967,49 +845,12 @@ namespace FilmFinder
 		{
 			actorAlphaSlider.Show();
 			actorAlphaSlider.Value = 0;
-			//actorAlphaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
 			actressAlphaSlider.Show();
 			actressAlphaSlider.Value = 0;
-			//actressAlphaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
 			directorAlphaSlider.Show();
 			directorAlphaSlider.Value = 0;
-			//directorAlphaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-		}
-
-		/// <summary>
-		/// hide the multivalue sliders
-		/// </summary>
-		private void hideMultiValueSliders()
-		{
-			actorListBox.Hide();
-			actressListBox.Hide();
-			directorListBox.Hide();
-
-			actorMultipleValueSlider.Hide();
-			actressMultipleValueSlider.Hide();
-			directorMultipleValueSlider.Hide();
-		}
-
-		/// <summary>
-		/// show the multi value sliders
-		/// </summary>
-		private void showMultiValueSliders()
-		{
-			actorListBox.Show();
-			actressListBox.Show();
-			directorListBox.Show();
-
-
-			actorMultipleValueSlider.Show();
-			actorMultipleValueSlider.Value = 0;
-
-			actressMultipleValueSlider.Show();
-			actressMultipleValueSlider.Value = 0;
-
-			directorMultipleValueSlider.Show();
-			directorMultipleValueSlider.Value = 0;
 		}
 
 		private void hideActiveAreaSliders()
@@ -1023,37 +864,12 @@ namespace FilmFinder
 		{
 			actorActiveAreaSlider.Show();
 			actorActiveAreaSlider.Value = 0;
-			//actorActiveAreaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
 			actressActiveAreaSlider.Show();
 			actressActiveAreaSlider.Value = 0;
-			//actressActiveAreaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
 			directorActiveAreaSlider.Show();
 			directorActiveAreaSlider.Value = 0;
-			//directorActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
-		}
-
-		private void hideMouseWheelSliders()
-		{
-			actorMouseWheelSlider.Hide();
-			actressMouseWheelSlider.Hide();
-			directorMouseWheelSlider.Hide();
-		}
-
-		private void showMouseWheelSliders()
-		{
-			actorMouseWheelSlider.Show();
-			actorMouseWheelSlider.Value = 0;
-			//actorMouseWheelSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
-
-			actressMouseWheelSlider.Show();
-			actressMouseWheelSlider.Value = 0;
-			//actressMouseWheelSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
-
-			directorMouseWheelSlider.Show();
-			directorMouseWheelSlider.Value = 0;
-			//directorMouseWheelSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 		}
 
 		private void hideMSVv3s()
@@ -1061,10 +877,6 @@ namespace FilmFinder
 			actorMVSv3.Hide();
 			actressMVSv3.Hide();
 			directorMVSc3.Hide();
-
-			//currentActorLabel.Show();
-			//currentActressLabel.Show();
-			//currentDirectorLabel.Show();
 		}
 
 		private void showMVSv3s()
@@ -1077,10 +889,6 @@ namespace FilmFinder
 
 			directorMVSc3.Show();
 			directorMVSc3.Value = 0;
-
-			//currentActorLabel.Hide();
-			//currentActressLabel.Hide();
-			//currentDirectorLabel.Hide();
 		}
 
 		private void hideActiveMultiSliders()
@@ -1088,10 +896,6 @@ namespace FilmFinder
 			actorActiveMultiSlider.Hide();
 			actressActiveMultiSlider.Hide();
 			directorActiveMultiSlider.Hide();
-
-			//currentActorLabel.Show();
-			//currentActressLabel.Show();
-			//currentDirectorLabel.Show();
 		}
 
 		private void showActiveMultiSliders()
@@ -1104,10 +908,6 @@ namespace FilmFinder
 
 			directorActiveMultiSlider.Show();
 			directorActiveMultiSlider.Value = 0;
-
-			//currentActorLabel.Hide();
-			//currentActressLabel.Hide();
-			//currentDirectorLabel.Hide();
 		}
 
 		/// <summary>
@@ -1116,9 +916,7 @@ namespace FilmFinder
 		private void hideAllSliders()
 		{
 			hideAlphaSliders();
-			hideMultiValueSliders();
 			hideActiveAreaSliders();
-			hideMouseWheelSliders();
 			hideMSVv3s();
 			hideActiveMultiSliders();
 		}
@@ -1150,18 +948,12 @@ namespace FilmFinder
 					showAlphaSliders();
 					break;
 				case 1:
-					showMultiValueSliders();
-					break;
-				case 2:
 					showActiveAreaSliders();
 					break;
-				case 3:
-					showMouseWheelSliders();
-					break;
-				case 4:
+				case 2:
 					showMVSv3s();
 					break;
-				case 5:
+				case 3:
 					showActiveMultiSliders();
 					break;
 
@@ -1194,27 +986,6 @@ namespace FilmFinder
 
 		}
 
-		private void resetGUIToDefault()
-		{
-			experimentStarted = true;
-			//initializeFileWriting();
-
-			nextSliderButton.Show();
-			previousSliderButton.Show();
-			startExperimentButton.Show();
-
-			pleaseFindLabel.Hide();
-			searchLabel.Hide();
-			//startSearchButton.Show();
-			//confirmSearchButton.Show();
-			searchConfirmLabel.Hide();
-			confirmSearchButton.Enabled = false;
-			//generateNewSearch();
-			//disableAllSliders();
-			enableAllSlider();
-			//Debug.WriteLine(currentSearchCategory.ToString());
-		}
-
 		private void generateNewSearch()
 		{
 			if (currIndex > maxIndex)
@@ -1225,8 +996,6 @@ namespace FilmFinder
 				Settings.Default.Save();
 				file.Close();
 				Environment.Exit(1);
-				
-				resetGUIToDefault();
 			}
 
 			int randomQuery = 0;
@@ -1331,13 +1100,12 @@ namespace FilmFinder
 			bool correctSearch = checkForCorrectSearch();
 
 			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + +arrayTargetDensity1[currIndex] + "," + stopwatch.ElapsedMilliseconds
-				+ ","+ correctSearch /*+ "," + usedKeybaord*/;
+				+ ","+ correctSearch;
 			file.WriteLine(statistics);
 
 			currIndex++;
 			generateNewSearch();
 
-			usedKeybaord = false;
 			stopwatch.Reset();
 		}
 
@@ -1364,29 +1132,17 @@ namespace FilmFinder
 		{
 			actorActiveAreaSlider.Enabled = false;
 			actorAlphaSlider.Enabled = false;
-			//actorHistogramSlider.Enabled = false;
-			actorMouseWheelSlider.Enabled = false;
-			actorMultipleValueSlider.Enabled = false;
 			actorMVSv3.Enabled = false;
-			//actorTrackBar.Enabled = false;
 			actorActiveMultiSlider.Enabled = false;
 
 			directorActiveAreaSlider.Enabled = false;
 			directorAlphaSlider.Enabled = false;
-			//directorHistogramSlider.Enabled = false;
-			directorMouseWheelSlider.Enabled = false;
-			directorMultipleValueSlider.Enabled = false;
 			directorMVSc3.Enabled = false;
-			//directorTrackBar.Enabled = false;
 			directorActiveMultiSlider.Enabled = false;
 
 			actressActiveAreaSlider.Enabled = false;
 			actressAlphaSlider.Enabled = false;
-			//actressHistogramSlider.Enabled = false;
-			actressMouseWheelSlider.Enabled = false;
-			actressMultipleValueSlider.Enabled = false;
 			actressMVSv3.Enabled = false;
-			//actressTrackBar.Enabled = false;
 			actressActiveMultiSlider.Enabled = false;
 		}
 
@@ -1394,29 +1150,17 @@ namespace FilmFinder
 		{
 			actorActiveAreaSlider.Enabled = true;
 			actorAlphaSlider.Enabled = true;
-			//actorHistogramSlider.Enabled = true;
-			actorMouseWheelSlider.Enabled = true;
-			actorMultipleValueSlider.Enabled = true;
 			actorMVSv3.Enabled = true;
-			//actorTrackBar.Enabled = true;
 			actorActiveMultiSlider.Enabled = true;
 
 			directorActiveAreaSlider.Enabled = true;
 			directorAlphaSlider.Enabled = true;
-			//directorHistogramSlider.Enabled = true;
-			directorMouseWheelSlider.Enabled = true;
-			directorMultipleValueSlider.Enabled = true;
 			directorMVSc3.Enabled = true;
-			//directorTrackBar.Enabled = true;
 			directorActiveMultiSlider.Enabled = true;
 
 			actressActiveAreaSlider.Enabled = true;
 			actressAlphaSlider.Enabled = true;
-			//actressHistogramSlider.Enabled = true;
-			actressMouseWheelSlider.Enabled = true;
-			actressMultipleValueSlider.Enabled = true;
 			actressMVSv3.Enabled = true;
-			//actressTrackBar.Enabled = true;
 			actressActiveMultiSlider.Enabled = true;
 		}
 
@@ -1476,10 +1220,8 @@ namespace FilmFinder
 			//generate the top row
 			topRow.Add(0);
 			topRow.Add(1);
-			topRow.Add(5);
-			topRow.Add(2);
-			topRow.Add(4);
 			topRow.Add(3);
+			topRow.Add(2);
 
 			if (topRow.Count % 2 == 1)
 				latinSquare = new int[2 * topRow.Count, topRow.Count];
@@ -1545,12 +1287,6 @@ namespace FilmFinder
 						searchConfirmLabel.BackColor = Color.Red;
 					}
 
-					return true;
-				}
-
-				if ((keyData == Keys.Left || keyData == Keys.Right) && searchConfirmLabel.BackColor == Color.Green)
-				{
-					usedKeybaord = true;
 					return true;
 				}
 			}
