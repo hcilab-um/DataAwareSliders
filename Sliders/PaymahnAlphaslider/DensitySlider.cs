@@ -14,6 +14,7 @@ namespace CustomSlider
 {
 	public abstract partial class DensitySlider : Control
 	{
+		#region Variables
 
 		public event EventHandler ValueChanged;
 
@@ -58,6 +59,10 @@ namespace CustomSlider
 		protected bool drawSlider = true;
 		protected bool redrawMouse = false;
 
+		#endregion
+
+		#region Getters and Setters
+
 		public int Value
 		{
 			get { return sliderValue; }
@@ -80,7 +85,7 @@ namespace CustomSlider
 
 				//We only update the offset when the main slider is changing it's position
 				//the center of our range of values also only changes when we (re)draw the slider
-				if (drawSlider)
+				if (drawSlider && !redrawMouse)
 				{
 					centerOfRange = Value;
 					updateOffset(Value);
@@ -125,6 +130,8 @@ namespace CustomSlider
 		{
 			get { return sliderGP; }
 		}
+
+		#endregion
 
 		public DensitySlider()
 		{
@@ -278,7 +285,7 @@ namespace CustomSlider
 					drawSlider = true;
 
 
-					slowDownMouse();		
+					//slowDownMouse();		
 				}
 				else if (sliderArea.GetBounds().Contains(e.Location))
 				{
@@ -348,7 +355,7 @@ namespace CustomSlider
 				}
 			}
 
-			if (redrawMouse)
+			if (Capture && clickedOnSlider && redrawMouse)
 				redrawMouse = false;
 
 		}
@@ -362,7 +369,7 @@ namespace CustomSlider
 			base.OnMouseUp(e);
 			Capture = false;
 			clickedOnSlider = false;
-			drawSlider = true;
+			//drawSlider = true;
 
 			resetMouseSpeed();
 		}
@@ -419,6 +426,12 @@ namespace CustomSlider
 			{
 				OnKeyDown(new KeyEventArgs(keyData));
 				return true;
+			}
+			if (keyData == Keys.G)
+			{
+				OnMouseDown(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(customSliderGP.GetBounds().Right) - 1, (int)trackYValue, 0));
+				OnMouseMove(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(customSliderGP.GetBounds().Right) - 1, (int)trackYValue, 0));
+				OnMouseUp(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(customSliderGP.GetBounds().Right) - 1, (int)trackYValue, 0));
 			}
 			drawSlider = true;
 			return base.ProcessDialogKey(keyData);

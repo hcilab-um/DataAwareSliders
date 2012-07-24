@@ -15,6 +15,9 @@ namespace CustomSlider
 	public partial class ActiveAreaSliderv2 : DensitySlider, IDensitySlider
 	{
 		#region Variables
+
+		public event EventHandler StartMouseWheel;
+
 		private const int MINIMUM_SLIDER_WIDTH = 20;
 		private float itemsPerHistogramPixel = 0;
 		private new int sliderWidth = 0;
@@ -131,7 +134,7 @@ namespace CustomSlider
 			float secondarySliderHeight = 12;
 			float secondarySliderHorizontalCenter;
 
-			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
+			if ((clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax()) && !redrawMouse)
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * sliderGP.GetBounds().Width;
 
@@ -142,12 +145,11 @@ namespace CustomSlider
 
 				rolledMouseWheel = false;
 			}
-			else if (/*firstTimeBeingDrawn || */clickedOnSlider || drawSlider)
+			else if ((clickedOnSlider || drawSlider) && !redrawMouse)
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
 				firstTimeBeingDrawn = false;
 			}
-			
 			else
 			{
 				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
@@ -188,18 +190,9 @@ namespace CustomSlider
 			}
 		}
 
-		public void simulateMouseWheel(MouseEventArgs e)
-		{
-			OnMouseWheel(e);
-		}
-
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
-			if (!clickedOnSecondarySlider)
-			{
-				base.OnMouseMove(e);
-			}
-			else
+			if (clickedOnSecondarySlider)
 			{
 				if (e.X < (int)Math.Round(sliderGP.GetBounds().X))
 					Value = RangeOfValues[0];
@@ -224,6 +217,10 @@ namespace CustomSlider
 
 				}
 			}
+			else
+			{
+				base.OnMouseMove(e);
+			}
 		}
 
 		protected override void OnMouseUp(MouseEventArgs e)
@@ -234,12 +231,15 @@ namespace CustomSlider
 
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
-			base.OnMouseWheel(e);
 			drawSlider = false;
 			rolledMouseWheel = true;
-			int newValue;
 
-			Console.WriteLine(itemsPerSliderPixel);
+			//We've started rolling the mouse wheel
+			if (StartMouseWheel != null)
+				StartMouseWheel(this, e);
+
+			base.OnMouseWheel(e);
+			int newValue;
 
 			if (e.Delta < 0)
 			{
@@ -251,7 +251,9 @@ namespace CustomSlider
 			}
 
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
+			{
 				drawSlider = true;
+			}
 			Value = newValue;
 			
 		}

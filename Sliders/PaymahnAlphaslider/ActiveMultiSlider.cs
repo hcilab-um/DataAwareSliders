@@ -85,10 +85,54 @@ namespace CustomSlider
 			InitializeComponent();
 			activeAreaSlider.MaxItemsPerSliderPixel = 7;
 			activeAreaSlider.ValueChanged += new EventHandler(activeAreaSlider_ValueChanged);
+			activeAreaSlider.StartMouseWheel += new EventHandler(activeAreaSlider_StartMouseWheel);
 			listBox.SelectedIndexChanged += new EventHandler(listBox_SelectedIndexChanged);
 
 			//activeAreaSlider.ItemsInIndices = new List<uint>(new uint[] { 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500 });
 			currentRangeLabel.Hide();
+		}
+
+		void activeAreaSlider_StartMouseWheel(object sender, EventArgs e)
+		{
+			int rollValueChange = 1;
+			int itemsInList = Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel);
+			MouseEventArgs mouseInformation;
+
+			if (e is MouseEventArgs)
+			{
+				mouseInformation = (MouseEventArgs)e;
+
+				if (mouseInformation.Delta > 0)
+				{
+					if (RangeOfValues[RangeOfValues.Count - 1] - Value < itemsInList)
+					{
+						rollValueChange = RangeOfValues[RangeOfValues.Count - 1] - Value;
+						activeAreaSlider.DrawSlider = true;
+					}
+					else
+					{
+						rollValueChange = itemsInList - 1;
+					}
+				}
+				else
+				{
+					if (Value == RangeOfValues[0])
+					{
+						rollValueChange = itemsInList - 1;
+					}
+					else if (Value - RangeOfValues[0] <= itemsInList)
+					{
+						rollValueChange = Value - RangeOfValues[0];
+					}
+					else
+					{
+						rollValueChange = itemsInList - 1;
+					}
+				}
+				
+			}
+
+			activeAreaSlider.RollChangeValue = rollValueChange;
 		}
 
 		void listBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -162,7 +206,7 @@ namespace CustomSlider
 				listBox.Items.Add(data[activeAreaSlider.Value].ToString());
 				for (int i = 1; i < Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST); i++)
 				{
-					if(activeAreaSlider.Value + i <= activeAreaSlider.RangeOfValues[activeAreaSlider.RangeOfValues.Count - 1])
+					if (activeAreaSlider.Value + i <= activeAreaSlider.RangeOfValues[activeAreaSlider.RangeOfValues.Count - 1])
 						listBox.Items.Add(data[activeAreaSlider.Value + i].ToString());
 				}
 				listBox.SelectedIndex = 0;
@@ -191,13 +235,6 @@ namespace CustomSlider
 		{
 			if (QueryChanged != null)
 				QueryChanged(this, new EventArgs());
-		}
-
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			//activeAreaSlider.RollChangeValue = Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST) - 1;
-			activeAreaSlider.RollChangeValue = listBox.Items.Count - 1;
-			base.OnPaint(e);
 		}
 	}
 }
