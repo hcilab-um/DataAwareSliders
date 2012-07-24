@@ -49,7 +49,13 @@ namespace WindowsFormsApplication2
 			//alphasliderV31.Data = list;
 			alphasliderV31.ValueChanged += new EventHandler(alphasliderV31_ValueChanged);
 
-			activeMultiSlider1.Data = list;
+			List<string> list2 = new List<string>();
+			for (int i = 0; i < 10000; i++)
+			{
+				list2.Add(i + "");
+			}
+
+			activeMultiSlider1.Data = list2;
 
 		}
 

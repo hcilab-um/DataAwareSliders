@@ -42,7 +42,7 @@ namespace CustomSlider
 		private int lastX = 0;
 		private bool clickedOnTopHalf = false;
 		private bool clickedOnBottomHalf = false;
-		private bool redrawMouse = false;
+		private new bool redrawMouse = false;
 		private int moveThreshold = 1;
 		private int fineValueChange = 1;
 		private int mediumValueChange = 10;

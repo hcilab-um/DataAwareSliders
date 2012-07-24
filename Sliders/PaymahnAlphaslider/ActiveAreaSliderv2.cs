@@ -127,8 +127,8 @@ namespace CustomSlider
 
 			//deal with secondary slider positioning
 			float secondarySliderY = trackYValue - sliderHeight / 2;
-			float secondarySliderWidth = 10;
-			float secondarySliderHeight = 10;
+			float secondarySliderWidth = 15;
+			float secondarySliderHeight = 12;
 			float secondarySliderHorizontalCenter;
 
 			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())

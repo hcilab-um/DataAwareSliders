@@ -500,7 +500,6 @@ namespace FilmFinder
 		#endregion
 
 
-
 		#region Event catchers for all controls
 
 		/// <summary>

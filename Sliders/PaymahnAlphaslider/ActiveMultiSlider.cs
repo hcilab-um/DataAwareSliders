@@ -195,7 +195,8 @@ namespace CustomSlider
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			activeAreaSlider.RollChangeValue = Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST) - 1;
+			//activeAreaSlider.RollChangeValue = Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST) - 1;
+			activeAreaSlider.RollChangeValue = listBox.Items.Count - 1;
 			base.OnPaint(e);
 		}
 	}

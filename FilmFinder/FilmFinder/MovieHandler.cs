@@ -23,8 +23,6 @@ namespace FilmFinder
 
         public MovieHandler()
         {
-			
-
 			Stopwatch temp = new Stopwatch();
 			temp.Start();
 

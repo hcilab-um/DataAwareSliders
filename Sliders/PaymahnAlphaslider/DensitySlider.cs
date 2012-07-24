@@ -56,6 +56,7 @@ namespace CustomSlider
 
 		protected bool clickedOnSlider = false;
 		protected bool drawSlider = true;
+		protected bool redrawMouse = false;
 
 		public int Value
 		{
@@ -271,6 +272,7 @@ namespace CustomSlider
 					int newXValue = (int)Math.Round(currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2);
 					Cursor.Position = PointToScreen(new Point(newXValue, (int)trackYValue));
 
+					redrawMouse = true;
 					Capture = true;
 					clickedOnSlider = true;
 					drawSlider = true;
@@ -299,7 +301,7 @@ namespace CustomSlider
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
-			if (Capture && clickedOnSlider)
+			if (Capture && clickedOnSlider && !redrawMouse)
 			{
 				if (e.X < 0)
 					Value = 0;
@@ -345,6 +347,9 @@ namespace CustomSlider
 
 				}
 			}
+
+			if (redrawMouse)
+				redrawMouse = false;
 
 		}
 
