@@ -57,7 +57,7 @@ namespace CustomSlider
 
 		protected bool clickedOnSlider = false;
 		protected bool drawSlider = true;
-		protected bool redrawMouse = false;
+		private Point lastMousePosition;
 
 		#endregion
 
@@ -85,7 +85,7 @@ namespace CustomSlider
 
 				//We only update the offset when the main slider is changing it's position
 				//the center of our range of values also only changes when we (re)draw the slider
-				if (drawSlider && !redrawMouse)
+				if (drawSlider)
 				{
 					centerOfRange = Value;
 					updateOffset(Value);
@@ -185,10 +185,6 @@ namespace CustomSlider
 				{
 					g.DrawString(indexNames[index], new Font(FontFamily.GenericSerif, 10), new SolidBrush(Color.Black), i, histogramLowerY + 1);
 				}
-				////draw size # of items in index above histogram
-				//string toDraw = "" + itemsInIndices[index];
-				//Font font = new Font("Arial", 8);
-				//g.DrawString(toDraw, font, new SolidBrush(Color.White), i, histogramLowerY - histogramHeight + 1);
 
 				index += 1;
 			}
@@ -278,14 +274,13 @@ namespace CustomSlider
 					GraphicsPath currSliderGP = sliderGP != null ? sliderGP : customSliderGP;
 					int newXValue = (int)Math.Round(currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2);
 					Cursor.Position = PointToScreen(new Point(newXValue, (int)trackYValue));
+					lastMousePosition = Cursor.Position;
 
-					redrawMouse = true;
 					Capture = true;
 					clickedOnSlider = true;
 					drawSlider = true;
 
-
-					//slowDownMouse();		
+					slowDownMouse();		
 				}
 				else if (sliderArea.GetBounds().Contains(e.Location))
 				{
@@ -294,8 +289,7 @@ namespace CustomSlider
 					clickedOnSlider = true;
 					drawSlider = true;
 					OnMouseMove(e);
-					//Capture = false;
-					//clickedOnSlider = false;
+
 					slowDownMouse();
 				}
 			}
@@ -308,7 +302,7 @@ namespace CustomSlider
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
-			if (Capture && clickedOnSlider && !redrawMouse)
+			if (Capture && clickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
 			{
 				if (e.X < 0)
 					Value = 0;
@@ -355,8 +349,8 @@ namespace CustomSlider
 				}
 			}
 
-			if (Capture && clickedOnSlider && redrawMouse)
-				redrawMouse = false;
+			//if (redrawMouse)
+			//    redrawMouse = false;
 
 		}
 
@@ -366,7 +360,7 @@ namespace CustomSlider
 		/// <param name="e"></param>
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
-			base.OnMouseUp(e);
+			//base.OnMouseUp(e);
 			Capture = false;
 			clickedOnSlider = false;
 			//drawSlider = true;

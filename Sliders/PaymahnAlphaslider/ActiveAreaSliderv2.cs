@@ -27,7 +27,6 @@ namespace CustomSlider
 
 		private bool clickedOnSecondarySlider = false;
 		private bool rolledMouseWheel = false;
-		private bool firstTimeBeingDrawn = true;
 		//private bool drawSecondarySlider = 
 		private GraphicsPath secondarySliderGP = null;
 		private GraphicsPath sliderGP;
@@ -134,7 +133,7 @@ namespace CustomSlider
 			float secondarySliderHeight = 12;
 			float secondarySliderHorizontalCenter;
 
-			if ((clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax()) && !redrawMouse)
+			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * sliderGP.GetBounds().Width;
 
@@ -145,10 +144,9 @@ namespace CustomSlider
 
 				rolledMouseWheel = false;
 			}
-			else if ((clickedOnSlider || drawSlider) && !redrawMouse)
+			else if (clickedOnSlider || drawSlider)
 			{
 				secondarySliderHorizontalCenter = sliderGP.GetBounds().X + sliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
-				firstTimeBeingDrawn = false;
 			}
 			else
 			{
