@@ -34,12 +34,14 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.resetButton = new System.Windows.Forms.Button();
 			this.activeMultiSlider1 = new CustomSlider.ActiveMultiSlider();
 			this.activeAreaSliderv21 = new CustomSlider.ActiveAreaSliderv2();
 			this.alphasliderV31 = new CustomSlider.AlphasliderV3();
 			this.multiValueSliderV31 = new CustomSlider.MultiValueSliderV3();
 			this.mouseWheelSlider1 = new CustomSlider.MouseWheelSlider();
 			this.multiValueSliderV21 = new CustomSlider.MultiValueSliderV2();
+			this.label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -93,20 +95,35 @@
 			this.label6.TabIndex = 16;
 			this.label6.Text = "label6";
 			// 
+			// resetButton
+			// 
+			this.resetButton.Location = new System.Drawing.Point(581, 350);
+			this.resetButton.Name = "resetButton";
+			this.resetButton.Size = new System.Drawing.Size(75, 23);
+			this.resetButton.TabIndex = 23;
+			this.resetButton.Text = "Reset";
+			this.resetButton.UseVisualStyleBackColor = true;
+			this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+			// 
 			// activeMultiSlider1
 			// 
 			this.activeMultiSlider1.Data = null;
+			this.activeMultiSlider1.IndexNames = null;
 			this.activeMultiSlider1.Location = new System.Drawing.Point(12, 306);
 			this.activeMultiSlider1.Name = "activeMultiSlider1";
 			this.activeMultiSlider1.Size = new System.Drawing.Size(449, 233);
 			this.activeMultiSlider1.TabIndex = 22;
+			this.activeMultiSlider1.Value = 0;
 			// 
 			// activeAreaSliderv21
 			// 
+			this.activeAreaSliderv21.DrawSlider = true;
 			this.activeAreaSliderv21.IndexNames = null;
 			this.activeAreaSliderv21.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSliderv21.ItemsInIndices")));
 			this.activeAreaSliderv21.Location = new System.Drawing.Point(12, 12);
+			this.activeAreaSliderv21.MaxItemsPerSliderPixel = 2;
 			this.activeAreaSliderv21.Name = "activeAreaSliderv21";
+			this.activeAreaSliderv21.RollChangeValue = 1;
 			this.activeAreaSliderv21.Size = new System.Drawing.Size(598, 60);
 			this.activeAreaSliderv21.TabIndex = 21;
 			this.activeAreaSliderv21.Text = "activeAreaSliderv21";
@@ -166,11 +183,22 @@
 			this.multiValueSliderV21.Text = "multiValueSliderV21";
 			this.multiValueSliderV21.Value = 0;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(625, 214);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(35, 13);
+			this.label2.TabIndex = 24;
+			this.label2.Text = "label2";
+			// 
 			// Form2
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1468, 639);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.resetButton);
 			this.Controls.Add(this.activeMultiSlider1);
 			this.Controls.Add(this.activeAreaSliderv21);
 			this.Controls.Add(this.alphasliderV31);
@@ -202,6 +230,8 @@
 		private CustomSlider.AlphasliderV3 alphasliderV31;
 		private CustomSlider.ActiveAreaSliderv2 activeAreaSliderv21;
 		private CustomSlider.ActiveMultiSlider activeMultiSlider1;
+		private System.Windows.Forms.Button resetButton;
+		private System.Windows.Forms.Label label2;
 
 	}
 }

@@ -25,12 +25,11 @@ C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Deb
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Debug\af-ZA\FilmFinder.resources.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Debug\PaymahnAlphaslider.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Debug\PaymahnAlphaslider.pdb
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.FilmFinderGUI.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.MovieInformationWindow.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.Properties.Resources.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.testingRangeSlider.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.FilmFinderGUI.af-ZA.resources
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\af-ZA\FilmFinder.resources.dll
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.csproj.GenerateResource.Cache
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Debug\FilmFinder.csprojResolveAssemblyReference.cache

@@ -276,12 +276,12 @@ namespace FilmFinder
 			directorActiveAreaSlider.Value = 0;
 			directorActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
-			directorMVSc3.List = uniqueDirectors;
-			directorMVSc3.ItemsInIndices = buckets;
-			directorMVSc3.IndexNames = firstCharacters;
-			directorMVSc3.Value = 0;
-			directorMVSc3.ShowLabel = false;
-			directorMVSc3.TextChanged += new EventHandler(directorMVSc3_TextChanged);
+			directorMVSv3.List = uniqueDirectors;
+			directorMVSv3.ItemsInIndices = buckets;
+			directorMVSv3.IndexNames = firstCharacters;
+			directorMVSv3.Value = 0;
+			directorMVSv3.ShowLabel = false;
+			directorMVSv3.TextChanged += new EventHandler(directorMVSv3_TextChanged);
 
 			directorActiveMultiSlider.Data = uniqueDirectors;
 			directorActiveMultiSlider.ItemsInIndices = buckets;
@@ -697,11 +697,11 @@ namespace FilmFinder
 			}
 		}
 
-		void directorMVSc3_TextChanged(object sender, EventArgs e)
+		void directorMVSv3_TextChanged(object sender, EventArgs e)
 		{
-			if (directorMVSc3.SelectedIndex < directorMVSc3.RangeOfValues.Count)
+			if (directorMVSv3.SelectedIndex < directorMVSv3.RangeOfValues.Count)
 			{
-				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorMVSc3.RangeOfValues[directorMVSc3.SelectedIndex]);
+				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorMVSv3.RangeOfValues[directorMVSv3.SelectedIndex]);
 				drawActiveSet();
 			}
 		}
@@ -875,7 +875,7 @@ namespace FilmFinder
 		{
 			actorMVSv3.Hide();
 			actressMVSv3.Hide();
-			directorMVSc3.Hide();
+			directorMVSv3.Hide();
 		}
 
 		private void showMVSv3s()
@@ -886,8 +886,8 @@ namespace FilmFinder
 			actressMVSv3.Show();
 			actressMVSv3.Value = 0;
 
-			directorMVSc3.Show();
-			directorMVSc3.Value = 0;
+			directorMVSv3.Show();
+			directorMVSv3.Value = 0;
 		}
 
 		private void hideActiveMultiSliders()
@@ -987,6 +987,9 @@ namespace FilmFinder
 
 		private void generateNewSearch()
 		{
+			//Settings.Default.ParticipantNumber = 7;
+			//Settings.Default.Save();
+
 			if (currIndex > maxIndex)
 			{
 				MessageBox.Show("Horray you're done!");
@@ -1058,7 +1061,7 @@ namespace FilmFinder
 
 			//update text telling what to search for
 			searchTarget = currentCategory[randomQuery];
-			searchLabel.Text = currentSearchCategory.ToString() + " " + searchTarget;
+			searchLabel.Text = "the " + currentSearchCategory.ToString().ToLower() +" " + searchTarget;
 
 			//change which slider is visible
 			currSlider = arrayTechnique1[currIndex];
@@ -1136,7 +1139,7 @@ namespace FilmFinder
 
 			directorActiveAreaSlider.Enabled = false;
 			directorAlphaSlider.Enabled = false;
-			directorMVSc3.Enabled = false;
+			directorMVSv3.Enabled = false;
 			directorActiveMultiSlider.Enabled = false;
 
 			actressActiveAreaSlider.Enabled = false;
@@ -1154,7 +1157,7 @@ namespace FilmFinder
 
 			directorActiveAreaSlider.Enabled = true;
 			directorAlphaSlider.Enabled = true;
-			directorMVSc3.Enabled = true;
+			directorMVSv3.Enabled = true;
 			directorActiveMultiSlider.Enabled = true;
 
 			actressActiveAreaSlider.Enabled = true;

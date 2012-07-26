@@ -517,14 +517,7 @@ namespace FilmFinder
 
         public string updateActorFilter(int index)
         {
-			//if (index == 0)
-			//{
-			//    actorFilter = "All";
-			//}
-			//else
-			//{
-			actorFilter = uniqueActors[index /*- 1*/];
-			//}
+			actorFilter = uniqueActors[index];
 
             filterMovies();
 
@@ -533,35 +526,21 @@ namespace FilmFinder
 
 		public string updateActressFilter(int index)
 		{
-			//if (index == 0)
-			//{
-			//    actressFilter = "All";
-			//}
-			//else
-			//{
-				actressFilter = uniqueActresses[index/* - 1*/];
-			//}
+			actressFilter = uniqueActresses[index];
 
 			filterMovies();
 
 			return actressFilter;
 		}
 
-        public string updateDirectorFilter(int index)
-        {
-			//if (index == 0)
-			//{
-			//    directorFilter = "All";
-			//}
-			//else
-			//{
-			    directorFilter = uniqueDirectors[index /* - 1*/];
-			//}
+		public string updateDirectorFilter(int index)
+		{
+			directorFilter = uniqueDirectors[index];
 
-            filterMovies();
+			filterMovies();
 
-            return directorFilter;
-        }
+			return directorFilter;
+		}
 
         public void updateRunningTimeRange(int min, int max)
         {

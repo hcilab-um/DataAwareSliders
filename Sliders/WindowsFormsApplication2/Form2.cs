@@ -66,7 +66,7 @@ namespace WindowsFormsApplication2
 
 		void multiValueSliderV31_TextChanged(object sender, EventArgs e)
 		{
-			label4.Text = multiValueSliderV31.Value + "";
+			label2.Text = multiValueSliderV31.Value + "";
 		}
 
 		void mouseWheelSlider1_ValueChanged(object sender, EventArgs e)
@@ -103,6 +103,14 @@ namespace WindowsFormsApplication2
 				listBox2.Items.Add(i);
 			}
 			listBox2.EndUpdate();
+		}
+
+		private void resetButton_Click(object sender, EventArgs e)
+		{
+			activeAreaSliderv21.Value = 0;
+			multiValueSliderV21.Value = 0;
+			mouseWheelSlider1.Value = 0;
+			multiValueSliderV31.Value = 0;
 		}
 	}
 }

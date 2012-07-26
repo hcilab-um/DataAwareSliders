@@ -16,8 +16,7 @@ C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplicati
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\bin\Release\WindowsFormsApplication2.pdb
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\bin\Release\PaymahnAlphaslider.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\bin\Release\PaymahnAlphaslider.pdb
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\ResolveAssemblyReference.cache
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\WindowsFormsApplication2.Form2.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\WindowsFormsApplication2.Properties.Resources.resources
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\WindowsFormsApplication2\obj\x86\Release\WindowsFormsApplication2.csproj.GenerateResource.Cache

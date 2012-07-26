@@ -73,7 +73,7 @@
 			this.actressActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
 			this.actorMVSv3 = new CustomSlider.MultiValueSliderV3();
 			this.actressMVSv3 = new CustomSlider.MultiValueSliderV3();
-			this.directorMVSc3 = new CustomSlider.MultiValueSliderV3();
+			this.directorMVSv3 = new CustomSlider.MultiValueSliderV3();
 			this.ratingRangeSlider = new FilmFinder.RangeSlider();
 			this.yearRangeSlider = new FilmFinder.RangeSlider();
 			this.runningTimeRangeSlider = new FilmFinder.RangeSlider();
@@ -373,15 +373,15 @@
 			this.actressMVSv3.ShowLabel = false;
 			this.actressMVSv3.Value = 0;
 			// 
-			// directorMVSc3
+			// directorMVSv3
 			// 
-			resources.ApplyResources(this.directorMVSc3, "directorMVSc3");
-			this.directorMVSc3.BackColor = System.Drawing.Color.Transparent;
-			this.directorMVSc3.IndexNames = null;
-			this.directorMVSc3.List = ((System.Collections.Generic.List<string>)(resources.GetObject("directorMVSc3.List")));
-			this.directorMVSc3.Name = "directorMVSc3";
-			this.directorMVSc3.ShowLabel = false;
-			this.directorMVSc3.Value = 0;
+			resources.ApplyResources(this.directorMVSv3, "directorMVSv3");
+			this.directorMVSv3.BackColor = System.Drawing.Color.Transparent;
+			this.directorMVSv3.IndexNames = null;
+			this.directorMVSv3.List = ((System.Collections.Generic.List<string>)(resources.GetObject("directorMVSv3.List")));
+			this.directorMVSv3.Name = "directorMVSv3";
+			this.directorMVSv3.ShowLabel = false;
+			this.directorMVSv3.Value = 0;
 			// 
 			// ratingRangeSlider
 			// 
@@ -449,7 +449,7 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.certifactionsPanel);
 			this.Controls.Add(this.actressMVSv3);
-			this.Controls.Add(this.directorMVSc3);
+			this.Controls.Add(this.directorMVSv3);
 			this.Controls.Add(this.actorMVSv3);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label2);
@@ -503,7 +503,7 @@
 		private System.Windows.Forms.Label label6;
 		private CustomSlider.MultiValueSliderV3 actorMVSv3;
 		private CustomSlider.MultiValueSliderV3 actressMVSv3;
-		private CustomSlider.MultiValueSliderV3 directorMVSc3;
+		private CustomSlider.MultiValueSliderV3 directorMVSv3;
 		private System.Windows.Forms.Button previousSliderButton;
 		private System.Windows.Forms.Button startExperimentButton;
 		private System.Windows.Forms.Label pleaseFindLabel;

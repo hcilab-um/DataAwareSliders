@@ -167,8 +167,10 @@ namespace CustomSlider
 			{
 				listBox1.Items.Add(list[i].ToString());
 			}
-			listBox1.SelectedIndex = 0;// listBox1.Items.Count / 2;	
+			listBox1.SelectedIndex = 0;
 			listBox1.EndUpdate();
+
+			label1_TextChanged(this, new EventArgs());
 		}
 
 		private void initializeList()
@@ -227,7 +229,7 @@ namespace CustomSlider
 			
 			if (e.X < 0 || e.X > ClientRectangle.Width || e.Y < 0 || e.Y > ClientRectangle.Height)
 			{
-				listBox1.Hide();
+				//listBox1.Hide();
 				if (showLabel)
 					label1.Show();
 			}
@@ -235,7 +237,7 @@ namespace CustomSlider
 			{
 				if (e.Button == MouseButtons.Left)
 				{
-					listBox1.Hide();
+					//listBox1.Hide();
 				}
 				else
 				{
