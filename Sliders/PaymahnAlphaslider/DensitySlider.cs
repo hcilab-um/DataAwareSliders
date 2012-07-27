@@ -54,6 +54,7 @@ namespace CustomSlider
 		List<string> indexNames = null;
 		private List<int> rangeOfValues;
 		protected int offset = 0;
+		private int pixelSensitivity = 3;
 
 		protected bool clickedOnSlider = false;
 		protected bool drawSlider = true;
@@ -129,6 +130,16 @@ namespace CustomSlider
 		protected GraphicsPath SliderGP
 		{
 			get { return sliderGP; }
+		}
+
+		protected int PixelSensitivity
+		{
+			get { return pixelSensitivity; }
+			set
+			{
+				if (value >= 1 && value % 2 == 1)
+					pixelSensitivity = value;
+			}
 		}
 
 		#endregion
@@ -304,6 +315,8 @@ namespace CustomSlider
 			base.OnMouseMove(e);
 			if (Capture && clickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
 			{
+				int effectiveXLocation;
+
 				if (e.X < 0)
 					Value = 0;
 				else if (e.X > ClientRectangle.Width)
@@ -325,8 +338,26 @@ namespace CustomSlider
 							foundIndex = true;
 					}
 
+					effectiveXLocation = e.X - (int)Math.Round(trackXStart);
+					effectiveXLocation += pixelSensitivity / 2 - effectiveXLocation % pixelSensitivity;
+					effectiveXLocation += (int)Math.Round(trackXStart);
+
+					if (effectiveXLocation < trackXStart)
+						effectiveXLocation = (int)trackXStart;
+					if (effectiveXLocation > trackXEnd)
+						effectiveXLocation = (int)trackXEnd;
+
+					if (effectiveXLocation - e.X < 0)
+						Debug.Write("mouse shifted back");
+					else if(effectiveXLocation - e.X == 0)
+						Debug.Write("mouse not shifted");
+					else
+						Debug.Write("mouse shifted forward");
+
+					Debug.WriteLine("\t{0}  {1}", effectiveXLocation, e.X);
+
 					//Find mouse penetration
-					float penetration = (e.X - (spaceBetweenTicks * mouseIndex) - sliderWidth / 2) / spaceBetweenTicks;
+					float penetration = (effectiveXLocation - (spaceBetweenTicks * mouseIndex) - sliderWidth / 2) / spaceBetweenTicks;
 
 					//calculate value
 					int tempValue = calculateSum(mouseIndex - 1);
@@ -625,6 +656,8 @@ namespace CustomSlider
 					if (offset % 2 == 1)
 						offset++;
 				}
+
+				offset *= pixelSensitivity;
 			}
 
 			this.updateRangeAroundValues(value);

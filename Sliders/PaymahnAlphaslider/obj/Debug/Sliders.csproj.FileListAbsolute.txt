@@ -9,10 +9,8 @@ C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\
 C:\Users\paymahn\Dropbox\HCI Research\PaymahnAlphaslider\PaymahnAlphaslider\obj\Debug\CustomSlider.MultiValueSliderV3.resources
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\bin\Debug\PaymahnAlphaslider.pdb
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\CustomSlider.MultiValueSliderV3.resources
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\PaymahnAlphaslider.pdb
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\CustomSlider.ActiveMultiSlider.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\PaymahnAlphaslider\obj\Debug\Sliders.csproj.GenerateResource.Cache
