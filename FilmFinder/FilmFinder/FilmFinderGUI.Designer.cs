@@ -43,7 +43,7 @@
 			this.certifactionsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.disableAllCertificationsButton = new System.Windows.Forms.Button();
 			this.enableAllCertificationsButton = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
+			this.newDataButton = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
 			this.runningTimeRangeLabel = new System.Windows.Forms.Label();
 			this.yearRangeLabel = new System.Windows.Forms.Label();
@@ -161,12 +161,12 @@
 			this.enableAllCertificationsButton.UseVisualStyleBackColor = true;
 			this.enableAllCertificationsButton.Click += new System.EventHandler(this.enableAllCertificationsButton_Click);
 			// 
-			// button1
+			// newDataButton
 			// 
-			resources.ApplyResources(this.button1, "button1");
-			this.button1.Name = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			resources.ApplyResources(this.newDataButton, "newDataButton");
+			this.newDataButton.Name = "newDataButton";
+			this.newDataButton.UseVisualStyleBackColor = true;
+			this.newDataButton.Click += new System.EventHandler(this.newDataButton_Click);
 			// 
 			// label5
 			// 
@@ -446,7 +446,7 @@
 			this.Controls.Add(this.runningTimeRangeLabel);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.runningTimeRangeSlider);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.newDataButton);
 			this.Controls.Add(this.certifactionsPanel);
 			this.Controls.Add(this.actressMVSv3);
 			this.Controls.Add(this.directorMVSv3);
@@ -479,7 +479,7 @@
 		private System.Windows.Forms.Label currentActorLabel;
 		private System.Windows.Forms.Label currentDirectorLabel;
 		private System.Windows.Forms.FlowLayoutPanel certifactionsPanel;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button newDataButton;
 		private System.Windows.Forms.Button disableAllCertificationsButton;
 		private System.Windows.Forms.Button enableAllCertificationsButton;
 		private RangeSlider runningTimeRangeSlider;

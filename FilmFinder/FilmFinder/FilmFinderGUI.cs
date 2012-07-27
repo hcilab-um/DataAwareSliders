@@ -499,7 +499,6 @@ namespace FilmFinder
 
 		#endregion
 
-
 		#region Event catchers for all controls
 
 		/// <summary>
@@ -802,7 +801,7 @@ namespace FilmFinder
 
 		#endregion
 
-		private void button1_Click(object sender, EventArgs e)
+		private void newDataButton_Click(object sender, EventArgs e)
 		{
 			movieHandler = new MovieHandler();
 
@@ -987,7 +986,7 @@ namespace FilmFinder
 
 		private void generateNewSearch()
 		{
-			//Settings.Default.ParticipantNumber = 7;
+			//Settings.Default.ParticipantNumber = 9;
 			//Settings.Default.Save();
 
 			if (currIndex > maxIndex)
@@ -1173,7 +1172,7 @@ namespace FilmFinder
 			int numOfBlocks = 1;
 			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
-			int trialPerCondition = 1;
+			int trialPerCondition = 2;
 			int numDifferentDataSize = 3;
 			int numOftargetDensity = 3;
 
@@ -1267,7 +1266,6 @@ namespace FilmFinder
 
 		#endregion
 
-
 		protected override bool ProcessDialogKey(Keys keyData)
 		{
 			if (experimentStarted)
@@ -1295,11 +1293,6 @@ namespace FilmFinder
 			
 			return base.ProcessDialogKey(keyData);
 		}
-
-
-
-
-
 
 	}//end class
 }//end namespace
