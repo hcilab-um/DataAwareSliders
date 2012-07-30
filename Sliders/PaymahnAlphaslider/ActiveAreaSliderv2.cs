@@ -142,7 +142,11 @@ namespace CustomSlider
 					secondarySliderHorizontalCenter = sliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f) * sliderGP.GetBounds().Width; //don't subtract 1
 				}
 
-				rolledMouseWheel = false;
+                if (rolledMouseWheel)
+                {
+                    rolledMouseWheel = false;
+                    drawSlider = true;
+                }
 			}
 			else if (clickedOnSlider || drawSlider)
 			{
@@ -163,9 +167,6 @@ namespace CustomSlider
 				g.DrawPath(new Pen(Color.Black), secondarySliderGP);
 			}
 
-
-			
-			//base.OnPaint(e);
 		}
 
 		/// <summary>
@@ -229,9 +230,6 @@ namespace CustomSlider
 
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
-			drawSlider = false;
-			rolledMouseWheel = true;
-
 			//We've started rolling the mouse wheel
 			if (StartMouseWheel != null)
 				StartMouseWheel(this, e);
@@ -250,8 +248,24 @@ namespace CustomSlider
 
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
 			{
-				drawSlider = true;
+                drawSlider = true;
+                
+                if (newValue < RangeOfValues[0])
+                {
+                    while (Value > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
+                        Value--;
+                }
+                else
+                {
+                    while (Value < calculateMax() && RangeOfValues[0] != newValue)
+                        Value++;
+                }
+
+                Refresh();
 			}
+
+            drawSlider = false;
+            rolledMouseWheel = true;
 			Value = newValue;
 			
 		}
