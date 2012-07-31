@@ -17,6 +17,9 @@ namespace CustomSlider
 		#region Variables
 
 		public event EventHandler ValueChanged;
+        public new event MouseEventHandler MouseUp;
+        public new event MouseEventHandler MouseMove;
+        public new event MouseEventHandler MouseDown;
 
 		//The following is for changing the pointer speed
 		private UInt32 defaultPointerSpeed = 10;
@@ -67,38 +70,39 @@ namespace CustomSlider
 		public int Value
 		{
 			get { return sliderValue; }
-			set
-			{
-				int max = calculateMax();
-				if (value >= 0 && value <= max)
-				{
-					sliderValue = value;
-				}
-				else if (value < 0)
-				{
-					sliderValue = 0;
-				}
-				else if (value > max)
-				{
-					sliderValue = max;
-				}
-				
+            set
+            {
+                int max = calculateMax();
+                if (value >= 0 && value <= max)
+                {
+                    sliderValue = value;
+                }
+                else if (value < 0)
+                {
+                    sliderValue = 0;
+                }
+                else if (value > max)
+                {
+                    sliderValue = max;
+                }
 
-				//We only update the offset when the main slider is changing it's position
-				//the center of our range of values also only changes when we (re)draw the slider
-				if (drawSlider)
-				{
-					centerOfRange = Value;
-					updateOffset(Value);
-				}
-				
 
-				if (ValueChanged != null)
-					ValueChanged(this, new EventArgs());
+                //We only update the offset when the main slider is changing it's position
+                //the center of our range of values also only changes when we (re)draw the slider
+                if (drawSlider)
+                {
+                    centerOfRange = Value;
+                    updateOffset(Value);
+                }
 
                 Invalidate();
-				//Refresh();
-			}
+
+                if (ValueChanged != null)
+                    ValueChanged(this, new EventArgs());
+
+
+                //Refresh();
+            }
 		}
 
 		public List<uint> ItemsInIndices
@@ -178,7 +182,7 @@ namespace CustomSlider
 
 			//This following code will draw ticks and the histograms above them
 			float histogramHeight;
-			SolidBrush histogramBrush = new SolidBrush(Color.Blue);
+			SolidBrush histogramBrush = new SolidBrush(Color.FromArgb(30,70,173));
 
 			Pen blackPen = new Pen(Color.Black, 2);
 			Pen redPen = new Pen(Color.Red, 2);
@@ -298,6 +302,9 @@ namespace CustomSlider
 					slowDownMouse();
 				}
 			}
+
+            if (MouseDown != null)
+                MouseDown(this, e);
 		}
 
 		/// <summary>
@@ -352,12 +359,11 @@ namespace CustomSlider
 					{
 						Value = tempValue;
 					}
-
 				}
 			}
 
-			//if (redrawMouse)
-			//    redrawMouse = false;
+            if (MouseMove != null)
+                MouseMove(this, e);
 
 		}
 
@@ -373,6 +379,9 @@ namespace CustomSlider
 			//drawSlider = true;
 
 			resetMouseSpeed();
+
+            if (MouseUp != null)
+                MouseUp(this, e);
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)

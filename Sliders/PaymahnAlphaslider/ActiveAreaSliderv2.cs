@@ -235,7 +235,7 @@ namespace CustomSlider
 				StartMouseWheel(this, e);
 
 			base.OnMouseWheel(e);
-			int newValue;
+			int newValue, tempValue;
 
 			if (e.Delta < 0)
 			{
@@ -245,20 +245,29 @@ namespace CustomSlider
 			{
 				newValue = Value + rollChangeValue;
 			}
-
+            tempValue = Value;
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
 			{
                 drawSlider = true;
                 
                 if (newValue < RangeOfValues[0])
                 {
-                    while (Value > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
-                        Value--;
+                    while (tempValue > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
+                    {
+                        //Value--; //causes repeated invalidation which is slow
+
+                        tempValue--;
+                        updateRangeAroundValues(tempValue);
+                    }
                 }
                 else
                 {
-                    while (Value < calculateMax() && RangeOfValues[0] != newValue)
-                        Value++;
+                    while (tempValue < calculateMax() && RangeOfValues[0] != newValue)
+                    {
+                       // Value++;
+                        tempValue++;
+                        updateRangeAroundValues(tempValue);
+                    }
                 }
 
                 Refresh();
