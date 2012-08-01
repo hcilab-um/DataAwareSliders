@@ -16,8 +16,6 @@ namespace WindowsFormsApplication2
 		{
 			InitializeComponent();
 			activeAreaSliderv21.ValueChanged += new EventHandler(activeAreaSliderv21_ValueChanged);
-			multiValueSliderV21.ValueChanged += new EventHandler(multiValueSliderV21_ValueChanged);
-			mouseWheelSlider1.ValueChanged += new EventHandler(mouseWheelSlider1_ValueChanged);
 			multiValueSliderV31.TextChanged += new EventHandler(multiValueSliderV31_TextChanged);
 
 
@@ -69,30 +67,6 @@ namespace WindowsFormsApplication2
 			label2.Text = multiValueSliderV31.Value + "";
 		}
 
-		void mouseWheelSlider1_ValueChanged(object sender, EventArgs e)
-		{
-			label6.Text = mouseWheelSlider1.Value + "";
-			listBox1.BeginUpdate();
-			listBox1.Items.Clear();
-			foreach (int i in mouseWheelSlider1.RangeOfValues)
-			{
-				listBox1.Items.Add(i);
-			}
-			listBox1.EndUpdate();
-		}
-
-		void multiValueSliderV21_ValueChanged(object sender, EventArgs e)
-		{
-			//label4.Text = activeAreaSliderv21.Value + "";
-			listBox1.BeginUpdate();
-			listBox1.Items.Clear();
-			foreach (int i in multiValueSliderV21.RangeOfValues)
-			{
-				listBox1.Items.Add(i);
-			}
-			listBox1.EndUpdate();
-		}
-
 		void activeAreaSliderv21_ValueChanged(object sender, EventArgs e)
 		{
 			label4.Text = activeAreaSliderv21.Value + "";
@@ -108,8 +82,6 @@ namespace WindowsFormsApplication2
 		private void resetButton_Click(object sender, EventArgs e)
 		{
 			activeAreaSliderv21.Value = 0;
-			multiValueSliderV21.Value = 0;
-			mouseWheelSlider1.Value = 0;
 			multiValueSliderV31.Value = 0;
 		}
 	}

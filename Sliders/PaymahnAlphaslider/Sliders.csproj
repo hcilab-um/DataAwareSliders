@@ -67,13 +67,6 @@
     <Compile Include="DensitySlider.Designer.cs">
       <DependentUpon>DensitySlider.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDensitySlider.cs" />
-    <Compile Include="MouseWheelSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="MouseWheelSlider.Designer.cs">
-      <DependentUpon>MouseWheelSlider.cs</DependentUpon>
-    </Compile>
     <Compile Include="MultiValueSliderV2.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,6 +80,12 @@
       <DependentUpon>MultiValueSliderV3.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Slider.Designer.cs">
+      <DependentUpon>Slider.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ActiveMultiSlider.resx">
