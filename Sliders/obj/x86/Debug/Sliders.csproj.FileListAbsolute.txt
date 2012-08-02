@@ -7,3 +7,4 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\WindowsAp
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.csproj.GenerateResource.Cache
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.IDActiveListSlider.resources
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.IDListSlider.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.csprojResolveAssemblyReference.cache

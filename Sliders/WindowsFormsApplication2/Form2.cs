@@ -17,7 +17,7 @@ namespace WindowsFormsApplication2
 			InitializeComponent();
 			activeAreaSliderv21.ValueChanged += new EventHandler(activeAreaSliderv21_ValueChanged);
 			multiValueSliderV31.TextChanged += new EventHandler(multiValueSliderV31_TextChanged);
-
+            idAlphaslider1.ValueChanged += idAlphaslider1_ValueChanged;
 
 			activeAreaSliderv21.ItemsInIndices = new List<uint>(new uint[] { 10000, 5000, 2000, 4000, 3500 });
 
@@ -56,6 +56,11 @@ namespace WindowsFormsApplication2
 			activeMultiSlider1.Data = list2;
 
 		}
+
+        void idAlphaslider1_ValueChanged(object sender, EventArgs e)
+        {
+            label3.Text = idAlphaslider1.Value.ToString();
+        }
 
 		void alphasliderV31_ValueChanged(object sender, EventArgs e)
 		{

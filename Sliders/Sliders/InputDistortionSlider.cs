@@ -15,13 +15,11 @@ namespace CustomSlider
 	public abstract partial class InputDistortionSlider : Slider
 	{
 		#region Variables
-        public event EventHandler ValueChanged;
 
 		protected float histogramMaxHeight = 0;
 		protected float histogramLowerY = 0;
 		protected float histogramUpperY = 0;
 		protected float spaceBetweenTicks = 0;
-
 
 		protected int largestIndex = 0;
 		protected int smallestIndex = 0;
@@ -30,8 +28,7 @@ namespace CustomSlider
 		private int centerOfRange = 0;
 		//defaults to two indices of size 50 each
 		List<string> indexNames = null;
-		private List<int> rangeOfValues;
-		protected int offset = 0;
+
 
 		protected bool drawSlider = true;
 		private Point lastMousePosition;
@@ -57,8 +54,7 @@ namespace CustomSlider
 
                 Invalidate();
 
-                if (ValueChanged != null)
-                    ValueChanged(this, new EventArgs());
+                base.OnValueChanged();
 
 
                 //Refresh();
@@ -77,10 +73,10 @@ namespace CustomSlider
 			}
 		}
 
-		public List<int> RangeOfValues
+		public new List<int> RangeOfValues
 		{
-			get { return rangeOfValues; }
-			protected set { rangeOfValues = value; }
+			get { return base.RangeOfValues; }
+			protected set { base.RangeOfValues = value; }
 		}
 
 		public List<string> IndexNames
@@ -91,6 +87,12 @@ namespace CustomSlider
 				indexNames = value;
 			}
 		}
+
+        protected Point LastMousePosition
+        {
+            get { return lastMousePosition; }
+            set { lastMousePosition = value; }
+        }
 
 		#endregion
 
@@ -184,22 +186,22 @@ namespace CustomSlider
 
 		protected void doPaintingMath()
 		{
-			SliderWidth = 30;
-			SliderHeight = 15;
+			base.SliderWidth = 30;
+			base.SliderHeight = 15;
 
 			//track math
-			TrackWidth = ClientRectangle.Width - 1 - SliderWidth;
-			TrackYValue = ClientRectangle.Height - SliderHeight; //the Y value of the start point of the track. The start and end points are the same since the track is a straight line. 0.2 was arbitrarily chosen
-			TrackXStart = ClientRectangle.X + SliderWidth / 2 + 1; //the X value of the start point of the track
-			TrackXEnd = ClientRectangle.Width - SliderWidth / 2; //the x value of the end point of the track
+			base.TrackYValue = ClientRectangle.Height - base.SliderHeight; //the Y value of the start point of the track. The start and end points are the same since the track is a straight line. 0.2 was arbitrarily chosen
+			base.TrackXStart = ClientRectangle.X + base.SliderWidth / 2 + 1; //the X value of the start point of the track
+            base.TrackXEnd = ClientRectangle.Width - base.SliderWidth / 2 - 1; //the x value of the end point of the track
+            base.TrackWidth = base.TrackXEnd - base.TrackXStart;
 
 			//histogram math
 			//histogramLowerY = TrackYValue - SliderHeight / 2 - 3;
-			histogramLowerY = TrackYValue;
+			histogramLowerY = base.TrackYValue;
 			histogramUpperY = ClientRectangle.Y + 1; //don't want histograms going all the way to the top of the ClientRectangle
 			histogramMaxHeight = histogramLowerY - histogramUpperY;
 
-            spaceBetweenTicks = (float)(TrackWidth / (float)base.ItemsInIndices.Count);
+            spaceBetweenTicks = (float)(base.TrackWidth / (float)this.ItemsInIndices.Count);
 		}
 
 		#region Overridden Events
@@ -217,7 +219,7 @@ namespace CustomSlider
 				{
 					GraphicsPath currSliderGP = SliderGP != null ? SliderGP : CustomSliderGP;
 					int newXValue = (int)Math.Round(currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2);
-					Cursor.Position = PointToScreen(new Point(newXValue, (int)TrackYValue));
+					Cursor.Position = PointToScreen(new Point(newXValue, PointToClient( Cursor.Position).Y));
 					lastMousePosition = Cursor.Position;
 
 					Capture = true;
@@ -232,7 +234,7 @@ namespace CustomSlider
 					Capture = true;
                     base.ClickedOnSlider = true;
 					drawSlider = true;
-					OnMouseMove(e);
+                    processMouseLocation(e.Location);
 
 					slowDownMouse();
 				}
@@ -248,57 +250,61 @@ namespace CustomSlider
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
-            if (Capture && base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
-			{
-				//int effectiveXLocation;
 
-				if (e.X < 0)
-					Value = 0;
-				else if (e.X > ClientRectangle.Width)
-					Value = calculateMax();
-				else //The mouse is somewhere between the beginning and end of the track
-				{
-					//Need to find the index of the mouse (which histogram is the mouse under?)
-					//Then find out how far "into" the index the mouse is. Is it 1/4 past the beginning of the index? 1/2 way? 3/17?
-					//Based on the index of the mosue and it's "penetration" into that index I can calculate a value
-
-					//Find index of mouse
-					bool foundIndex = false;
-					int mouseIndex = -1;
-					GraphicsPath currSliderGP = CustomSliderGP == null ? SliderGP : CustomSliderGP;
-					for (float i = SliderWidth / 2 + spaceBetweenTicks; i < ClientRectangle.Width - 1 && !foundIndex; i += spaceBetweenTicks)
-					{
-						mouseIndex++;
-						if (e.X < i)
-							foundIndex = true;
-					}
-
-					//Find mouse penetration
-					float penetration = (e.X - (spaceBetweenTicks * mouseIndex) - SliderWidth / 2) / spaceBetweenTicks;
-
-					//calculate value
-					int tempValue = calculateSum(mouseIndex - 1);
-                    tempValue += (int)(penetration * base.ItemsInIndices[mouseIndex]);
-
-					//Value = tempValue;
-					//Through some experimentation I've found that the above code finds the value at the "top" of the pixel.
-					//This code corrects for that by pretending to set the value and get the appropriate updated range and then
-					//setting the true Value accordingly.
-					if (tempValue > 0 && tempValue < calculateMax())
-					{
-						updateOffset(tempValue);
-						Value = RangeOfValues[0];
-					}
-					else
-					{
-						Value = tempValue;
-					}
-				}
-			}
+            processMouseLocation(e.Location);
 
             base.OnNewMouseMove(e);
 
 		}
+
+        private void processMouseLocation(Point mouseLocation)
+        {
+            if (Capture && base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
+            {
+                if (mouseLocation.X < 0)
+                    Value = 0;
+                else if (mouseLocation.X > ClientRectangle.Width)
+                    Value = calculateMax();
+                else //The mouse is somewhere between the beginning and end of the track
+                {
+                    //Need to find the index of the mouse (which histogram is the mouse under?)
+                    //Then find out how far "into" the index the mouse is. Is it 1/4 past the beginning of the index? 1/2 way? 3/17?
+                    //Based on the index of the mosue and it's "penetration" into that index I can calculate a value
+
+                    //Find index of mouse
+                    bool foundIndex = false;
+                    int mouseIndex = -1;
+                    GraphicsPath currSliderGP = CustomSliderGP == null ? SliderGP : CustomSliderGP;
+                    for (float i = SliderWidth / 2 + spaceBetweenTicks; i < ClientRectangle.Width - 1 && !foundIndex; i += spaceBetweenTicks)
+                    {
+                        mouseIndex++;
+                        if (mouseLocation.X < i)
+                            foundIndex = true;
+                    }
+
+                    //Find mouse penetration
+                    float penetration = (mouseLocation.X - (spaceBetweenTicks * mouseIndex) - SliderWidth / 2) / spaceBetweenTicks;
+
+                    //calculate value
+                    int tempValue = calculateSum(mouseIndex - 1);
+                    tempValue += (int)(penetration * base.ItemsInIndices[mouseIndex]);
+
+                    //Value = tempValue;
+                    //Through some experimentation I've found that the above code finds the value at the "top" of the pixel.
+                    //This code corrects for that by pretending to set the value and get the appropriate updated range and then
+                    //setting the true Value accordingly.
+                    if (tempValue > 0 && tempValue < calculateMax())
+                    {
+                        updateOffset(tempValue);
+                        Value = RangeOfValues[0];
+                    }
+                    else
+                    {
+                        Value = tempValue;
+                    }
+                }
+            }
+        }
 
 		/// <summary>
 		/// This method disables slider movement
@@ -383,8 +389,6 @@ namespace CustomSlider
 
 		#region Helper Methods
 
-		
-
 		/// <summary>
 		/// This method generates a graphicsPath for the slider
 		/// </summary>
@@ -429,7 +433,7 @@ namespace CustomSlider
 
 		}
 
-		private GraphicsPath generateSlideArea()
+		protected override GraphicsPath generateSlideArea()
 		{
 			GraphicsPath slideArea = new GraphicsPath();
 
@@ -478,9 +482,7 @@ namespace CustomSlider
 			}
 
 			return result;
-		}
-
-		
+		}		
 
 		/// <summary>
 		/// Finds the index with that maps the largest number of items
@@ -529,7 +531,7 @@ namespace CustomSlider
 				return CustomSliderGP.GetBounds().Contains(point);
 		}
 
-		private void updateOffset(int value)
+		protected override void updateOffset(int value)
 		{
 			if (spaceBetweenTicks > 0)
 			{
@@ -537,26 +539,25 @@ namespace CustomSlider
 
 				if (itemsPerPixel <= (float)1)
 				{
-					offset = 0;
+					base.Offset = 0;
 				}
 				else
 				{
-					offset = (int)Math.Round(itemsPerPixel + 0.5);
+					base.Offset = (int)Math.Round(itemsPerPixel + 0.5);
 
-					if (offset % 2 == 1)
-						offset++;
+					if (base.Offset % 2 == 1)
+						base.Offset++;
 				}
 
-				//offset *= pixelSensitivity;
 			}
 
 			this.updateRangeAroundValues(value);
 		}
 
-		protected virtual void updateRangeAroundValues(int value)
+		protected override void updateRangeAroundValues(int value)
 		{
 			List<int> temp = new List<int>();
-			for (int i = offset / 2; i > 0; i--)
+			for (int i = base.Offset / 2; i > 0; i--)
 			{
 				if (Value - i >= 1)
 					temp.Add(value - i);
@@ -564,13 +565,13 @@ namespace CustomSlider
 
 			temp.Add(value);
 
-			for (int i = 1; i <= offset / 2; i++)
+			for (int i = 1; i <= base.Offset / 2; i++)
 			{
 				if (Value + i <= calculateMax())
 					temp.Add(value + i);
 			}
 
-			rangeOfValues = temp;
+			base.RangeOfValues = temp;
 		}
 
 		protected float getCurrHistogramHeight(int histogramIndex)

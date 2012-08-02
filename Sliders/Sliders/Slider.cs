@@ -15,6 +15,7 @@ namespace CustomSlider
     {
         #region Variables
 
+        public event EventHandler ValueChanged;
         public new event MouseEventHandler MouseUp;
         public new event MouseEventHandler MouseMove;
         public new event MouseEventHandler MouseDown;
@@ -43,12 +44,32 @@ namespace CustomSlider
         private int sliderValue = 0;
         private List<uint> itemsInIndices = new List<uint>(new uint[] { 100, 500, 900, 150, 330, 205, 506 }); //multipurpose. The count of this List indicates how many indices there are
         //and the value of each element indicates the number of elements associated with that index
+        private List<int> rangeOfValues;
+        private int offset = 0;
 
         private bool clickedOnSlider = false;
 
         #endregion
 
         #region Getters and Setters
+
+        protected int Offset
+        {
+            get { return offset; }
+            set 
+            {
+                if (value >= 0)
+                    offset = value;
+                else
+                    offset = 0;
+            }
+        }
+
+        protected List<int> RangeOfValues
+        {
+            get { return rangeOfValues; }
+            set { rangeOfValues = value; }
+        }
 
         protected bool ClickedOnSlider
         {
@@ -139,6 +160,15 @@ namespace CustomSlider
 
         #endregion
 
+        #region Abstract Methods
+
+        protected abstract void updateOffset(int value);
+        protected abstract void updateRangeAroundValues(int value);
+        protected abstract GraphicsPath generateSlideArea();
+
+
+        #endregion
+
         public Slider()
         {
             InitializeComponent();
@@ -158,22 +188,28 @@ namespace CustomSlider
 
         #region Event creators
 
-        protected virtual void OnNewMouseUp(MouseEventArgs e)
+        protected void OnNewMouseUp(MouseEventArgs e)
         {
             if (MouseUp != null)
                 MouseUp(this, e);
         }
 
-        protected virtual void OnNewMouseDown(MouseEventArgs e)
+        protected void OnNewMouseDown(MouseEventArgs e)
         {
             if (MouseDown != null)
                 MouseDown(this, e);
         }
 
-        protected virtual void OnNewMouseMove(MouseEventArgs e)
+        protected void OnNewMouseMove(MouseEventArgs e)
         {
             if (MouseMove != null)
                 MouseMove(this, e);
+        }
+
+        protected void OnValueChanged()
+        {
+            if (ValueChanged != null)
+                ValueChanged(this, new EventArgs());
         }
 
         #endregion

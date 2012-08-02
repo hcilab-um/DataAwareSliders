@@ -1,6 +1,6 @@
-﻿namespace Sliders.PaymahnAlphaslider
+﻿namespace CustomSlider
 {
-    partial class IDAlphaslider
+    partial class DisplayDistortionSlider
     {
         /// <summary>
         /// Required designer variable.

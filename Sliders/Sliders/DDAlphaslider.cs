@@ -12,9 +12,8 @@ using System.Diagnostics;
 namespace CustomSlider
 {
     //TODO Make display distortion this class' base class
-	public partial class DDAlphaslider : InputDistortionSlider
+	public partial class DDAlphaslider : DisplayDistortionSlider
 	{
-		public new event EventHandler ValueChanged;
 
 		private GraphicsPath slideArea = null;
 		private GraphicsPath sliderThumb = null;
@@ -24,11 +23,11 @@ namespace CustomSlider
 		private GraphicsPath rightArrow = null;
 
 		private List<string> data = null;
-		private List<int> itemsPerIndex = null;
-		private List<char> indexChars = null;
-		private List<float> indexTickPixelLocation = null;
-		private List<float[]> usedIndexPixels = null;
-		private Font drawingFont = new Font(FontFamily.GenericMonospace, 12);
+        private List<int> itemsPerIndex = null; 
+        private List<char> indexChars = null;
+        private List<float> indexTickPixelLocation = null;
+        private List<float[]> usedIndexPixels = null;
+        private Font drawingFont = new Font(FontFamily.GenericMonospace, 12);
 		private int buttonWidth = 20;
 		private int arrowWidth = 10;
 		private int arrowHeight = 10;
@@ -83,8 +82,7 @@ namespace CustomSlider
 
 				Debug.WriteLine(this.value.ToString());
 
-				if (this.ValueChanged != null)
-					this.ValueChanged(this, new EventArgs());
+                base.OnValueChanged();
 
 				Invalidate();
 
