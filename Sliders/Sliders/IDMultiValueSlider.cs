@@ -27,6 +27,12 @@ namespace CustomSlider
 			InitializeComponent();
 		}
 
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+            NeedToDoPaintingMath = true;
+        }
+
 		public new int calculateMax()
 		{
 			return base.calculateMax();

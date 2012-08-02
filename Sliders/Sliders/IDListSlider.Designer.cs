@@ -58,7 +58,7 @@
 			// 
 			this.multiValueSliderV21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.multiValueSliderV21.IndexNames = null;
+			this.multiValueSliderV21.IndexCharacters = null;
 			this.multiValueSliderV21.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("multiValueSliderV21.ItemsInIndices")));
 			this.multiValueSliderV21.Location = new System.Drawing.Point(3, 3);
 			this.multiValueSliderV21.Name = "multiValueSliderV21";

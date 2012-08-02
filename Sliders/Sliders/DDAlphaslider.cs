@@ -14,30 +14,14 @@ namespace CustomSlider
     //TODO Make display distortion this class' base class
 	public partial class DDAlphaslider : DisplayDistortionSlider
 	{
-
-		private GraphicsPath slideArea = null;
-		private GraphicsPath sliderThumb = null;
 		private GraphicsPath leftButton = null;
 		private GraphicsPath rightButton = null;
 		private GraphicsPath leftArrow = null;
 		private GraphicsPath rightArrow = null;
 
-		private List<string> data = null;
-        private List<int> itemsPerIndex = null; 
-        private List<char> indexChars = null;
-        private List<float> indexTickPixelLocation = null;
-        private List<float[]> usedIndexPixels = null;
-        private Font drawingFont = new Font(FontFamily.GenericMonospace, 12);
 		private int buttonWidth = 20;
 		private int arrowWidth = 10;
 		private int arrowHeight = 10;
-		private float fontWidth = 0;
-
-		private int spaceForIndex = 20;
-		private int min = 0;
-		private int max = 100;
-		private int range = 10000;
-		private int value = 50;
 
 		private int lastX = 0;
 		private bool clickedOnTopHalf = false;
@@ -45,274 +29,76 @@ namespace CustomSlider
 		private bool redrawMouse = false;
 		private int moveThreshold = 1;
 		private int fineValueChange = 1;
-		private int mediumValueChange = 10;
-
-		public List<string> Data
-		{
-			get { return data; }
-			set
-			{
-				if (value != null)
-				{
-					data = value;
-					updateMax();
-					Invalidate();
-				}
-			}
-		}
-
-		public new int Value
-		{
-			get { return value; }
-			set
-			{
-				//int max = calculateMax();
-				if (value >= min && value <= max)
-				{
-					this.value = value;
-				}
-				else if (value < min)
-				{
-					this.value = min;
-				}
-				else if (value > max)
-				{
-					this.value = max;
-				}
-
-				Debug.WriteLine(this.value.ToString());
-
-                base.OnValueChanged();
-
-				Invalidate();
-
-			}
-		}
+		private int coarseValueChange = 10;
 
 		public DDAlphaslider()
 		{
 			InitializeComponent();
-			itemsPerIndex = new List<int>();
-			indexChars = new List<char>();
-			indexTickPixelLocation = new List<float>();
-			usedIndexPixels = new List<float[]>();
-			range = max - min;
 		}
 
 		protected override void OnPaint(PaintEventArgs pe)
 		{
-			//base.OnPaint(pe);
 			Graphics g = pe.Graphics;
-			fontWidth = g.MeasureString("G", drawingFont).Width;
 
 			doPaintingMath();
 
 			Pen blackPen = new Pen(Color.Black, 2);
 			Brush blackBrush = new SolidBrush(Color.Black);
 
-			TrackXStart = 1 + buttonWidth;
-			TrackXEnd = ClientRectangle.Width - 1 - buttonWidth;
-			TrackWidth = TrackXEnd - TrackXStart;
+            base.TrackXStart += buttonWidth;
+            base.TrackXEnd -= buttonWidth;
+            base.TrackWidth = base.TrackXEnd - base.TrackXStart;
 
-			//Create slide area
-			slideArea = makeSlideArea();
+            base.OnPaint(pe);
 
-			//create slider thumb
-			sliderThumb = makeSliderThumb();
-			CustomSliderGP = sliderThumb;
+            //create buttons and arrows
+            leftButton = makeLeftButton();
+            rightButton = makeRightButton();
+            leftArrow = makeLeftArrow();
+            rightArrow = makeRightArrow();
 
-			//create buttons and arrows
-			leftButton = makeLeftButton();
-			rightButton = makeRightButton();
-			leftArrow = makeLeftArrow();
-			rightArrow = makeRightArrow();
+            //draw them all
+            g.DrawPath(blackPen, leftButton);
+            g.DrawPath(blackPen, rightButton);
 
-			//draw them all
-			g.DrawPath(blackPen, slideArea);
+            g.FillPath(blackBrush, rightArrow);
+            g.FillPath(blackBrush, leftArrow);
 
-			g.DrawPath(blackPen, sliderThumb);
-			g.DrawLine(blackPen, sliderThumb.GetBounds().X, sliderThumb.GetBounds().Y + sliderThumb.GetBounds().Height / 2, sliderThumb.GetBounds().Right, sliderThumb.GetBounds().Y + sliderThumb.GetBounds().Height / 2);
+            RectangleF sliderRectangle = base.SliderGP.GetBounds();
 
-			g.DrawPath(blackPen, leftButton);
-			g.DrawPath(blackPen, rightButton);
+            pe.Graphics.DrawLine(new Pen(Color.Black, 2), sliderRectangle.X, sliderRectangle.Y + sliderRectangle.Height / 2,
+                sliderRectangle.Right, sliderRectangle.Y + sliderRectangle.Height / 2);
 
-			g.FillPath(blackBrush, rightArrow);
-			g.FillPath(blackBrush, leftArrow);
-
-			//g.DrawString("abcdefghijklmnopqrstuvwxyz", new Font(FontFamily.GenericMonospace, 12), blackBrush, new PointF(ClientRectangle.X + 5, slideArea.GetBounds().Bottom + 3));
-			//Debug.WriteLine(g.MeasureString("i", new Font(FontFamily.GenericMonospace, 12)).ToString());
-			//Debug.WriteLine(g.MeasureString("G", new Font(FontFamily.GenericMonospace, 12)).ToString());
-			drawIndex(g);
-			
 			//Redraw mouse pointer over slider
 			if (redrawMouse)
 			{
-				this.Cursor = new Cursor(Cursor.Current.Handle);
-				Point tempPoint = new Point();
-				tempPoint.X = (int)(sliderThumb.GetBounds().X + sliderThumb.GetBounds().Width / 2);
-				if (clickedOnTopHalf)
-					tempPoint.Y = (int)(sliderThumb.GetBounds().Top + sliderThumb.GetBounds().Height / 4);
-				else if (clickedOnBottomHalf)
-					tempPoint.Y = (int)(sliderThumb.GetBounds().Top + 3 * sliderThumb.GetBounds().Height / 4);
+                this.Cursor = new Cursor(Cursor.Current.Handle);
+                Point tempPoint = new Point();
+                tempPoint.X = (int)(base.SliderGP.GetBounds().X + base.SliderGP.GetBounds().Width / 2);
+                if (clickedOnTopHalf)
+                    tempPoint.Y = (int)(base.SliderGP.GetBounds().Top + base.SliderGP.GetBounds().Height / 4);
+                else if (clickedOnBottomHalf)
+                    tempPoint.Y = (int)(base.SliderGP.GetBounds().Top + 3 * base.SliderGP.GetBounds().Height / 4);
 
-				Cursor.Position = PointToScreen(tempPoint);
-				lastX = tempPoint.X;
+                Cursor.Position = PointToScreen(tempPoint);
+                lastX = tempPoint.X;
+
+                base.LastMousePosition = Cursor.Position;
 			}
 
-
-		}
-
-		private void drawIndex(Graphics g)
-		{
-			if (data != null)
-			{
-				findItemsPerIndex();
-				findIndexTickPixelLocations();
-
-				//Font drawingFont = new Font(FontFamily.GenericMonospace, 12);
-				Brush drawingBrush = new SolidBrush(Color.Black);
-				sortIndexArrays();
-				usedIndexPixels.Clear();
-				//The following part is n^2 complexity but n will be <=36 so it shouldn't be too bad
-				for (int i = 0; i < itemsPerIndex.Count; i++)
-				{
-					if (canDrawCharacter(indexTickPixelLocation[i], indexChars[i]))
-					{
-						g.DrawString(indexChars[i] + "", drawingFont, drawingBrush, indexTickPixelLocation[i] - fontWidth / 2, slideArea.GetBounds().Bottom);
-						usedIndexPixels.Add(new float[] { indexTickPixelLocation[i] - fontWidth / 2, indexTickPixelLocation[i] + fontWidth / 2 });
-					}
-				}
-			}
-		}
-
-		private bool canDrawCharacter(float location, char ch)
-		{
-			bool result = true;
-
-			for (int i = 0; i < usedIndexPixels.Count && result; i++)
-			{
-				if ((location >= usedIndexPixels[i][0] && location <= usedIndexPixels[i][1])
-					|| (location - fontWidth / 2 >= usedIndexPixels[i][0] && location - fontWidth / 2 <= usedIndexPixels[i][1])
-					|| (location + fontWidth / 2 >= usedIndexPixels[i][0] && location + fontWidth / 2 <= usedIndexPixels[i][1]))
-				{
-					result = false;
-					Debug.WriteLine("Location: {0}\t\tLocation - fontWidth / 2: {1}\t\tLocation + fontWidth / 2: {2}", location, location - fontWidth / 2, location + fontWidth / 2);
-					Debug.WriteLine("Lower: {0}\t\tUpper: {1}", usedIndexPixels[i][0], usedIndexPixels[i][1]);
-					Debug.WriteLine("");
-				}
-			}
-
-			return result;
-		}
-
-		private void sortIndexArrays()
-		{
-			char prevChar;
-			int prevInt;
-			float prevFloat;
-
-			for (int i = 0; i < itemsPerIndex.Count; i++)
-			{
-				for (int j = 0; j < itemsPerIndex.Count - i - 1; j++)
-				{
-					if (itemsPerIndex[j] < itemsPerIndex[j + 1])
-					{
-						//Switch indices
-						prevInt = itemsPerIndex[j];
-						itemsPerIndex.RemoveAt(j);
-						itemsPerIndex.Insert(j + 1, prevInt);
-
-						prevChar = indexChars[j];
-						indexChars.RemoveAt(j);
-						indexChars.Insert(j + 1, prevChar);
-
-						prevFloat = indexTickPixelLocation[j];
-						indexTickPixelLocation.RemoveAt(j);
-						indexTickPixelLocation.Insert(j + 1, prevFloat);
-					}
-				}
-			}
-		}
-
-		private void findItemsPerIndex()
-		{
-			if (data != null)
-			{
-				char lastChar = '\0';
-				itemsPerIndex.Clear();
-				indexChars.Clear();
-
-				for (int i = 0; i < data.Count; i++)
-				{
-					if (char.ToUpper(data[i][0]) != lastChar)
-					{
-						itemsPerIndex.Add(1);
-						lastChar = char.ToUpper(data[i][0]);
-						indexChars.Add(lastChar);
-					}
-					else
-					{
-						itemsPerIndex[itemsPerIndex.Count - 1]++;
-					}
-				}
-			}
-		}
-
-		private void findIndexTickPixelLocations()
-		{
-			float effectiveTrackWidth = TrackWidth - sliderThumb.GetBounds().Width;
-			float itemsPerPixel = (max - min + 1) / effectiveTrackWidth;
-			//float currentTickPosition;
-			//float previousTickPosition;
-
-			indexTickPixelLocation.Clear();
-			//usedIndexPixels.Clear();
-
-			indexTickPixelLocation.Add(slideArea.GetBounds().X + sliderThumb.GetBounds().Width / 2);
-			//usedIndexPixels.Add(new float[] { indexTickPixelLocation[0] - fontWidth / 2, indexTickPixelLocation[0] + fontWidth / 2 });
-			for (int i = 1; i < itemsPerIndex.Count; i++)
-			{
-				indexTickPixelLocation.Add(indexTickPixelLocation[i - 1] + itemsPerIndex[i - 1] / itemsPerPixel);
-			}
+            NeedToDoPaintingMath = true;
 		}
 
 		#region Grahpics Paths
-
-		private GraphicsPath makeSlideArea()
-		{
-			GraphicsPath slideArea = new GraphicsPath();
-
-			slideArea.AddLine(TrackXStart, 1, TrackXEnd, 1);
-			slideArea.AddLine(TrackXEnd, 1, TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex);
-			slideArea.AddLine(TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex, TrackXStart, ClientRectangle.Height - 1 - spaceForIndex);
-			slideArea.AddLine(TrackXStart, ClientRectangle.Height - 1 - spaceForIndex, TrackXStart, 1);
-
-			return slideArea;
-		}
-
-		private GraphicsPath makeSliderThumb()
-		{
-			GraphicsPath sliderThumb = new GraphicsPath();
-
-			float sliderX = slideArea.GetBounds().Left;
-			sliderX += (value - min) / (float)range * (slideArea.GetBounds().Width - SliderWidth);
-
-			sliderThumb.AddLine(sliderX, slideArea.GetBounds().Top, sliderX + SliderWidth, slideArea.GetBounds().Top);
-			sliderThumb.AddLine(sliderX + SliderWidth, slideArea.GetBounds().Top, sliderX + SliderWidth, slideArea.GetBounds().Bottom);
-			sliderThumb.AddLine(sliderX + SliderWidth, slideArea.GetBounds().Bottom, sliderX, slideArea.GetBounds().Bottom);
-			sliderThumb.AddLine(sliderX, slideArea.GetBounds().Bottom, sliderX, slideArea.GetBounds().Top);
-
-			return sliderThumb;
-		}
 
 		private GraphicsPath makeLeftButton()
 		{
 			GraphicsPath leftButton = new GraphicsPath();
 
-			leftButton.AddLine(ClientRectangle.X + 1, ClientRectangle.Y + 1, slideArea.GetBounds().Left, ClientRectangle.Y + 1);
-			leftButton.AddLine(slideArea.GetBounds().Left, ClientRectangle.Y + 1, slideArea.GetBounds().Left, slideArea.GetBounds().Bottom);
-			leftButton.AddLine(slideArea.GetBounds().Left, slideArea.GetBounds().Bottom, ClientRectangle.X + 1, slideArea.GetBounds().Bottom);
-			leftButton.AddLine(ClientRectangle.X + 1, slideArea.GetBounds().Bottom, ClientRectangle.X + 1, ClientRectangle.Y + 1);
+			leftButton.AddLine(ClientRectangle.X + 1, ClientRectangle.Y + 1, base.SlideArea.GetBounds().Left, ClientRectangle.Y + 1);
+            leftButton.AddLine(base.SlideArea.GetBounds().Left, ClientRectangle.Y + 1, base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Bottom);
+            leftButton.AddLine(base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Bottom, ClientRectangle.X + 1, base.SlideArea.GetBounds().Bottom);
+            leftButton.AddLine(ClientRectangle.X + 1, base.SlideArea.GetBounds().Bottom, ClientRectangle.X + 1, ClientRectangle.Y + 1);
 
 			return leftButton;
 		}
@@ -321,10 +107,10 @@ namespace CustomSlider
 		{
 			GraphicsPath rightButton = new GraphicsPath();
 
-			rightButton.AddLine(slideArea.GetBounds().Right, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Y + 1);
-			rightButton.AddLine(ClientRectangle.Width - 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, slideArea.GetBounds().Bottom);
-			rightButton.AddLine(ClientRectangle.Width - 1, slideArea.GetBounds().Bottom, slideArea.GetBounds().Right, slideArea.GetBounds().Bottom);
-			rightButton.AddLine(slideArea.GetBounds().Right, slideArea.GetBounds().Bottom, slideArea.GetBounds().Right, ClientRectangle.Y + 1);
+            rightButton.AddLine(base.SlideArea.GetBounds().Right, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Y + 1);
+            rightButton.AddLine(ClientRectangle.Width - 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, base.SlideArea.GetBounds().Bottom);
+            rightButton.AddLine(ClientRectangle.Width - 1, base.SlideArea.GetBounds().Bottom, base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Bottom);
+            rightButton.AddLine(base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Bottom, base.SlideArea.GetBounds().Right, ClientRectangle.Y + 1);
 
 			return rightButton;
 		}
@@ -375,17 +161,11 @@ namespace CustomSlider
 		/// <param name="e"></param>
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
-			//base.OnMouseDown(e);
+			base.OnMouseDown(e);
 			if (e.Button == MouseButtons.Left)
 			{
-				if (mouseInSliderRegion(e.Location))
+				if (base.ClickedOnSlider)
 				{
-					//Debug.WriteLine("Clicked inside mouse region");
-					lastX = e.Location.X;
-					Capture = true;
-					base.ClickedOnSlider = true;
-					redrawMouse = true;
-
 					if (mouseInTopHalf(e.Location))
 					{
 						clickedOnTopHalf = true;
@@ -397,35 +177,18 @@ namespace CustomSlider
 						clickedOnTopHalf = false;
 					}
 					slowDownMouse();
-				}
-				else if (mouseInSlideArea(e.Location))
-				{
-					if (e.X < slideArea.GetBounds().X + sliderThumb.GetBounds().Width / 2)
-						Value = 0;
-					else if (e.X > slideArea.GetBounds().Right - sliderThumb.GetBounds().Width / 2)
-						Value = max;
-					else //The mouse is somewhere between the beginning and end of the track
-					{
-						//Find mouse penetration
-						float penetration = (e.X - (sliderThumb.GetBounds().Width / 2 + buttonWidth)) / (TrackWidth - sliderThumb.GetBounds().Width);
 
-						//calculate value
-						int tempValue = (int)(penetration * max);
-
-						Value = tempValue;
-
-					}
+                    redrawMouse = true;
+                    lastX = PointToClient(Cursor.Position).X;
 				}
-				else if (leftButton.GetBounds().Contains(e.Location))
-				{
-					Value = Value - 1;
-					Debug.WriteLine(Value.ToString());
-				}
-				else if (rightButton.GetBounds().Contains(e.Location))
-				{
-					Value = Value + 1;
-					Debug.WriteLine(Value.ToString() + "helo");
-				}
+                else if (leftButton.GetBounds().Contains(e.Location))
+                {
+                    Value = Value - 1;
+                }
+                else if (rightButton.GetBounds().Contains(e.Location))
+                {
+                    Value = Value + 1;
+                }
 			}
 		}
 
@@ -437,63 +200,50 @@ namespace CustomSlider
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			//base.OnMouseMove(e);
-            if (Capture && base.ClickedOnSlider && (clickedOnTopHalf || clickedOnBottomHalf))
-			{
-				int valueChangeOnMove;
+            if (base.ClickedOnSlider && (clickedOnTopHalf || clickedOnBottomHalf) && !base.LastMousePosition.Equals(Cursor.Position))
+            {
+                int valueChangePerMouseMovement;
+                int actualValueChange = 0;
 
-				if (clickedOnTopHalf)
-				{
-					valueChangeOnMove = mediumValueChange;
-				}
-				else
-				{
-					valueChangeOnMove = fineValueChange;
-				}
+                if (clickedOnTopHalf)
+                {
+                    valueChangePerMouseMovement = coarseValueChange;
+                }
+                else
+                {
+                    valueChangePerMouseMovement = fineValueChange;
+                }
 
-				if ((e.X - lastX) >= moveThreshold)
-				{
-					/*The reason for this loop and the only just below it takes a bit of explaining:
-					 * Mouse movement is not immediately captured. What I mean by this is that based on how quickly the move is physcially moved
-					 * the value of it's position when this event is entered could be different.
-					 * 
-					 * To illustrate this a bit:
-					 * If the user jerks the mouse the pointer might move 100 pixels and only register a 
-					 * single event instead of 10 events that are expected.
-					 * This means that we will enter this code once with 
-					 * e.X = 756 and lastX = 656
-					 * instead of coming here 10 times with
-					 * e.X = 666 and lastX = 656 followed by
-					 * e.x = 676 and lastX = 666 followed by
-					 * e.X = 686 and lastX = 676 followed by
-					 * ...
-					 * e.X = 756 and lastX = 746
-					 * 
-					 * In the event that e.X = 756 and lastX = 656 happens I just simulate the 10 expected events to occur
-					 * by appropriately changing the slider value as many times as necessary
-					 * 
-					 * This helps smooth out movement and make the slider more predictable
-					 */
-					//for (int i = lastX; i < e.X; i += moveThreshold)
-					//{
-						Value = Value + (e.X - lastX) * valueChangeOnMove;
-					//}
-					lastX = e.X;
-				}
-				else if ((e.X - lastX) <= -1 * moveThreshold)
-				{
-					//for (int i = lastX; i > e.X; i -= moveThreshold)
-					//{
-						Value = Value - (lastX - e.X) * valueChangeOnMove;
-					//}
+                if ((e.X - lastX) >= moveThreshold)
+                {
+                    /** 
+                     * If the user jerks the mouse the pointer might move 100 pixels and only register a 
+                     * single event instead of 10 (or 100) events that are expected.
+                     * This means that we will enter this code once with 
+                     * e.X = 756 and lastX = 656
+                     * instead of coming here 10 times with
+                     * e.X = 666 and lastX = 656 followed by
+                     * e.x = 676 and lastX = 666 followed by
+                     * e.X = 686 and lastX = 676 followed by
+                     * ...
+                     * e.X = 756 and lastX = 746
+                     * 
+                     * In the event that e.X = 756 and lastX = 656 happens I just simulate the 10 expected events to occur
+                     * by appropriately changing the slider value as many times as necessary
+                     * 
+                     * This helps smooth out movement and make the slider more predictable
+                     */
+                    actualValueChange = (e.X - lastX) * valueChangePerMouseMovement;
+                }
+                else if ((e.X - lastX) <= -1 * moveThreshold)
+                {
+                    actualValueChange = -1 * (lastX - e.X) * valueChangePerMouseMovement;
+                }
 
-					lastX = e.X;
-				}
+                Value += actualValueChange;
+                lastX = e.X;
 
-				//if (e.X < ClientRectangle.X + SliderWidth || e.X > ClientRectangle.Right - SliderWidth)
-				//	redrawMouse = false;
-
-
-			}
+            }
 
 		}
 
@@ -522,20 +272,14 @@ namespace CustomSlider
 		/// <returns>Returns true if the point is in the top half of the slider. False if it isn't (this means that it must be in the bottom half)</returns>
 		private bool mouseInTopHalf(Point point)
 		{
-			RectangleF sliderRectangle = sliderThumb.GetBounds();
+			RectangleF sliderRectangle = base.SliderGP.GetBounds();
 
 			return point.Y <= sliderRectangle.Top + sliderRectangle.Height / 2;
 		}
 
 		private bool mouseInSlideArea(Point point)
 		{
-			return slideArea.GetBounds().Contains(point);
-		}
-
-		private void updateMax()
-		{
-			max = data.Count - 1;
-			range = max - min;
+            return base.SlideArea.GetBounds().Contains(point);
 		}
 	}
 }

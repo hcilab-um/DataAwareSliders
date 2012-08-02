@@ -49,12 +49,12 @@ namespace CustomSlider
 			set { activeAreaSlider.ItemsInIndices = value; }
 		}
 
-		public List<string> IndexNames
+		public List<char> IndexNames
 		{
-			get { return activeAreaSlider.IndexNames; }
+			get { return activeAreaSlider.IndexCharacters; }
 			set
 			{
-				activeAreaSlider.IndexNames = value;
+				activeAreaSlider.IndexCharacters = value;
 			}
 		}
 
@@ -79,6 +79,15 @@ namespace CustomSlider
 			}
 		}
 
+        public List<char> IndexCharacters
+        {
+            get { return activeAreaSlider.IndexCharacters; }
+            set
+            {
+                activeAreaSlider.IndexCharacters = value;
+            }
+        }
+
 		#endregion
 
 		public IDActiveListSlider()
@@ -98,6 +107,8 @@ namespace CustomSlider
 			//activeAreaSlider.ItemsInIndices = new List<uint>(new uint[] { 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500 });
 
         }
+
+        #region Event handlers
 
         void activeAreaSlider_MouseLeave(object sender, EventArgs e)
         {
@@ -206,7 +217,9 @@ namespace CustomSlider
             valueRecentlyChanged = true;
 		}
 
-		private void updateListBox()
+        #endregion
+
+        private void updateListBox()
 		{
 			if (data != null && data.Count > 0)
 			{

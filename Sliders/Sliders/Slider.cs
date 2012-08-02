@@ -30,9 +30,9 @@ namespace CustomSlider
         [DllImport("User32.dll")]
         static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref uint pvParam, uint fWinIni);
 
-        private GraphicsPath sliderGP = null; 
+        private GraphicsPath sliderGP = null;
         private GraphicsPath customSliderGP = null;
-        private GraphicsPath sliderArea = null;
+        private GraphicsPath slideArea = null;
         private int sliderHeight = 0;
         private int sliderWidth = 0;
 
@@ -44,6 +44,7 @@ namespace CustomSlider
         private int sliderValue = 0;
         private List<uint> itemsInIndices = new List<uint>(new uint[] { 100, 500, 900, 150, 330, 205, 506 }); //multipurpose. The count of this List indicates how many indices there are
         //and the value of each element indicates the number of elements associated with that index
+        private List<char> indexCharacters = null;
         private List<int> rangeOfValues;
         private int offset = 0;
 
@@ -52,6 +53,15 @@ namespace CustomSlider
         #endregion
 
         #region Getters and Setters
+
+        protected List<char> IndexCharacters
+        {
+            get { return indexCharacters; }
+            set
+            {
+                indexCharacters = value;
+            }
+        }
 
         protected int Offset
         {
@@ -140,10 +150,10 @@ namespace CustomSlider
             set { customSliderGP = value; }
         }
 
-        protected GraphicsPath SliderArea
+        protected GraphicsPath SlideArea
         {
-            get { return sliderArea; }
-            set { sliderArea = value; }
+            get { return slideArea; }
+            set { slideArea = value; }
         }
 
         protected int SliderHeight
@@ -165,7 +175,7 @@ namespace CustomSlider
         protected abstract void updateOffset(int value);
         protected abstract void updateRangeAroundValues(int value);
         protected abstract GraphicsPath generateSlideArea();
-
+        protected abstract GraphicsPath generateSliderPath(float sliderCenterX, float sliderCenterY);
 
         #endregion
 

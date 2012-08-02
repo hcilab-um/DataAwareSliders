@@ -48,7 +48,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.activeAreaSlider.DrawSlider = true;
-            this.activeAreaSlider.IndexNames = null;
+            this.activeAreaSlider.IndexCharacters = null;
             this.activeAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSlider.ItemsInIndices")));
             this.activeAreaSlider.Location = new System.Drawing.Point(8, 12);
             this.activeAreaSlider.MaxItemsPerSliderPixel = 2;

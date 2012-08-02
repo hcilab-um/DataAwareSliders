@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace WindowsFormsApplication2
+namespace CustomSlider.WindowsFormsApplication2
 {
 	public partial class Form2 : Form
 	{
@@ -20,7 +20,7 @@ namespace WindowsFormsApplication2
             idAlphaslider1.ValueChanged += idAlphaslider1_ValueChanged;
 
 			activeAreaSliderv21.ItemsInIndices = new List<uint>(new uint[] { 10000, 5000, 2000, 4000, 3500 });
-
+			alphasliderV31.ValueChanged += new EventHandler(alphasliderV31_ValueChanged);
 
 			List<string> list = new List<string>();
 			try
@@ -44,17 +44,43 @@ namespace WindowsFormsApplication2
 				Console.WriteLine("The file could not be read:");
 				Console.WriteLine(e.Message);
 			}
-			//alphasliderV31.Data = list;
-			alphasliderV31.ValueChanged += new EventHandler(alphasliderV31_ValueChanged);
 
-			List<string> list2 = new List<string>();
-			for (int i = 0; i < 10000; i++)
-			{
-				list2.Add(i + "");
-			}
+            List<char> firstCharacters = new List<char>();
+            List<uint> buckets = new List<uint>();
+            char lastFirstLetter = '\0';
+            int lastIndex = 0;
 
-			activeMultiSlider1.Data = list2;
+            buckets.Add(0); //filter equivalent of "All"
+            lastFirstLetter = char.ToUpper(list[1][0]); //prime the loop and variables
+            firstCharacters.Add(lastFirstLetter);
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (char.ToUpper(list[i][0]) == lastFirstLetter)
+                {
+                    buckets[lastIndex]++;
+                }
+                else
+                {
+                    lastFirstLetter = char.ToUpper(list[i][0]);
+                    firstCharacters.Add(lastFirstLetter);
+                    buckets.Add(1);
 
+                    lastIndex++;
+                }
+            }
+
+            activeAreaSliderv21.ItemsInIndices = buckets;
+            activeAreaSliderv21.IndexCharacters = firstCharacters;
+
+            activeMultiSlider1.ItemsInIndices = buckets;
+            activeMultiSlider1.IndexCharacters = firstCharacters;
+            activeMultiSlider1.Data = list;
+
+            idAlphaslider1.ItemsInIndices = buckets;
+            idAlphaslider1.IndexCharacters = firstCharacters;
+
+            alphasliderV31.ItemsInIndices = buckets;
+            alphasliderV31.IndexCharacters = firstCharacters;
 		}
 
         void idAlphaslider1_ValueChanged(object sender, EventArgs e)

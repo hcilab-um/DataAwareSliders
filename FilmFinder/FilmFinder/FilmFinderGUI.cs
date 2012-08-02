@@ -146,9 +146,6 @@ namespace FilmFinder
 
 		#region Initialization of controls
 
-
-
-
 		/// <summary>
 		/// This method creates a series for each unique genre. It also assigns a color to each series with an algorithm that I whipped up.
 		/// The algorithm isn't particularly special and isn't by any means tested. Basically, I assign color to the series with a red, green and blue value.
@@ -235,7 +232,6 @@ namespace FilmFinder
 			actorActiveMultiSlider.Value = 0;
 		}
 
-		
 
 		/// <summary>
 		/// This method, as the name implies, initializes the slider responsible for filtering directors

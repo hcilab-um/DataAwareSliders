@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace CustomSlider.WindowsFormsApplication2
 {
 	partial class Form2
 	{
@@ -34,12 +34,13 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.idAlphaslider1 = new CustomSlider.IDAlphaslider();
             this.activeMultiSlider1 = new CustomSlider.IDActiveListSlider();
             this.activeAreaSliderv21 = new CustomSlider.IDActiveAreaSlider();
             this.alphasliderV31 = new CustomSlider.DDAlphaslider();
             this.multiValueSliderV31 = new CustomSlider.IDListSlider();
-            this.idAlphaslider1 = new CustomSlider.IDAlphaslider();
-            this.label3 = new System.Windows.Forms.Label();
+            this.iDtest1 = new CustomSlider.DDtest();
             this.SuspendLayout();
             // 
             // label1
@@ -92,20 +93,40 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "label2";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(625, 538);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "label3";
+            // 
+            // idAlphaslider1
+            // 
+            this.idAlphaslider1.IndexCharacters = null;
+            this.idAlphaslider1.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("idAlphaslider1.ItemsInIndices")));
+            this.idAlphaslider1.Location = new System.Drawing.Point(12, 516);
+            this.idAlphaslider1.Name = "idAlphaslider1";
+            this.idAlphaslider1.Size = new System.Drawing.Size(598, 52);
+            this.idAlphaslider1.TabIndex = 25;
+            this.idAlphaslider1.Text = "idAlphaslider1";
+            this.idAlphaslider1.Value = 0;
+            // 
             // activeMultiSlider1
             // 
             this.activeMultiSlider1.Data = null;
             this.activeMultiSlider1.IndexNames = null;
             this.activeMultiSlider1.Location = new System.Drawing.Point(12, 306);
             this.activeMultiSlider1.Name = "activeMultiSlider1";
-            this.activeMultiSlider1.Size = new System.Drawing.Size(598, 102);
+            this.activeMultiSlider1.Size = new System.Drawing.Size(598, 97);
             this.activeMultiSlider1.TabIndex = 22;
             this.activeMultiSlider1.Value = 0;
             // 
             // activeAreaSliderv21
             // 
             this.activeAreaSliderv21.DrawSlider = true;
-            this.activeAreaSliderv21.IndexNames = null;
+            this.activeAreaSliderv21.IndexCharacters = null;
             this.activeAreaSliderv21.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSliderv21.ItemsInIndices")));
             this.activeAreaSliderv21.Location = new System.Drawing.Point(12, 12);
             this.activeAreaSliderv21.MaxItemsPerSliderPixel = 2;
@@ -118,11 +139,11 @@
             // 
             // alphasliderV31
             // 
-            this.alphasliderV31.Data = null;
+            this.alphasliderV31.IndexCharacters = null;
             this.alphasliderV31.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("alphasliderV31.ItemsInIndices")));
             this.alphasliderV31.Location = new System.Drawing.Point(12, 443);
             this.alphasliderV31.Name = "alphasliderV31";
-            this.alphasliderV31.Size = new System.Drawing.Size(598, 48);
+            this.alphasliderV31.Size = new System.Drawing.Size(598, 42);
             this.alphasliderV31.TabIndex = 20;
             this.alphasliderV31.Text = "alphasliderV31";
             this.alphasliderV31.Value = 1;
@@ -139,31 +160,23 @@
             this.multiValueSliderV31.TabIndex = 19;
             this.multiValueSliderV31.Value = 0;
             // 
-            // idAlphaslider1
+            // iDtest1
             // 
-            this.idAlphaslider1.IndexNames = null;
-            this.idAlphaslider1.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("idAlphaslider1.ItemsInIndices")));
-            this.idAlphaslider1.Location = new System.Drawing.Point(12, 516);
-            this.idAlphaslider1.Name = "idAlphaslider1";
-            this.idAlphaslider1.Size = new System.Drawing.Size(598, 51);
-            this.idAlphaslider1.TabIndex = 25;
-            this.idAlphaslider1.Text = "idAlphaslider1";
-            this.idAlphaslider1.Value = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(625, 538);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "label3";
+            this.iDtest1.IndexCharacters = null;
+            this.iDtest1.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("iDtest1.ItemsInIndices")));
+            this.iDtest1.Location = new System.Drawing.Point(699, 78);
+            this.iDtest1.Name = "iDtest1";
+            this.iDtest1.Size = new System.Drawing.Size(357, 47);
+            this.iDtest1.TabIndex = 27;
+            this.iDtest1.Text = "iDtest1";
+            this.iDtest1.Value = 0;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(726, 639);
+            this.ClientSize = new System.Drawing.Size(1056, 639);
+            this.Controls.Add(this.iDtest1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.idAlphaslider1);
             this.Controls.Add(this.label2);
@@ -195,6 +208,7 @@
         private System.Windows.Forms.Label label2;
         private CustomSlider.IDAlphaslider idAlphaslider1;
         private System.Windows.Forms.Label label3;
+        private CustomSlider.DDtest iDtest1;
 
 	}
 }

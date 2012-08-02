@@ -81,14 +81,13 @@ namespace CustomSlider
 		public IDActiveAreaSlider()
 		{
 			InitializeComponent();
-			CustomSliderGP = new GraphicsPath();
+			//CustomSliderGP = new GraphicsPath();
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			Graphics g = e.Graphics;
 			doPaintingMath(); //this needs to be done so that values such as spacebetweenticks isn't 0 during the first paint
-
 
 			//Deal with slider positioning only if the slider is being dragged
 			if (drawSlider)
@@ -162,6 +161,7 @@ namespace CustomSlider
 				g.DrawPath(new Pen(Color.Black), secondarySliderGP);
 			}
 
+            NeedToDoPaintingMath = true;
 		}
 
         #region Overriden mouse events

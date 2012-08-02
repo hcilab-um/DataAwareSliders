@@ -60,12 +60,12 @@ namespace CustomSlider
 			set { multiValueSliderV21.ItemsInIndices = value; }
 		}
 
-		public List<string> IndexNames
+		public List<char> IndexNames
 		{
-			get { return multiValueSliderV21.IndexNames; }
+			get { return multiValueSliderV21.IndexCharacters; }
 			set
 			{
-				multiValueSliderV21.IndexNames = value;
+				multiValueSliderV21.IndexCharacters = value;
 			}
 		}
 

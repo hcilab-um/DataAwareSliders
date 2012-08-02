@@ -75,6 +75,12 @@
     <Compile Include="Sliders\IDAlphaslider.Designer.cs">
       <DependentUpon>IDAlphaslider.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sliders\DDtest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sliders\DDtest.Designer.cs">
+      <DependentUpon>DDtest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sliders\InputDistortionSlider.cs">
       <SubType>Component</SubType>
     </Compile>

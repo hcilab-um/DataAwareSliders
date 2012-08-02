@@ -24,18 +24,21 @@ namespace CustomSlider
 		protected int largestIndex = 0;
 		protected int smallestIndex = 0;
 
-		
 		private int centerOfRange = 0;
-		//defaults to two indices of size 50 each
-		List<string> indexNames = null;
-
 
 		protected bool drawSlider = true;
-		private Point lastMousePosition;
+        private Point lastMousePosition;
+        private bool needToDoPaintingMath = true;
 
 		#endregion
 
 		#region Getters and Setters
+
+        protected bool NeedToDoPaintingMath
+        {
+            get { return needToDoPaintingMath; }
+            set { needToDoPaintingMath = value; }
+        }
 
 		public new int Value
 		{
@@ -79,12 +82,12 @@ namespace CustomSlider
 			protected set { base.RangeOfValues = value; }
 		}
 
-		public List<string> IndexNames
+		public new List<char> IndexCharacters
 		{
-			get { return indexNames; }
+			get { return base.IndexCharacters; }
 			set
 			{
-				indexNames = value;
+               base.IndexCharacters = value;
 			}
 		}
 
@@ -102,7 +105,7 @@ namespace CustomSlider
 
 			largestIndex = findLargestIndex();
 			smallestIndex = findSmallestInex();
-			doPaintingMath();
+			//doPaintingMath();
 		}
 
 		protected override void OnPaint(PaintEventArgs pe)
@@ -111,11 +114,8 @@ namespace CustomSlider
 
 			Graphics g = pe.Graphics;
 
-			////outline client rectangle
-			//Pen outlinePen = new Pen(Color.Red);
-			//g.DrawRectangle(outlinePen, 0, 0, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-
 			doPaintingMath();
+
 
 			//This following code will draw ticks and the histograms above them
 			float histogramHeight;
@@ -134,9 +134,9 @@ namespace CustomSlider
 				g.FillRectangle(histogramBrush, i, histogramLowerY - histogramHeight, spaceBetweenTicks, histogramHeight);
 				g.DrawRectangle(blackPen, i, histogramLowerY - histogramHeight, (float)(TrackWidth / (float)base.ItemsInIndices.Count), histogramHeight);
 
-				if (indexNames != null)
+                if (base.IndexCharacters != null)
 				{
-					g.DrawString(indexNames[index], new Font(FontFamily.GenericSerif, 10), new SolidBrush(Color.Black), i, histogramLowerY + 1);
+                    g.DrawString(base.IndexCharacters[index] + "", new Font(FontFamily.GenericSerif, 10), new SolidBrush(Color.Black), i, histogramLowerY + 1);
 				}
 
 				index += 1;
@@ -180,29 +180,32 @@ namespace CustomSlider
 			g.FillPath(new SolidBrush(Color.FromArgb(128, Color.Gray)), currSliderGP);
 			g.DrawPath(blackPen, currSliderGP);
 
-			SliderArea = generateSlideArea();
+			SlideArea = generateSlideArea();
 
 		}//end paint
 
-		protected void doPaintingMath()
-		{
-			base.SliderWidth = 30;
-			base.SliderHeight = 15;
+        protected void doPaintingMath()
+        {
+            if (needToDoPaintingMath)
+            {
+                base.SliderWidth = 30;
+                base.SliderHeight = 15;
 
-			//track math
-			base.TrackYValue = ClientRectangle.Height - base.SliderHeight; //the Y value of the start point of the track. The start and end points are the same since the track is a straight line. 0.2 was arbitrarily chosen
-			base.TrackXStart = ClientRectangle.X + base.SliderWidth / 2 + 1; //the X value of the start point of the track
-            base.TrackXEnd = ClientRectangle.Width - base.SliderWidth / 2 - 1; //the x value of the end point of the track
-            base.TrackWidth = base.TrackXEnd - base.TrackXStart;
+                //track math
+                base.TrackYValue = ClientRectangle.Height - base.SliderHeight; //the Y value of the start point of the track. The start and end points are the same since the track is a straight line. 0.2 was arbitrarily chosen
+                base.TrackXStart = ClientRectangle.X + base.SliderWidth / 2 + 1; //the X value of the start point of the track
+                base.TrackXEnd = ClientRectangle.Width - base.SliderWidth / 2 - 1; //the x value of the end point of the track
+                base.TrackWidth = base.TrackXEnd - base.TrackXStart;
 
-			//histogram math
-			//histogramLowerY = TrackYValue - SliderHeight / 2 - 3;
-			histogramLowerY = base.TrackYValue;
-			histogramUpperY = ClientRectangle.Y + 1; //don't want histograms going all the way to the top of the ClientRectangle
-			histogramMaxHeight = histogramLowerY - histogramUpperY;
-
+                //histogram math
+                //histogramLowerY = TrackYValue - SliderHeight / 2 - 3;
+                histogramLowerY = base.TrackYValue;
+                histogramUpperY = ClientRectangle.Y + 1; //don't want histograms going all the way to the top of the ClientRectangle
+                histogramMaxHeight = histogramLowerY - histogramUpperY;
+                needToDoPaintingMath = false;
+            }
             spaceBetweenTicks = (float)(base.TrackWidth / (float)this.ItemsInIndices.Count);
-		}
+        }
 
 		#region Overridden Events
 
@@ -228,7 +231,7 @@ namespace CustomSlider
 
 					slowDownMouse();		
 				}
-				else if (SliderArea.GetBounds().Contains(e.Location))
+				else if (SlideArea.GetBounds().Contains(e.Location))
 				{
 					//simulate a mouse move event
 					Capture = true;
@@ -396,7 +399,7 @@ namespace CustomSlider
 		/// <param name="sliderCenterY">the center of the slider heightwise</param>
 		/// <param name="SliderWidth">the width of the slider</param>
 		/// <returns>A rectangular graphics path</returns>
-		private GraphicsPath generateSliderPath(float sliderCenterX, float sliderCenterY)
+		protected override GraphicsPath generateSliderPath(float sliderCenterX, float sliderCenterY)
 		{
 			GraphicsPath gp = new GraphicsPath();
 
@@ -437,10 +440,10 @@ namespace CustomSlider
 		{
 			GraphicsPath slideArea = new GraphicsPath();
 
-			PointF topLeft = new PointF(ClientRectangle.X + 1, TrackYValue - SliderHeight);
-			PointF topRight = new PointF(ClientRectangle.Width - 1, TrackYValue - SliderHeight);
-			PointF bottomLeft = new PointF(ClientRectangle.X + 1, TrackYValue + SliderHeight);
-			PointF bottomRight = new PointF(ClientRectangle.Width - 1, TrackYValue + SliderHeight);
+			PointF topLeft = new PointF(base.TrackXStart, TrackYValue - SliderHeight);
+			PointF topRight = new PointF(base.TrackXEnd, TrackYValue - SliderHeight);
+            PointF bottomLeft = new PointF(base.TrackXStart, TrackYValue + SliderHeight);
+            PointF bottomRight = new PointF(base.TrackXEnd, TrackYValue + SliderHeight);
 
 			slideArea.AddLine(topLeft, topRight);
 			slideArea.AddLine(topRight, bottomRight);
