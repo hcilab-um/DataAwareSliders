@@ -6,13 +6,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace CustomSlider
 {
-	public partial class IDActiveListSlider : UserControl
-	{
-		public event EventHandler QueryChanged;
+    public partial class DDActiveListSlider : UserControl
+    {
+        public event EventHandler QueryChanged;
 
 		private const int LISTBOX_Y = 0;
 		private const int DISTANCE_FROM_SLIDER_TO_LISTBOX = 10;
@@ -90,7 +89,7 @@ namespace CustomSlider
 
 		#endregion
 
-		public IDActiveListSlider()
+		public DDActiveListSlider()
 		{
 			InitializeComponent();
 			activeAreaSlider.MaxItemsPerSliderPixel = 7;
@@ -209,7 +208,7 @@ namespace CustomSlider
 
 		void activeAreaSlider_ValueChanged(object sender, EventArgs e)
 		{
-            activeAreaSlider.Update();
+            Update();
 
 			updateListBox();
 			changeListBoxPosition();
@@ -265,5 +264,5 @@ namespace CustomSlider
 			if (QueryChanged != null)
 				QueryChanged(this, new EventArgs());
 		}
-	}
+    }
 }

@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
-using System.Diagnostics;
-using System.Messaging;
 
 namespace CustomSlider
 {
-	public partial class IDActiveAreaSlider : InputDistortionSlider
-	{
-		#region Variables
+    public partial class DDActiveAreaSlider : DisplayDistortionSlider
+    {
+        #region Variables
 
 		public event EventHandler StartMouseWheel;
 
 		private const int MINIMUM_SLIDER_WIDTH = 20;
 		private float itemsPerHistogramPixel = 0;
-		private new int SliderWidth = 0;
+		//private new int SliderWidth = 0;
 		private int maxItemsPerSliderPixel = 2; //equivalent of max items per thumb pixel
 		private int itemsPerSliderPixel = 0;
 		private int rollChangeValue = 1;
@@ -50,10 +48,10 @@ namespace CustomSlider
 			get { return base.SliderGP; }
 		}
 
-		public bool DrawSlider
+		public new bool DrawSlider
 		{
-			get { return drawSlider; }
-			set { drawSlider = value; }
+			get { return base.DrawSlider; }
+            set { base.DrawSlider = value; }
 		}
 
 		public int RollChangeValue
@@ -78,7 +76,7 @@ namespace CustomSlider
 
 		#endregion
 
-		public IDActiveAreaSlider()
+		public DDActiveAreaSlider()
 		{
 			InitializeComponent();
 			//CustomSliderGP = new GraphicsPath();
@@ -90,39 +88,28 @@ namespace CustomSlider
 			doPaintingMath(); //this needs to be done so that values such as spacebetweenticks isn't 0 during the first paint
 
 			//Deal with slider positioning only if the slider is being dragged
-			if (drawSlider)
-			{
-				int indexOfSlider = findIndexOfSliderValue();
-				float sliderCenterX = TrackXStart;
-				float proportion;
-				if (indexOfSlider != -1)
-				{
-					//This will make the x value of the slider go to the right tick. From here it will be shifted over more
-					//based on it's value and the number of items assocaited with that index
-					for (int i = 0; i < indexOfSlider; i++)
-					{
-						sliderCenterX += spaceBetweenTicks;
-					}
+			//if (base.DrawSlider)
+			//{
+				float sliderCenterX = TrackXStart + base.SliderWidth / 2;
 
-					proportion = ((float)(Value - calculateSum(indexOfSlider - 1)) / (float)ItemsInIndices[indexOfSlider]);
-					sliderCenterX += proportion * (spaceBetweenTicks);
-				}
+                float effectiveTrackWidth = TrackWidth - base.SliderWidth;
+                float itemsPerPixel = (base.Maximum - base.Minimum + 1) / effectiveTrackWidth;
 
-				itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
-				double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsPerSliderPixel;
+				double potentialWidth = Math.Round(itemsPerPixel + 0.5) / maxItemsPerSliderPixel;
 				SliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
 				itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / SliderWidth, MidpointRounding.ToEven);
 				if (itemsPerSliderPixel < 2)
 					itemsPerSliderPixel = 2;
 
-				base.SliderGP = generateSliderPath(sliderCenterX, TrackYValue, SliderWidth);
+				//base.SliderGP = generateSliderPath(sliderCenterX, TrackYValue, SliderWidth);
 				
-			}
+			//}
 
-			CustomSliderGP = SliderGP;
+			//CustomSliderGP = SliderGP;
+            base.OnPaint(e);
 
 			//deal with secondary slider positioning
-			float secondarySliderY = TrackYValue - SliderHeight / 2;
+			float secondarySliderY = base.SliderGP.GetBounds().Y;
 			float secondarySliderWidth = 15;
 			float secondarySliderHeight = 12;
 			float secondarySliderHorizontalCenter;
@@ -139,11 +126,10 @@ namespace CustomSlider
                 if (rolledMouseWheel)
                 {
                     rolledMouseWheel = false;
-                    drawSlider = true;
-                    //base.ClickedOnSlider = false;
+                    base.DrawSlider = true;
                 }
 			}
-			else if (base.DraggingSlider)
+            else if (base.DraggingSlider)
 			{
 				secondarySliderHorizontalCenter = SliderGP.GetBounds().X + SliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
                 base.DraggingSlider = false;
@@ -153,7 +139,7 @@ namespace CustomSlider
 				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
 			}
 
-			base.OnPaint(e);
+			//base.OnPaint(e);
 
 			//draw secondarySlider
 			secondarySliderGP = generateSecondarySliderPath(secondarySliderHorizontalCenter, secondarySliderY, secondarySliderWidth, secondarySliderHeight);
@@ -179,7 +165,7 @@ namespace CustomSlider
 				Capture = true;
                 base.ClickedOnSlider = false;
 				clickedOnSecondarySlider = true;
-				drawSlider = false;
+                base.DrawSlider = false;
 				slowDownMouse();
 			}
 			else
@@ -223,8 +209,8 @@ namespace CustomSlider
 
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
-			clickedOnSecondarySlider = false;
 			base.OnMouseUp(e);
+			clickedOnSecondarySlider = false;
 		}
 
 		protected override void OnMouseWheel(MouseEventArgs e)
@@ -247,7 +233,7 @@ namespace CustomSlider
             tempValue = Value;
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
 			{
-                drawSlider = true;
+                base.DrawSlider = true;
                 
                 if (newValue < RangeOfValues[0])
                 {
@@ -272,7 +258,7 @@ namespace CustomSlider
                 Refresh();
 			}
 
-            drawSlider = false;
+            base.DrawSlider = false;
             rolledMouseWheel = true;
 			Value = newValue;
 			
@@ -368,5 +354,5 @@ namespace CustomSlider
 		}
 
 		#endregion
-	}
+    }
 }

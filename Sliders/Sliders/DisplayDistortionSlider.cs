@@ -35,6 +35,12 @@ namespace CustomSlider
 
         #region Getters and Setters
 
+        protected bool DrawSlider
+        {
+            get { return drawSlider; }
+            set { drawSlider = value; }
+        }
+
         protected bool NeedToDoPaintingMath
         {
             get { return needToDoPaintingMath; }
@@ -44,6 +50,11 @@ namespace CustomSlider
         protected int Minimum
         {
             get { return minimum; }
+        }
+
+        protected int Maximum
+        {
+            get { return maximum; }
         }
 
         public new int Value
@@ -331,6 +342,8 @@ namespace CustomSlider
                     Value = tempValue;
 
                 }
+
+                base.DraggingSlider = true;
             }
         }
 
@@ -344,6 +357,7 @@ namespace CustomSlider
             Capture = false;
             base.ClickedOnSlider = false;
             //drawSlider = true;
+            base.DraggingSlider = false;
 
             resetMouseSpeed();
 
@@ -475,10 +489,16 @@ namespace CustomSlider
         {
             GraphicsPath slideArea = new GraphicsPath();
 
-            slideArea.AddLine(TrackXStart, 1, TrackXEnd, 1);
-            slideArea.AddLine(TrackXEnd, 1, TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex);
-            slideArea.AddLine(TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex, TrackXStart, ClientRectangle.Height - 1 - spaceForIndex);
-            slideArea.AddLine(TrackXStart, ClientRectangle.Height - 1 - spaceForIndex, TrackXStart, 1);
+            PointF topLeft = new PointF(TrackXStart, ClientRectangle.Height - 1 - spaceForIndex - base.SliderHeight);
+            PointF topRight = new PointF(TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex - base.SliderHeight);
+            PointF bottomLeft = new PointF(TrackXStart, ClientRectangle.Height - 1 - spaceForIndex);
+            PointF bottomRight = new PointF(TrackXEnd, ClientRectangle.Height - 1 - spaceForIndex);
+
+
+            slideArea.AddLine(topLeft, topRight);
+            slideArea.AddLine(topRight, bottomRight);
+            slideArea.AddLine(bottomRight, bottomLeft);
+            slideArea.AddLine(bottomLeft, topLeft);
 
             return slideArea;
         }
@@ -489,7 +509,7 @@ namespace CustomSlider
 
             float leftX, rightX, topY, bottomY;
 
-            base.SliderHeight = (int)Math.Round(base.SlideArea.GetBounds().Height - base.SlideArea.GetBounds().Y);
+            //base.SliderHeight = (int)Math.Round(base.SlideArea.GetBounds().Height - base.SlideArea.GetBounds().Y);
 
             leftX = sliderCenterX - base.SliderWidth / 2;
             rightX = sliderCenterX + base.SliderWidth / 2;

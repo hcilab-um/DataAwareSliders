@@ -306,6 +306,8 @@ namespace CustomSlider
                         Value = tempValue;
                     }
                 }
+
+                base.DraggingSlider = true;
             }
         }
 
@@ -315,10 +317,11 @@ namespace CustomSlider
 		/// <param name="e"></param>
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
-			//base.OnMouseUp(e);
+			base.OnMouseUp(e);
 			Capture = false;
             base.ClickedOnSlider = false;
-			//drawSlider = true;
+			drawSlider = false;
+            base.DraggingSlider = false;
 
 			resetMouseSpeed();
 

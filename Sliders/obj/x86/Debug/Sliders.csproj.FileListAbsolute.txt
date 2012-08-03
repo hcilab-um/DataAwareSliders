@@ -8,3 +8,5 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSli
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.csprojResolveAssemblyReference.cache
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.WindowsFormsApplication2.Properties.Resources.resources
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.WindowsFormsApplication2.Form2.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.DDListSlider.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.DDActiveListSlider.resources

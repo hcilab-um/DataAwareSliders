@@ -35,12 +35,15 @@
             this.resetButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ddListSlider1 = new CustomSlider.DDListSlider();
+            this.ddActiveAreaSlider1 = new CustomSlider.DDActiveAreaSlider();
             this.idAlphaslider1 = new CustomSlider.IDAlphaslider();
             this.activeMultiSlider1 = new CustomSlider.IDActiveListSlider();
             this.activeAreaSliderv21 = new CustomSlider.IDActiveAreaSlider();
             this.alphasliderV31 = new CustomSlider.DDAlphaslider();
             this.multiValueSliderV31 = new CustomSlider.IDListSlider();
-            this.iDtest1 = new CustomSlider.DDtest();
+            this.ddActiveListSlider1 = new CustomSlider.DDActiveListSlider();
             this.SuspendLayout();
             // 
             // label1
@@ -102,6 +105,40 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "label3";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1076, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "label5";
+            // 
+            // ddListSlider1
+            // 
+            this.ddListSlider1.IndexNames = null;
+            this.ddListSlider1.List = ((System.Collections.Generic.List<string>)(resources.GetObject("ddListSlider1.List")));
+            this.ddListSlider1.Location = new System.Drawing.Point(686, 189);
+            this.ddListSlider1.Name = "ddListSlider1";
+            this.ddListSlider1.ShowLabel = false;
+            this.ddListSlider1.Size = new System.Drawing.Size(467, 81);
+            this.ddListSlider1.TabIndex = 29;
+            this.ddListSlider1.Value = 0;
+            // 
+            // ddActiveAreaSlider1
+            // 
+            this.ddActiveAreaSlider1.DrawSlider = true;
+            this.ddActiveAreaSlider1.IndexCharacters = null;
+            this.ddActiveAreaSlider1.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("ddActiveAreaSlider1.ItemsInIndices")));
+            this.ddActiveAreaSlider1.Location = new System.Drawing.Point(716, 78);
+            this.ddActiveAreaSlider1.MaxItemsPerSliderPixel = 2;
+            this.ddActiveAreaSlider1.Name = "ddActiveAreaSlider1";
+            this.ddActiveAreaSlider1.RollChangeValue = 1;
+            this.ddActiveAreaSlider1.Size = new System.Drawing.Size(335, 61);
+            this.ddActiveAreaSlider1.TabIndex = 27;
+            this.ddActiveAreaSlider1.Text = "ddActiveAreaSlider1";
+            this.ddActiveAreaSlider1.Value = 0;
+            // 
             // idAlphaslider1
             // 
             this.idAlphaslider1.IndexCharacters = null;
@@ -116,6 +153,7 @@
             // activeMultiSlider1
             // 
             this.activeMultiSlider1.Data = null;
+            this.activeMultiSlider1.IndexCharacters = null;
             this.activeMultiSlider1.IndexNames = null;
             this.activeMultiSlider1.Location = new System.Drawing.Point(12, 306);
             this.activeMultiSlider1.Name = "activeMultiSlider1";
@@ -160,23 +198,26 @@
             this.multiValueSliderV31.TabIndex = 19;
             this.multiValueSliderV31.Value = 0;
             // 
-            // iDtest1
+            // ddActiveListSlider1
             // 
-            this.iDtest1.IndexCharacters = null;
-            this.iDtest1.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("iDtest1.ItemsInIndices")));
-            this.iDtest1.Location = new System.Drawing.Point(699, 78);
-            this.iDtest1.Name = "iDtest1";
-            this.iDtest1.Size = new System.Drawing.Size(357, 47);
-            this.iDtest1.TabIndex = 27;
-            this.iDtest1.Text = "iDtest1";
-            this.iDtest1.Value = 0;
+            this.ddActiveListSlider1.Data = null;
+            this.ddActiveListSlider1.IndexCharacters = null;
+            this.ddActiveListSlider1.IndexNames = null;
+            this.ddActiveListSlider1.Location = new System.Drawing.Point(684, 306);
+            this.ddActiveListSlider1.Name = "ddActiveListSlider1";
+            this.ddActiveListSlider1.Size = new System.Drawing.Size(458, 103);
+            this.ddActiveListSlider1.TabIndex = 30;
+            this.ddActiveListSlider1.Value = 0;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 639);
-            this.Controls.Add(this.iDtest1);
+            this.ClientSize = new System.Drawing.Size(1154, 639);
+            this.Controls.Add(this.ddActiveListSlider1);
+            this.Controls.Add(this.ddListSlider1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ddActiveAreaSlider1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.idAlphaslider1);
             this.Controls.Add(this.label2);
@@ -208,7 +249,10 @@
         private System.Windows.Forms.Label label2;
         private CustomSlider.IDAlphaslider idAlphaslider1;
         private System.Windows.Forms.Label label3;
-        private CustomSlider.DDtest iDtest1;
+        private DDActiveAreaSlider ddActiveAreaSlider1;
+        private System.Windows.Forms.Label label5;
+        private DDListSlider ddListSlider1;
+        private DDActiveListSlider ddActiveListSlider1;
 
 	}
 }

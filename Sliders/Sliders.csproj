@@ -45,6 +45,30 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sliders\DDActiveAreaSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sliders\DDActiveAreaSlider.Designer.cs">
+      <DependentUpon>DDActiveAreaSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sliders\DDActiveListSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sliders\DDActiveListSlider.Designer.cs">
+      <DependentUpon>DDActiveListSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sliders\DDListSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sliders\DDListSlider.Designer.cs">
+      <DependentUpon>DDListSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sliders\DDMultiValueSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sliders\DDMultiValueSlider.Designer.cs">
+      <DependentUpon>DDMultiValueSlider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sliders\DisplayDistortionSlider.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,6 +142,12 @@
     <Compile Include="WindowsFormsApplication2\Properties\Settings.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Sliders\DDActiveListSlider.resx">
+      <DependentUpon>DDActiveListSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sliders\DDListSlider.resx">
+      <DependentUpon>DDListSlider.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sliders\IDActiveListSlider.resx">
       <DependentUpon>IDActiveListSlider.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,13 +6,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace CustomSlider
 {
-	public partial class IDListSlider : UserControl
-	{
-		public new event EventHandler TextChanged;
+    public partial class DDListSlider : UserControl
+    {
+        public new event EventHandler TextChanged;
 
 		private List<string> list;
 		private int distanceFromSliderToLabel = 10;
@@ -33,25 +32,25 @@ namespace CustomSlider
 
 		public string LabelText
 		{
-			get { return label1.Text; }
+			get { return label.Text; }
 		}
 
 		public List<int> RangeOfValues
 		{
-			get { return multiValueSliderV21.RangeOfValues; }
+			get { return DDMultiValueSlider.RangeOfValues; }
 		}
 
 		public int SelectedIndex
 		{
-			get { return listBox1.SelectedIndex; }
+			get { return listBox.SelectedIndex; }
 		}
 
 		public string SelectedItem
 		{
 			get
 			{
-				if (listBox1.Items[listBox1.SelectedIndex] is string)
-					return (string)listBox1.Items[listBox1.SelectedIndex];
+				if (listBox.Items[listBox.SelectedIndex] is string)
+					return (string)listBox.Items[listBox.SelectedIndex];
 				else
 					return "Data in listbox cannot be cast to a string";
 			}
@@ -59,27 +58,27 @@ namespace CustomSlider
 
 		public List<uint> ItemsInIndices
 		{
-			set { multiValueSliderV21.ItemsInIndices = value; }
+			set { DDMultiValueSlider.ItemsInIndices = value; }
 		}
 
 		public List<char> IndexNames
 		{
-			get { return multiValueSliderV21.IndexCharacters; }
+			get { return DDMultiValueSlider.IndexCharacters; }
 			set
 			{
-				multiValueSliderV21.IndexCharacters = value;
+				DDMultiValueSlider.IndexCharacters = value;
 			}
 		}
 
 		public int Value
 		{
-			get { return multiValueSliderV21.Value; }
-			set { multiValueSliderV21.Value = value; }
+			get { return DDMultiValueSlider.Value; }
+			set { DDMultiValueSlider.Value = value; }
 		}
 
 		public ListBox ListBox
 		{
-			get { return listBox1; }
+			get { return listBox; }
 		}
 
 		public bool ShowLabel
@@ -90,18 +89,18 @@ namespace CustomSlider
 
         #endregion
 
-        public IDListSlider()
+        public DDListSlider()
 		{
 			InitializeComponent();
 
 			SetStyle(ControlStyles.Selectable | ControlStyles.ResizeRedraw | ControlStyles.UserMouse | ControlStyles.FixedHeight, true);
-			multiValueSliderV21.ValueChanged += new EventHandler(multiValueSliderV21_ValueChanged);
-			multiValueSliderV21.MouseMove += new MouseEventHandler(multiValueSliderV21_MouseMove);
+			DDMultiValueSlider.ValueChanged += new EventHandler(multiValueSliderV21_ValueChanged);
+			DDMultiValueSlider.MouseMove += new MouseEventHandler(multiValueSliderV21_MouseMove);
 
-			label1.TextChanged += new EventHandler(label1_TextChanged);
+			label.TextChanged += new EventHandler(label1_TextChanged);
 
 			if (!showLabel)
-				label1.Hide();
+				label.Hide();
 
 			changeListBoxPosition();
 
@@ -121,58 +120,58 @@ namespace CustomSlider
 		private void initializeListBox()
 		{
 			//listBox1.Hide();
-			listBox1.ScrollAlwaysVisible = true;
-			listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
-			listBox1.BackColor = Color.FromArgb(255, listBox1.BackColor);
+			listBox.ScrollAlwaysVisible = true;
+			listBox.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+			listBox.BackColor = Color.FromArgb(255, listBox.BackColor);
 			//listBox1.
 		}
 		
 		private void changeListBoxPosition()
 		{
-			int listBoxWidth = listBox1.Width;
-			int newX = listBox1.Location.X;
+			int listBoxWidth = listBox.Width;
+			int newX = listBox.Location.X;
 
-			if (multiValueSliderV21.SliderGP != null)
+			if (DDMultiValueSlider.SliderGP != null)
 			{
-				if (multiValueSliderV21.SliderGP.GetBounds().Right + distanceFromSliderToListBox + listBoxWidth > ClientRectangle.Width)
-					newX = (int)multiValueSliderV21.SliderGP.GetBounds().X - distanceFromSliderToListBox - listBoxWidth;
+				if (DDMultiValueSlider.SliderGP.GetBounds().Right + distanceFromSliderToListBox + listBoxWidth > ClientRectangle.Width)
+					newX = (int)DDMultiValueSlider.SliderGP.GetBounds().X - distanceFromSliderToListBox - listBoxWidth;
 				else
-					newX = (int)multiValueSliderV21.SliderGP.GetBounds().Right + distanceFromSliderToListBox;
+					newX = (int)DDMultiValueSlider.SliderGP.GetBounds().Right + distanceFromSliderToListBox;
 			}
-			listBox1.Location = new Point(newX, listBox1.Location.Y);
+			listBox.Location = new Point(newX, listBox.Location.Y);
 		}
 
 		private void changeLabelPosition()
 		{
-			int labelWidth = label1.Width;
-			int newX = label1.Location.X;
+			int labelWidth = label.Width;
+			int newX = label.Location.X;
 
-			if (multiValueSliderV21.SliderGP != null)
+			if (DDMultiValueSlider.SliderGP != null)
 			{
-				if (multiValueSliderV21.SliderGP.GetBounds().Right + distanceFromSliderToLabel + labelWidth > ClientRectangle.Width)
-					newX = (int)multiValueSliderV21.SliderGP.GetBounds().X - distanceFromSliderToLabel - labelWidth;
+				if (DDMultiValueSlider.SliderGP.GetBounds().Right + distanceFromSliderToLabel + labelWidth > ClientRectangle.Width)
+					newX = (int)DDMultiValueSlider.SliderGP.GetBounds().X - distanceFromSliderToLabel - labelWidth;
 				else
-					newX = (int)multiValueSliderV21.SliderGP.GetBounds().Right + distanceFromSliderToLabel;
+					newX = (int)DDMultiValueSlider.SliderGP.GetBounds().Right + distanceFromSliderToLabel;
 			}
 
-			label1.Location = new Point(newX, label1.Location.Y);
+			label.Location = new Point(newX, label.Location.Y);
 		}
 
 		private void updateLabelText()
 		{
-			label1.Text = list[multiValueSliderV21.Value].ToString();
+			label.Text = list[DDMultiValueSlider.Value].ToString();
 		}
 
 		private void updateListBoxConents()
 		{
-			listBox1.BeginUpdate();
-			listBox1.Items.Clear();
-			for (int i = multiValueSliderV21.RangeOfValues[0]; i <= multiValueSliderV21.RangeOfValues[multiValueSliderV21.RangeOfValues.Count - 1]; i++)
+			listBox.BeginUpdate();
+			listBox.Items.Clear();
+			for (int i = DDMultiValueSlider.RangeOfValues[0]; i <= DDMultiValueSlider.RangeOfValues[DDMultiValueSlider.RangeOfValues.Count - 1]; i++)
 			{
-				listBox1.Items.Add(list[i].ToString());
+				listBox.Items.Add(list[i].ToString());
 			}
-			listBox1.SelectedIndex = 0;
-			listBox1.EndUpdate();
+			listBox.SelectedIndex = 0;
+			listBox.EndUpdate();
 
 			label1_TextChanged(this, new EventArgs());
 		}
@@ -181,7 +180,7 @@ namespace CustomSlider
 		{
 			list = new List<string>();
 
-			int max = multiValueSliderV21.calculateMax();
+			int max = DDMultiValueSlider.calculateMax();
 			for (int i = 0; i <= max; i++)
 			{
 				list.Add(i + "");
@@ -206,8 +205,8 @@ namespace CustomSlider
 
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
-			listBox1.Show();
-			listBox1.Focus();
+			listBox.Show();
+			listBox.Focus();
 			base.OnMouseWheel(e);
 		}
 
@@ -225,7 +224,7 @@ namespace CustomSlider
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
 			base.OnMouseUp(e);
-			listBox1.Show();
+			listBox.Show();
 		}
 
 		protected override void OnMouseMove(MouseEventArgs e)
@@ -235,7 +234,7 @@ namespace CustomSlider
 			{
 				//listBox1.Hide();
 				if (showLabel)
-					label1.Show();
+					label.Show();
 			}
 			else
 			{
@@ -246,7 +245,7 @@ namespace CustomSlider
 				else
 				{
 					changeListBoxPosition();
-					listBox1.Show();
+					listBox.Show();
 				}
 			}
 			base.OnMouseMove(e);
@@ -254,22 +253,22 @@ namespace CustomSlider
 
 		void multiValueSliderV21_MouseMove(object sender, MouseEventArgs e)
 		{
-			listBox1.Show();
+			listBox.Show();
 		}
 
 
 		void listBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			string tempString = listBox1.Items[listBox1.SelectedIndex].ToString();
+			string tempString = listBox.Items[listBox.SelectedIndex].ToString();
 			//if(showLabel) label1.Show();
 			//listBox1.Hide();
-			label1.Text = tempString;
+			label.Text = tempString;
 			//label1.Hide();
 		}
 
 		void multiValueSliderV21_ValueChanged(object sender, EventArgs e)
 		{
-			multiValueSliderV21.Refresh();
+			DDMultiValueSlider.Refresh();
 			//multiValueSliderV21.Invalidate();
 
 			updateListBoxConents();
@@ -281,5 +280,5 @@ namespace CustomSlider
 			Invalidate();
 		}
 		#endregion
-	}
+    }
 }

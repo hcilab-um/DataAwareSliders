@@ -44,15 +44,22 @@ namespace CustomSlider
         private int sliderValue = 0;
         private List<uint> itemsInIndices = new List<uint>(new uint[] { 100, 500, 900, 150, 330, 205, 506 }); //multipurpose. The count of this List indicates how many indices there are
         //and the value of each element indicates the number of elements associated with that index
-        private List<char> indexCharacters = null;
+        private List<char> indexCharacters = new List<char>(new char[] { 'a', 'b', 'c', 'd','e', 'f','g'});
         private List<int> rangeOfValues;
         private int offset = 0;
 
         private bool clickedOnSlider = false;
+        private bool dragginSlider = true;
 
         #endregion
 
         #region Getters and Setters
+
+        protected bool DraggingSlider
+        {
+            get { return dragginSlider; }
+            set { dragginSlider = value; }
+        }
 
         protected List<char> IndexCharacters
         {

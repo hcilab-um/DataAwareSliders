@@ -18,6 +18,7 @@ namespace CustomSlider.WindowsFormsApplication2
 			activeAreaSliderv21.ValueChanged += new EventHandler(activeAreaSliderv21_ValueChanged);
 			multiValueSliderV31.TextChanged += new EventHandler(multiValueSliderV31_TextChanged);
             idAlphaslider1.ValueChanged += idAlphaslider1_ValueChanged;
+            ddActiveAreaSlider1.ValueChanged += ddActiveAreaSlider1_ValueChanged;
 
 			activeAreaSliderv21.ItemsInIndices = new List<uint>(new uint[] { 10000, 5000, 2000, 4000, 3500 });
 			alphasliderV31.ValueChanged += new EventHandler(alphasliderV31_ValueChanged);
@@ -81,7 +82,19 @@ namespace CustomSlider.WindowsFormsApplication2
 
             alphasliderV31.ItemsInIndices = buckets;
             alphasliderV31.IndexCharacters = firstCharacters;
+
+            ddActiveAreaSlider1.ItemsInIndices = buckets;
+            ddActiveAreaSlider1.IndexCharacters = firstCharacters;
+
+            ddActiveListSlider1.ItemsInIndices = buckets;
+            ddActiveListSlider1.IndexCharacters = firstCharacters;
+            ddActiveListSlider1.Data = list;
 		}
+
+        void ddActiveAreaSlider1_ValueChanged(object sender, EventArgs e)
+        {
+            label5.Text = ddActiveAreaSlider1.Value + "";
+        }
 
         void idAlphaslider1_ValueChanged(object sender, EventArgs e)
         {
