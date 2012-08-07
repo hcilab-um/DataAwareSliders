@@ -265,5 +265,16 @@ namespace CustomSlider
 			if (QueryChanged != null)
 				QueryChanged(this, new EventArgs());
 		}
+
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
+			{
+				activeAreaSlider.simulateKeyDown(keyData);
+				return true;
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
 	}
 }

@@ -12,3 +12,11 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.pdb
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Test.exe.config
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.exe
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Test.exe
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Test.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Sliders.dll
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Sliders.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.Form1.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.Properties.Resources.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.csproj.GenerateResource.Cache

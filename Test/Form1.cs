@@ -15,18 +15,7 @@ namespace Test
         public Form1()
         {
             InitializeComponent();
-            idActiveAreaSlider1.ValueChanged += idActiveAreaSlider1_ValueChanged;
-            idAlphaslider1.ValueChanged += idAlphaslider1_ValueChanged;
         }
 
-        void idAlphaslider1_ValueChanged(object sender, EventArgs e)
-        {
-            label1.Text = idAlphaslider1.Value + "";
-        }
-
-        void idActiveAreaSlider1_ValueChanged(object sender, EventArgs e)
-        {
-            label1.Text = idActiveAreaSlider1.Value + "";
-        }
     }
 }

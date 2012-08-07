@@ -275,6 +275,17 @@ namespace CustomSlider
 			resetMouseSpeed();
 		}
 
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			//Disable value changing by pressing arrow keys.
+			if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
+			{
+				return true;
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
+
 		#endregion
 
 		/// <summary>

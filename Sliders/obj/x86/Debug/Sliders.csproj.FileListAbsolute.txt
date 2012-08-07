@@ -8,3 +8,13 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Debug\Sliders.dll
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Debug\Sliders.pdb
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.dll
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.DDActiveListSlider.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.DDListSlider.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.IDActiveListSlider.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\CustomSlider.IDListSlider.resources
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.csproj.GenerateResource.Cache
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\bin\Debug\Sliders.dll
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\bin\Debug\Sliders.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.dll
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Debug\Sliders.csprojResolveAssemblyReference.cache

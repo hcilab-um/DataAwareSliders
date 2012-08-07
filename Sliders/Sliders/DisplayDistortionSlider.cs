@@ -366,9 +366,7 @@ namespace CustomSlider
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            drawSlider = true;
             base.OnKeyDown(e);
-            this.Focus();
 
             switch (e.KeyCode)
             {
@@ -383,17 +381,13 @@ namespace CustomSlider
             }
         }
 
-        protected override void OnEnter(EventArgs e)
-        {
-            base.OnEnter(e);
-            this.Invalidate();
-        }
+		protected override void OnKeyUp(KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+				base.DraggingSlider = false;
 
-        protected override void OnLeave(EventArgs e)
-        {
-            base.OnLeave(e);
-            this.Invalidate();
-        }
+			base.OnKeyUp(e);
+		}
 
         /// <summary>
         /// Processes a dialog key.
@@ -404,26 +398,13 @@ namespace CustomSlider
         /// </returns>
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            //if (keyData == Keys.Tab)
-            //    return base.ProcessDialogKey(keyData);
-            //else
-            //{
-            //    OnKeyDown(new KeyEventArgs(keyData));
-            //    return true;
-            //}
-
             if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
             {
+				base.DraggingSlider = true;
                 OnKeyDown(new KeyEventArgs(keyData));
                 return true;
             }
-            if (keyData == Keys.G)
-            {
-                OnMouseDown(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(CustomSliderGP.GetBounds().Right) - 1, (int)TrackYValue, 0));
-                OnMouseMove(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(CustomSliderGP.GetBounds().Right) - 1, (int)TrackYValue, 0));
-                OnMouseUp(new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, (int)(CustomSliderGP.GetBounds().Right) - 1, (int)TrackYValue, 0));
-            }
-            drawSlider = true;
+
             return base.ProcessDialogKey(keyData);
         }
 

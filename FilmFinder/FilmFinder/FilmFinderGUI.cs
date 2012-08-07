@@ -35,7 +35,7 @@ namespace FilmFinder
 		private StreamWriter file;
 		private int[] arrayTechnique1;
 		private int[] arrayDataSize1;
-		private int[] arrayTargetDensity1;
+		private int[] arrayDistortionType;
 		private int[] arrayTask1;
 		private int maxIndex = 0;
 		private int currIndex = 0;
@@ -224,14 +224,14 @@ namespace FilmFinder
 			actorIDListSlider.ItemsInIndices = buckets;
 			actorIDListSlider.IndexNames = firstCharacters;
 			actorIDListSlider.ShowLabel = false;
-			actorIDListSlider.TextChanged += new EventHandler(actorIDListSlider_TextChanged);
 			actorIDListSlider.Value = 0;
+			actorIDListSlider.TextChanged += new EventHandler(actorIDListSlider_TextChanged);
 
 			actorIDActiveListSlider.Data = uniqueActors;
 			actorIDActiveListSlider.ItemsInIndices = buckets;
 			actorIDActiveListSlider.IndexNames = firstCharacters;
-			actorIDActiveListSlider.QueryChanged += new EventHandler(actorIDActiveListSlider_QueryChanged);
 			actorIDActiveListSlider.Value = 0;
+			actorIDActiveListSlider.QueryChanged += new EventHandler(actorIDActiveListSlider_QueryChanged);
 
             ///
             /// The new sliders I made at purdue
@@ -252,14 +252,14 @@ namespace FilmFinder
             actorDDListSlider.ItemsInIndices = buckets;
             actorDDListSlider.IndexNames = firstCharacters;
             actorDDListSlider.ShowLabel = false;
-            actorDDListSlider.TextChanged += new EventHandler(actorDDListSlider_TextChanged);
             actorDDListSlider.Value = 0;
+            actorDDListSlider.TextChanged += new EventHandler(actorDDListSlider_TextChanged);
 
             actorDDActiveListSlider.Data = uniqueActors;
             actorDDActiveListSlider.ItemsInIndices = buckets;
             actorDDActiveListSlider.IndexNames = firstCharacters;
-            actorDDActiveListSlider.QueryChanged += new EventHandler(actorDDActiveListSlider_QueryChanged);
             actorDDActiveListSlider.Value = 0;
+            actorDDActiveListSlider.QueryChanged += new EventHandler(actorDDActiveListSlider_QueryChanged);
 		}
 
 
@@ -314,8 +314,8 @@ namespace FilmFinder
 			directorIDActiveListSlider.Data = uniqueDirectors;
 			directorIDActiveListSlider.ItemsInIndices = buckets;
 			directorIDActiveListSlider.IndexNames = firstCharacters;
-			directorIDActiveListSlider.QueryChanged += new EventHandler(directorIDActiveListSlider_QueryChanged);
 			directorIDActiveListSlider.Value = 0;
+			directorIDActiveListSlider.QueryChanged += new EventHandler(directorIDActiveListSlider_QueryChanged);
 
             ///
             /// The new sliders I made at Purdue
@@ -342,11 +342,9 @@ namespace FilmFinder
             directorDDActiveListSlider.Data = uniqueDirectors;
             directorDDActiveListSlider.ItemsInIndices = buckets;
             directorDDActiveListSlider.IndexNames = firstCharacters;
-            directorDDActiveListSlider.QueryChanged += new EventHandler(directorDDActiveListSlider_QueryChanged);
             directorDDActiveListSlider.Value = 0;
+            directorDDActiveListSlider.QueryChanged += new EventHandler(directorDDActiveListSlider_QueryChanged);
         }
-
-		
 
 		private void initializeActressSlider()
 		{
@@ -393,10 +391,11 @@ namespace FilmFinder
 			actressIDListSlider.ShowLabel = false;
 			actressIDListSlider.TextChanged += new EventHandler(actressIDListSlider_TextChanged);
 
+			actressIDActiveListSlider.Data = uniqueActresses;
 			actressIDActiveListSlider.ItemsInIndices = buckets;
 			actressIDActiveListSlider.IndexNames = firstCharacters;
-			actressIDActiveListSlider.QueryChanged += new EventHandler(actressIDActiveListSlider_QueryChanged);
 			actressIDActiveListSlider.Value = 0;
+			actressIDActiveListSlider.QueryChanged += new EventHandler(actressIDActiveListSlider_QueryChanged);
 
             ///
             /// The new sliders I made at Purdue
@@ -422,8 +421,8 @@ namespace FilmFinder
             actressDDActiveListSlider.Data = uniqueActresses;
             actressDDActiveListSlider.ItemsInIndices = buckets;
             actressDDActiveListSlider.IndexNames = firstCharacters;
-            actressDDActiveListSlider.QueryChanged += new EventHandler(actressDDActiveListSlider_QueryChanged);
             actressDDActiveListSlider.Value = 0;
+            actressDDActiveListSlider.QueryChanged += new EventHandler(actressDDActiveListSlider_QueryChanged);
 		}
 
 		
@@ -1172,7 +1171,7 @@ namespace FilmFinder
 			switch (currSlider)
 			{
 				case 0:
-					showDDAlphaSliders();
+					showIDAlphaSliders();
 					break;
 				case 1:
 					showIDActiveAreaSliders();
@@ -1184,7 +1183,7 @@ namespace FilmFinder
 					showIDActiveListSliders();
 					break;
                 case 4:
-                    showIDAlphaSliders();
+                    showDDAlphaSliders();
                     break;
                 case 5:
                     showDDActiveAreaSliders();
@@ -1273,38 +1272,40 @@ namespace FilmFinder
 			largestIndex = sliderToAccess.findLargestIndex();
 
 			//find a satisfying person based on whether we want the target to be in a dense area, sparse area or somewhere in between
-			while (!foundSatisfyingRandomNumber)
-			{
-				randomQuery = randomGenerator.Next(1, currentCategory.Count);
+			//while (!foundSatisfyingRandomNumber)
+			//{
+			//	randomQuery = randomGenerator.Next(1, currentCategory.Count);
 
-				if (arrayTargetDensity1[currIndex] == 0)
-				{
-					targetLowerBound = 0.0;
-					targetUpperBound = 1.0 / 3.0;
-				}
-				else if (arrayTargetDensity1[currIndex] == 1)
-				{
-					targetLowerBound = 1.0 / 3.0;
-					targetUpperBound = 2.0 / 3.0;
-				}
-				else if (arrayTargetDensity1[currIndex] == 2)
-				{
-					targetLowerBound = 2.0 / 3.0;
-					targetUpperBound = 1.0;
-				}
+			//	if (arrayDistortionType[currIndex] == 0)
+			//	{
+			//		targetLowerBound = 0.0;
+			//		targetUpperBound = 1.0 / 3.0;
+			//	}
+			//	else if (arrayDistortionType[currIndex] == 1)
+			//	{
+			//		targetLowerBound = 1.0 / 3.0;
+			//		targetUpperBound = 2.0 / 3.0;
+			//	}
+			//	else if (arrayDistortionType[currIndex] == 2)
+			//	{
+			//		targetLowerBound = 2.0 / 3.0;
+			//		targetUpperBound = 1.0;
+			//	}
 
-				indexOfRandomNumber = findIndexOfNumber(randomQuery, itemsPerIndex);
+			//	indexOfRandomNumber = findIndexOfNumber(randomQuery, itemsPerIndex);
 
-				if (itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] <= targetUpperBound && itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] >= targetLowerBound)
-					foundSatisfyingRandomNumber = true;
-			}
+			//	if (itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] <= targetUpperBound && itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] >= targetLowerBound)
+			//		foundSatisfyingRandomNumber = true;
+			//}
 
-			//update text telling what to search for
+			//Generate search target
+			randomQuery = randomGenerator.Next(1, currentCategory.Count);
 			searchTarget = currentCategory[randomQuery];
 			searchLabel.Text = "the " + currentSearchCategory.ToString().ToLower() +" " + searchTarget;
 
 			//change which slider is visible
 			currSlider = arrayTechnique1[currIndex];
+
 			changeVisibleSlider();
 		}
 
@@ -1341,7 +1342,7 @@ namespace FilmFinder
 			startSearchButton.Enabled = true;
 			bool correctSearch = checkForCorrectSearch();
 
-			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + +arrayTargetDensity1[currIndex] + "," + stopwatch.ElapsedMilliseconds
+			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + +arrayDistortionType[currIndex] + "," + stopwatch.ElapsedMilliseconds
 				+ ","+ correctSearch;
 			file.WriteLine(statistics);
 
@@ -1413,29 +1414,28 @@ namespace FilmFinder
 			int numOfBlocks = 1;
 			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
-			int trialPerCondition = 2;
+			int trialPerCondition = 3;
 			int numDifferentDataSize = 3;
-			int numOftargetDensity = 3;
+			int numOfDistortionTypes = 1; //There are two types of distortion. BUT, I've created a different class for each slider. This means that I have 8 different sliders instead of 4.
 
 			latinSquare = generateLatinSquare();
 
-
 			arrayTechnique1 = new int[1000];
 			arrayDataSize1 = new int[1000];
-			arrayTargetDensity1 = new int[1000];
+			arrayDistortionType = new int[1000];
 			arrayTask1 = new int[1000];
 
 			for (int q = 0; q < numOfBlocks; q++)
 				for (int i = 0; i < numOfTechnique; i++)
 					for (int k = 0; k < numDifferentDataSize; k++)
-						for (int s = 0; s < numOftargetDensity; s++)
+						for (int s = 0; s < numOfDistortionTypes; s++)
 							for (int t = 0; t < numOfTask; t++)
 								for (int j = 0; j < trialPerCondition; j++)
 								{
 
-									index = q * numOfTechnique * numDifferentDataSize * numOftargetDensity * numOfTask * trialPerCondition +
-															 i * numDifferentDataSize * numOftargetDensity * numOfTask * trialPerCondition +
-																				   k * numOftargetDensity * numOfTask * trialPerCondition +
+									index = q * numOfTechnique * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+															 i * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+																				   k * numOfDistortionTypes * numOfTask * trialPerCondition +
 																										s * numOfTask * trialPerCondition +
 																													t * trialPerCondition +
 																																		j;
@@ -1447,7 +1447,7 @@ namespace FilmFinder
 									arrayTechnique1[index] = new_i;
 
 									arrayDataSize1[index] = k;
-									arrayTargetDensity1[index] = s;
+									arrayDistortionType[index] = s;
 									arrayTask1[index] = t;
 
 								}

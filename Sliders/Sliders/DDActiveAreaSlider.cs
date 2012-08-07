@@ -149,7 +149,7 @@ namespace CustomSlider
             NeedToDoPaintingMath = true;
 		}
 
-        #region Overriden mouse events
+        #region Overriden events
 
         /// <summary>
 		/// This method enables slider dragging
@@ -259,6 +259,36 @@ namespace CustomSlider
             rolledMouseWheel = true;
 			Value = newValue;
 			
+		}
+
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			//base.OnKeyDown(e);
+
+			//simulate mousewheel events
+			switch (e.KeyCode)
+			{
+				case Keys.Down:
+				case Keys.Left:
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, -120));
+					break;
+				case Keys.Up:
+				case Keys.Right:
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, 120));
+					break;
+			}
+		}
+
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
+			{
+				//base.DraggingSlider = true; //This is the difference between parent implementation and this implementation
+				OnKeyDown(new KeyEventArgs(keyData));
+				return true;
+			}
+
+			return base.ProcessDialogKey(keyData);
 		}
 
         #endregion

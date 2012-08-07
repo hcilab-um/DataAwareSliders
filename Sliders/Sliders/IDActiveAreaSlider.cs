@@ -92,67 +92,67 @@ namespace CustomSlider
 			//Deal with slider positioning only if the slider is being dragged
 			//if (drawSlider)
 			//{
-				int indexOfSlider = findIndexOfSliderValue();
-				float sliderCenterX = TrackXStart;
-				float proportion;
-				if (indexOfSlider != -1)
+			int indexOfSlider = findIndexOfSliderValue();
+			float sliderCenterX = TrackXStart;
+			float proportion;
+			if (indexOfSlider != -1)
+			{
+				//This will make the x value of the slider go to the right tick. From here it will be shifted over more
+				//based on it's value and the number of items assocaited with that index
+				for (int i = 0; i < indexOfSlider; i++)
 				{
-					//This will make the x value of the slider go to the right tick. From here it will be shifted over more
-					//based on it's value and the number of items assocaited with that index
-					for (int i = 0; i < indexOfSlider; i++)
-					{
-						sliderCenterX += spaceBetweenTicks;
-					}
-
-					proportion = ((float)(Value - calculateSum(indexOfSlider - 1)) / (float)ItemsInIndices[indexOfSlider]);
-					sliderCenterX += proportion * (spaceBetweenTicks);
+					sliderCenterX += spaceBetweenTicks;
 				}
 
-				itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
-				double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsPerSliderPixel;
-				SliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
-				itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / SliderWidth, MidpointRounding.ToEven);
-				if (itemsPerSliderPixel < 2)
-					itemsPerSliderPixel = 2;
+				proportion = ((float)(Value - calculateSum(indexOfSlider - 1)) / (float)ItemsInIndices[indexOfSlider]);
+				sliderCenterX += proportion * (spaceBetweenTicks);
+			}
 
-				//base.SliderGP = generateSliderPath(sliderCenterX, TrackYValue, SliderWidth);
-				
+			itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
+			double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsPerSliderPixel;
+			SliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
+			itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / SliderWidth, MidpointRounding.ToEven);
+			if (itemsPerSliderPixel < 2)
+				itemsPerSliderPixel = 2;
+
+			//base.SliderGP = generateSliderPath(sliderCenterX, TrackYValue, SliderWidth);
+
 			//}
-base.OnPaint(e);
+			base.OnPaint(e);
 			//CustomSliderGP = SliderGP;
 
 			//deal with secondary slider positioning
-float secondarySliderY = base.SliderGP.GetBounds().Y;
-float secondarySliderWidth = 15;
-float secondarySliderHeight = 12;
-float secondarySliderHorizontalCenter;
+			float secondarySliderY = base.SliderGP.GetBounds().Y;
+			float secondarySliderWidth = 15;
+			float secondarySliderHeight = 12;
+			float secondarySliderHorizontalCenter;
 
-if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
-{
-    secondarySliderHorizontalCenter = SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * SliderGP.GetBounds().Width;
+			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
+			{
+				secondarySliderHorizontalCenter = SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * SliderGP.GetBounds().Width;
 
-    if (RangeOfValues.Count == 1)
-    {
-        secondarySliderHorizontalCenter = SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f) * SliderGP.GetBounds().Width; //don't subtract 1
-    }
+				if (RangeOfValues.Count == 1)
+				{
+					secondarySliderHorizontalCenter = SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f) * SliderGP.GetBounds().Width; //don't subtract 1
+				}
 
-    if (rolledMouseWheel)
-    {
-        rolledMouseWheel = false;
-        base.DrawSlider = true;
-    }
-}
-else if (base.DraggingSlider)
-{
-    secondarySliderHorizontalCenter = SliderGP.GetBounds().X + SliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
-    base.DraggingSlider = false;
-}
-else
-{
-    secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
-}
+				if (rolledMouseWheel)
+				{
+					rolledMouseWheel = false;
+					base.DrawSlider = true;
+				}
+			}
+			else if (base.DraggingSlider)
+			{
+				secondarySliderHorizontalCenter = SliderGP.GetBounds().X + SliderGP.GetBounds().Width / 2; //default the positioning of the secondary slider to the center of the main slider
+				base.DraggingSlider = false;
+			}
+			else
+			{
+				secondarySliderHorizontalCenter = secondarySliderGP.GetBounds().X + secondarySliderGP.GetBounds().Width / 2; //if we meet none of the above conditions, don't move the secondary slider horizontally
+			}
 
-			
+
 
 			//draw secondarySlider
 			secondarySliderGP = generateSecondarySliderPath(secondarySliderHorizontalCenter, secondarySliderY, secondarySliderWidth, secondarySliderHeight);
@@ -162,7 +162,7 @@ else
 				g.DrawPath(new Pen(Color.Black), secondarySliderGP);
 			}
 
-            NeedToDoPaintingMath = true;
+			NeedToDoPaintingMath = true;
 		}
 
         #region Overriden mouse events
@@ -277,6 +277,36 @@ else
 			
 		}
 
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			//base.OnKeyDown(e);
+
+			//simulate mousewheel events
+			switch (e.KeyCode)
+			{
+				case Keys.Down:
+				case Keys.Left:
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0,0,-120));
+					break;
+				case Keys.Up:
+				case Keys.Right:
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0,0,120));
+					break;
+			}
+		}
+
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
+			{
+				//base.DraggingSlider = true; //This is the difference between parent implementation and this implementation
+				OnKeyDown(new KeyEventArgs(keyData));
+				return true;
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
+
         #endregion
 
         #region Helper Methods
@@ -364,6 +394,11 @@ else
 		private bool mouseInSecondarySliderRegion(Point point)
 		{
 			return secondarySliderGP.GetBounds().Contains(point);
+		}
+
+		public void simulateKeyDown(Keys keyData)
+		{
+			base.ProcessDialogKey(keyData);
 		}
 
 		#endregion
