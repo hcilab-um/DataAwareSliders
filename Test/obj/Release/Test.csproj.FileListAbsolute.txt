@@ -9,3 +9,6 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.Propertie
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.csproj.GenerateResource.Cache
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.exe
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\bin\Release\Test.exe.config
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.exe
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Test\obj\Release\Test.pdb
