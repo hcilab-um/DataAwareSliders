@@ -20,6 +20,7 @@ namespace CustomSlider
 		private GraphicsPath rightArrow = null;
 
 		private int buttonWidth = 20;
+        private int buttonHeight = 20;
 		private int arrowWidth = 10;
 		private int arrowHeight = 10;
 
@@ -48,6 +49,7 @@ namespace CustomSlider
             base.TrackXStart += buttonWidth;
             base.TrackXEnd -= buttonWidth;
             base.TrackWidth = base.TrackXEnd - base.TrackXStart;
+            base.SliderHeight = buttonHeight;
 
             base.OnPaint(pe);
 
@@ -95,22 +97,32 @@ namespace CustomSlider
 		{
 			GraphicsPath leftButton = new GraphicsPath();
 
-			leftButton.AddLine(ClientRectangle.X + 1, ClientRectangle.Y + 1, base.SlideArea.GetBounds().Left, ClientRectangle.Y + 1);
-            leftButton.AddLine(base.SlideArea.GetBounds().Left, ClientRectangle.Y + 1, base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Bottom);
-            leftButton.AddLine(base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Bottom, ClientRectangle.X + 1, base.SlideArea.GetBounds().Bottom);
-            leftButton.AddLine(ClientRectangle.X + 1, base.SlideArea.GetBounds().Bottom, ClientRectangle.X + 1, ClientRectangle.Y + 1);
+            PointF topLeft = new PointF(ClientRectangle.X + 1, base.SlideArea.GetBounds().Y);
+            PointF topRight = new PointF(base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Y);
+            PointF bottomLeft = new PointF(ClientRectangle.X + 1, base.SlideArea.GetBounds().Bottom);
+            PointF bottomRight = new PointF(base.SlideArea.GetBounds().Left, base.SlideArea.GetBounds().Bottom);
 
-			return leftButton;
+            leftButton.AddLine(topLeft, topRight);
+            leftButton.AddLine(topRight, bottomRight);
+            leftButton.AddLine(bottomRight, bottomLeft);
+            leftButton.AddLine(bottomLeft, topLeft);
+
+            return leftButton;
 		}
 
 		private GraphicsPath makeRightButton()
 		{
 			GraphicsPath rightButton = new GraphicsPath();
 
-            rightButton.AddLine(base.SlideArea.GetBounds().Right, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Y + 1);
-            rightButton.AddLine(ClientRectangle.Width - 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, base.SlideArea.GetBounds().Bottom);
-            rightButton.AddLine(ClientRectangle.Width - 1, base.SlideArea.GetBounds().Bottom, base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Bottom);
-            rightButton.AddLine(base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Bottom, base.SlideArea.GetBounds().Right, ClientRectangle.Y + 1);
+            PointF topLeft = new PointF(base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Y);
+            PointF topRight = new PointF(ClientRectangle.Width - 1, base.SlideArea.GetBounds().Y);
+            PointF bottomLeft = new PointF(base.SlideArea.GetBounds().Right, base.SlideArea.GetBounds().Bottom);
+            PointF bottomRight = new PointF(ClientRectangle.Width - 1, base.SlideArea.GetBounds().Bottom);
+
+            rightButton.AddLine(topLeft, topRight);
+            rightButton.AddLine(topRight, bottomRight);
+            rightButton.AddLine(bottomRight, bottomLeft);
+            rightButton.AddLine(bottomLeft, topLeft);
 
 			return rightButton;
 		}

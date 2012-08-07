@@ -45,7 +45,8 @@
             // 
             // listBox
             // 
-            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBox.BackColor = System.Drawing.SystemColors.Control;
             this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox.FormattingEnabled = true;

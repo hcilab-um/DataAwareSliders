@@ -430,6 +430,7 @@ namespace CustomSlider
         #endregion
 
         #region Helper Methods
+
         /// <summary>
         /// This method checks to see if a certain point is within the bounds of the slider
         /// </summary>
@@ -442,6 +443,7 @@ namespace CustomSlider
             else
                 return CustomSliderGP.GetBounds().Contains(point);
         }
+
         protected override void updateOffset(int value)
         {
 

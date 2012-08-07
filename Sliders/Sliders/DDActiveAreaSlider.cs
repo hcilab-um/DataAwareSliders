@@ -16,7 +16,7 @@ namespace CustomSlider
 
 		public event EventHandler StartMouseWheel;
 
-		private const int MINIMUM_SLIDER_WIDTH = 20;
+		//private const int MINIMUM_SLIDER_WIDTH = 20;
 		private float itemsPerHistogramPixel = 0;
 		//private new int SliderWidth = 0;
 		private int maxItemsPerSliderPixel = 2; //equivalent of max items per thumb pixel
@@ -79,7 +79,6 @@ namespace CustomSlider
 		public DDActiveAreaSlider()
 		{
 			InitializeComponent();
-			//CustomSliderGP = new GraphicsPath();
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
@@ -104,8 +103,6 @@ namespace CustomSlider
 				//base.SliderGP = generateSliderPath(sliderCenterX, TrackYValue, SliderWidth);
 				
 			//}
-
-			//CustomSliderGP = SliderGP;
             base.OnPaint(e);
 
 			//deal with secondary slider positioning

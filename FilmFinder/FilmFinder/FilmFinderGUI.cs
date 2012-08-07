@@ -20,7 +20,7 @@ namespace FilmFinder
 	public partial class FilmFinderGUI : Form
 	{
 		private static Random randomGenerator = new Random();
-		private const int NUMBER_OF_SLIDERS = 4;
+		private const int NUMBER_OF_SLIDERS = 8;
 
 		private MovieHandler movieHandler;
 		private List<string> genreList;
@@ -185,14 +185,14 @@ namespace FilmFinder
 		private void initializeActorSlider()
 		{
 			List<string> uniqueActors = movieHandler.UniqueActors;
-			List<string> firstCharacters = new List<string>();
+			List<char> firstCharacters = new List<char>();
 			List<uint> buckets = new List<uint>();
 			char lastFirstLetter = '\0';
 			int lastIndex = 0;
 
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueActors[1][0]; //prime the loop and variables
-			firstCharacters.Add(lastFirstLetter + "");
+			firstCharacters.Add(lastFirstLetter);
 			for (int i = 1; i < uniqueActors.Count; i++)
 			{
 				if (char.ToUpper(uniqueActors[i][0]) == lastFirstLetter)
@@ -202,34 +202,64 @@ namespace FilmFinder
 				else
 				{
 					lastFirstLetter = char.ToUpper(uniqueActors[i][0]);
-					firstCharacters.Add(lastFirstLetter + "");
+					firstCharacters.Add(lastFirstLetter);
 					buckets.Add(1);
 
 					lastIndex++;
 				}
 			}
 
-			actorAlphaSlider.Data = uniqueActors;
-			actorAlphaSlider.Value = 0;
-			actorAlphaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
+			//actorAlphaSlider.Data = uniqueActors;
+            actorDDAlphaSlider.ItemsInIndices = buckets;
+            actorDDAlphaSlider.IndexCharacters = firstCharacters;
+			actorDDAlphaSlider.Value = 0;
+			actorDDAlphaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
-			actorActiveAreaSlider.ItemsInIndices = buckets;
-			actorActiveAreaSlider.IndexNames = firstCharacters;
-			actorActiveAreaSlider.Value = 0;
-			actorActiveAreaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
+			actorIDActiveAreaSlider.ItemsInIndices = buckets;
+            actorIDActiveAreaSlider.IndexCharacters = firstCharacters;
+			actorIDActiveAreaSlider.Value = 0;
+			actorIDActiveAreaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
 
-			actorMVSv3.List = uniqueActors;
-			actorMVSv3.ItemsInIndices = buckets;
-			actorMVSv3.IndexNames = firstCharacters;
-			actorMVSv3.ShowLabel = false;
-			actorMVSv3.TextChanged += new EventHandler(actorMVSv3_TextChanged);
-			actorMVSv3.Value = 0;
+			actorIDListSlider.List = uniqueActors;
+			actorIDListSlider.ItemsInIndices = buckets;
+			actorIDListSlider.IndexNames = firstCharacters;
+			actorIDListSlider.ShowLabel = false;
+			actorIDListSlider.TextChanged += new EventHandler(actorIDListSlider_TextChanged);
+			actorIDListSlider.Value = 0;
 
-			actorActiveMultiSlider.Data = uniqueActors;
-			actorActiveMultiSlider.ItemsInIndices = buckets;
-			actorActiveMultiSlider.IndexNames = firstCharacters;
-			actorActiveMultiSlider.QueryChanged += new EventHandler(actorActiveMultiSlider_QueryChanged);
-			actorActiveMultiSlider.Value = 0;
+			actorIDActiveListSlider.Data = uniqueActors;
+			actorIDActiveListSlider.ItemsInIndices = buckets;
+			actorIDActiveListSlider.IndexNames = firstCharacters;
+			actorIDActiveListSlider.QueryChanged += new EventHandler(actorIDActiveListSlider_QueryChanged);
+			actorIDActiveListSlider.Value = 0;
+
+            ///
+            /// The new sliders I made at purdue
+            ///
+
+            //actorAlphaSlider.Data = uniqueActors;
+            actorIDAlphaSlider.ItemsInIndices = buckets;
+            actorIDAlphaSlider.IndexCharacters = firstCharacters;
+            actorIDAlphaSlider.Value = 0;
+            actorIDAlphaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
+
+            actorDDActiveAreaSlider.ItemsInIndices = buckets;
+            actorDDActiveAreaSlider.IndexCharacters = firstCharacters;
+            actorDDActiveAreaSlider.Value = 0;
+            actorDDActiveAreaSlider.ValueChanged += new EventHandler(actorSlider_ValueChanged);
+
+            actorDDListSlider.List = uniqueActors;
+            actorDDListSlider.ItemsInIndices = buckets;
+            actorDDListSlider.IndexNames = firstCharacters;
+            actorDDListSlider.ShowLabel = false;
+            actorDDListSlider.TextChanged += new EventHandler(actorDDListSlider_TextChanged);
+            actorDDListSlider.Value = 0;
+
+            actorDDActiveListSlider.Data = uniqueActors;
+            actorDDActiveListSlider.ItemsInIndices = buckets;
+            actorDDActiveListSlider.IndexNames = firstCharacters;
+            actorDDActiveListSlider.QueryChanged += new EventHandler(actorDDActiveListSlider_QueryChanged);
+            actorDDActiveListSlider.Value = 0;
 		}
 
 
@@ -240,13 +270,13 @@ namespace FilmFinder
         {
 			List<string> uniqueDirectors = movieHandler.UniqueDirectors;
 			List<uint> buckets = new List<uint>();
-			List<string> firstCharacters = new List<string>();
+			List<char> firstCharacters = new List<char>();
 			char lastFirstLetter = '\0';
 			int lastIndex = 0;
 
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueDirectors[1][0]; //prime the loop and variables
-			firstCharacters.Add(lastFirstLetter + "");
+			firstCharacters.Add(lastFirstLetter);
 			for (int i = 1; i < uniqueDirectors.Count; i++)
 			{
 				if (char.ToUpper(uniqueDirectors[i][0]) == lastFirstLetter)
@@ -256,34 +286,64 @@ namespace FilmFinder
 				else
 				{
 					lastFirstLetter = char.ToUpper(uniqueDirectors[i][0]);
-					firstCharacters.Add(lastFirstLetter + "");
+					firstCharacters.Add(lastFirstLetter);
 					buckets.Add(1);
 
 					lastIndex++;
 				}
 			}
 
-			directorAlphaSlider.Data = uniqueDirectors;
-			directorAlphaSlider.Value = 0;
-			directorAlphaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
+			//directorAlphaSlider.Data = uniqueDirectors;
+            directorDDAlphaSlider.ItemsInIndices = buckets;
+            directorDDAlphaSlider.IndexCharacters = firstCharacters;
+			directorDDAlphaSlider.Value = 0;
+			directorDDAlphaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
-			directorActiveAreaSlider.ItemsInIndices = buckets;
-			directorActiveAreaSlider.IndexNames = firstCharacters;
-			directorActiveAreaSlider.Value = 0;
-			directorActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
+			directorIDActiveAreaSlider.ItemsInIndices = buckets;
+            directorIDActiveAreaSlider.IndexCharacters = firstCharacters;
+			directorIDActiveAreaSlider.Value = 0;
+			directorIDActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
 
-			directorMVSv3.List = uniqueDirectors;
-			directorMVSv3.ItemsInIndices = buckets;
-			directorMVSv3.IndexNames = firstCharacters;
-			directorMVSv3.Value = 0;
-			directorMVSv3.ShowLabel = false;
-			directorMVSv3.TextChanged += new EventHandler(directorMVSv3_TextChanged);
+			directorIDListSlider.List = uniqueDirectors;
+			directorIDListSlider.ItemsInIndices = buckets;
+			directorIDListSlider.IndexNames = firstCharacters;
+			directorIDListSlider.Value = 0;
+			directorIDListSlider.ShowLabel = false;
+			directorIDListSlider.TextChanged += new EventHandler(directorIDListSlider_TextChanged);
 
-			directorActiveMultiSlider.Data = uniqueDirectors;
-			directorActiveMultiSlider.ItemsInIndices = buckets;
-			directorActiveMultiSlider.IndexNames = firstCharacters;
-			directorActiveMultiSlider.QueryChanged += new EventHandler(directorActiveMultiSlider_QueryChanged);
-			directorActiveMultiSlider.Value = 0;
+			directorIDActiveListSlider.Data = uniqueDirectors;
+			directorIDActiveListSlider.ItemsInIndices = buckets;
+			directorIDActiveListSlider.IndexNames = firstCharacters;
+			directorIDActiveListSlider.QueryChanged += new EventHandler(directorIDActiveListSlider_QueryChanged);
+			directorIDActiveListSlider.Value = 0;
+
+            ///
+            /// The new sliders I made at Purdue
+            ///
+
+            //directorAlphaSlider.Data = uniqueDirectors;
+            directorIDAlphaSlider.ItemsInIndices = buckets;
+            directorIDAlphaSlider.IndexCharacters = firstCharacters;
+            directorIDAlphaSlider.Value = 0;
+            directorIDAlphaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
+
+            directorDDActiveAreaSlider.ItemsInIndices = buckets;
+            directorDDActiveAreaSlider.IndexCharacters = firstCharacters;
+            directorDDActiveAreaSlider.Value = 0;
+            directorDDActiveAreaSlider.ValueChanged += new EventHandler(directorSlider_ValueChanged);
+
+            directorDDListSlider.List = uniqueDirectors;
+            directorDDListSlider.ItemsInIndices = buckets;
+            directorDDListSlider.IndexNames = firstCharacters;
+            directorDDListSlider.Value = 0;
+            directorDDListSlider.ShowLabel = false;
+            directorDDListSlider.TextChanged += new EventHandler(directorDDListSlider_TextChanged);
+
+            directorDDActiveListSlider.Data = uniqueDirectors;
+            directorDDActiveListSlider.ItemsInIndices = buckets;
+            directorDDActiveListSlider.IndexNames = firstCharacters;
+            directorDDActiveListSlider.QueryChanged += new EventHandler(directorDDActiveListSlider_QueryChanged);
+            directorDDActiveListSlider.Value = 0;
         }
 
 		
@@ -292,13 +352,13 @@ namespace FilmFinder
 		{
 			List<string> uniqueActresses = movieHandler.UniqueActresses;
 			List<uint> buckets = new List<uint>();
-			List<string> firstCharacters = new List<string>();
+			List<char> firstCharacters = new List<char>();
 			char lastFirstLetter = '\0';
 			int lastIndex = 0;
 
 			buckets.Add(0); //filter equivalent of "All"
 			lastFirstLetter = uniqueActresses[1][0]; //prime the loop and variables
-			firstCharacters.Add(lastFirstLetter + "");
+			firstCharacters.Add(lastFirstLetter);
 			for (int i = 1; i < uniqueActresses.Count; i++)
 			{
 				if (char.ToUpper(uniqueActresses[i][0]) == lastFirstLetter)
@@ -308,35 +368,62 @@ namespace FilmFinder
 				else
 				{
 					lastFirstLetter = char.ToUpper(uniqueActresses[i][0]);
-					firstCharacters.Add(lastFirstLetter + "");
+					firstCharacters.Add(lastFirstLetter);
 					buckets.Add(1);
 
 					lastIndex++;
 				}
 			}
 
-			actressAlphaSlider.Data = uniqueActresses;
-			actressAlphaSlider.Value = 0;
-			actressAlphaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
+			//actressAlphaSlider.Data = uniqueActresses;
+            actressDDAlphaSlider.ItemsInIndices = buckets;
+            actressDDAlphaSlider.IndexCharacters = firstCharacters;
+			actressDDAlphaSlider.Value = 0;
+			actressDDAlphaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
-			actressActiveAreaSlider.ItemsInIndices = buckets;
-			actressActiveAreaSlider.IndexNames = firstCharacters;
-			actressActiveAreaSlider.Value = 0;
-			actressActiveAreaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
+			actressIDActiveAreaSlider.ItemsInIndices = buckets;
+            actressIDActiveAreaSlider.IndexCharacters = firstCharacters;
+			actressIDActiveAreaSlider.Value = 0;
+			actressIDActiveAreaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
 
-			actressMVSv3.List = uniqueActresses;
-			actressMVSv3.ItemsInIndices = buckets;
-			actressMVSv3.IndexNames = firstCharacters;
-			actressMVSv3.Value = 0;
-			actressMVSv3.ShowLabel = false;
-			actressMVSv3.TextChanged += new EventHandler(actressMVSv3_TextChanged);
+			actressIDListSlider.List = uniqueActresses;
+			actressIDListSlider.ItemsInIndices = buckets;
+			actressIDListSlider.IndexNames = firstCharacters;
+			actressIDListSlider.Value = 0;
+			actressIDListSlider.ShowLabel = false;
+			actressIDListSlider.TextChanged += new EventHandler(actressIDListSlider_TextChanged);
+
+			actressIDActiveListSlider.ItemsInIndices = buckets;
+			actressIDActiveListSlider.IndexNames = firstCharacters;
+			actressIDActiveListSlider.QueryChanged += new EventHandler(actressIDActiveListSlider_QueryChanged);
+			actressIDActiveListSlider.Value = 0;
+
+            ///
+            /// The new sliders I made at Purdue
+            ///
+            actressIDAlphaSlider.ItemsInIndices = buckets;
+            actressIDAlphaSlider.IndexCharacters = firstCharacters;
+            actressIDAlphaSlider.Value = 0;
+            actressIDAlphaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
+
+            actressDDActiveAreaSlider.ItemsInIndices = buckets;
+            actressDDActiveAreaSlider.IndexCharacters = firstCharacters;
+            actressDDActiveAreaSlider.Value = 0;
+            actressDDActiveAreaSlider.ValueChanged += new EventHandler(actressSlider_ValueChanged);
+
+            actressDDListSlider.List = uniqueActresses;
+            actressDDListSlider.ItemsInIndices = buckets;
+            actressDDListSlider.IndexNames = firstCharacters;
+            actressDDListSlider.Value = 0;
+            actressDDListSlider.ShowLabel = false;
+            actressDDListSlider.TextChanged += new EventHandler(actressDDListSlider_TextChanged);
 
 
-			actressActiveMultiSlider.Data = uniqueActresses;
-			actressActiveMultiSlider.ItemsInIndices = buckets;
-			actressActiveMultiSlider.IndexNames = firstCharacters;
-			actressActiveMultiSlider.QueryChanged += new EventHandler(actressActiveMultiSlider_QueryChanged);
-			actressActiveMultiSlider.Value = 0;
+            actressDDActiveListSlider.Data = uniqueActresses;
+            actressDDActiveListSlider.ItemsInIndices = buckets;
+            actressDDActiveListSlider.IndexNames = firstCharacters;
+            actressDDActiveListSlider.QueryChanged += new EventHandler(actressDDActiveListSlider_QueryChanged);
+            actressDDActiveListSlider.Value = 0;
 		}
 
 		
@@ -618,12 +705,13 @@ namespace FilmFinder
 		private void actorSlider_ValueChanged(object sender, EventArgs e)
 		{
 			int value = Int32.MinValue;
-			if (sender is DensitySlider)
+			if (sender is Slider)
 			{
-				DensitySlider slider = (DensitySlider)sender;
-				value = slider.Value;
-				if (slider is AlphasliderV3)
-					value = (slider as AlphasliderV3).Value;
+                Slider slider = (Slider)sender;
+                if(slider is InputDistortionSlider)
+				    value = ((InputDistortionSlider) slider).Value;
+                else
+                    value = ((DisplayDistortionSlider)slider).Value;
 			}
 
 			if (value != Int32.MinValue)
@@ -641,13 +729,14 @@ namespace FilmFinder
 		private void directorSlider_ValueChanged(object sender, EventArgs e)
 		{
 			int value = Int32.MinValue;
-			if (sender is DensitySlider)
-			{
-				DensitySlider slider = (DensitySlider)sender;
-				value = slider.Value;
-				if (slider is AlphasliderV3)
-					value = (slider as AlphasliderV3).Value; 
-			}
+            if (sender is Slider)
+            {
+                Slider slider = (Slider)sender;
+                if (slider is InputDistortionSlider)
+                    value = ((InputDistortionSlider)slider).Value;
+                else
+                    value = ((DisplayDistortionSlider)slider).Value;
+            }
 
 			if (value != Int32.MinValue)
 			{
@@ -659,13 +748,14 @@ namespace FilmFinder
 		private void actressSlider_ValueChanged(object sender, EventArgs e)
 		{
 			int value = Int32.MinValue;
-			if (sender is DensitySlider)
-			{
-				DensitySlider slider = (DensitySlider)sender;
-				value = slider.Value;
-				if (slider is AlphasliderV3)
-					value = (slider as AlphasliderV3).Value;
-			}
+            if (sender is Slider)
+            {
+                Slider slider = (Slider)sender;
+                if (slider is InputDistortionSlider)
+                    value = ((InputDistortionSlider)slider).Value;
+                else
+                    value = ((DisplayDistortionSlider)slider).Value;
+            }
 
 			if (value != Int32.MinValue)
 			{
@@ -674,61 +764,113 @@ namespace FilmFinder
 			}
 		}
 
-		void actorMVSv3_TextChanged(object sender, EventArgs e)
+		void actorIDListSlider_TextChanged(object sender, EventArgs e)
 		{
-			if (actorMVSv3.SelectedIndex < actorMVSv3.RangeOfValues.Count)
+			if (actorIDListSlider.SelectedIndex < actorIDListSlider.RangeOfValues.Count)
 			{
-				currentActorLabel.Text = movieHandler.updateActorFilter(actorMVSv3.RangeOfValues[actorMVSv3.SelectedIndex]);
+				currentActorLabel.Text = movieHandler.updateActorFilter(actorIDListSlider.RangeOfValues[actorIDListSlider.SelectedIndex]);
 				drawActiveSet();
 			}
 		}
 
-		void actressMVSv3_TextChanged(object sender, EventArgs e)
+		void actressIDListSlider_TextChanged(object sender, EventArgs e)
 		{
-			if (actressMVSv3.SelectedIndex < actressMVSv3.RangeOfValues.Count)
+			if (actressIDListSlider.SelectedIndex < actressIDListSlider.RangeOfValues.Count)
 			{
-				currentActressLabel.Text = movieHandler.updateActressFilter(actressMVSv3.RangeOfValues[actressMVSv3.SelectedIndex]);
+				currentActressLabel.Text = movieHandler.updateActressFilter(actressIDListSlider.RangeOfValues[actressIDListSlider.SelectedIndex]);
 				drawActiveSet();
 			}
 		}
 
-		void directorMVSv3_TextChanged(object sender, EventArgs e)
+		void directorIDListSlider_TextChanged(object sender, EventArgs e)
 		{
-			if (directorMVSv3.SelectedIndex < directorMVSv3.RangeOfValues.Count)
+			if (directorIDListSlider.SelectedIndex < directorIDListSlider.RangeOfValues.Count)
 			{
-				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorMVSv3.RangeOfValues[directorMVSv3.SelectedIndex]);
+				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorIDListSlider.RangeOfValues[directorIDListSlider.SelectedIndex]);
 				drawActiveSet();
 			}
 		}
 
-		void actorActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		void actorIDActiveListSlider_QueryChanged(object sender, EventArgs e)
 		{
-			if (actorActiveMultiSlider.SelectedIndex < actorActiveMultiSlider.RangeOfValues.Count)
+			if (actorIDActiveListSlider.SelectedIndex < actorIDActiveListSlider.RangeOfValues.Count)
 			{
-				currentActorLabel.Text = movieHandler.updateActorFilter(actorActiveMultiSlider.Value + actorActiveMultiSlider.SelectedIndex);
+				currentActorLabel.Text = movieHandler.updateActorFilter(actorIDActiveListSlider.Value + actorIDActiveListSlider.SelectedIndex);
 				drawActiveSet();
 			}
 		}
 
-		void directorActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		void directorIDActiveListSlider_QueryChanged(object sender, EventArgs e)
 		{
-			if (directorActiveMultiSlider.SelectedIndex < directorActiveMultiSlider.RangeOfValues.Count)
+			if (directorIDActiveListSlider.SelectedIndex < directorIDActiveListSlider.RangeOfValues.Count)
 			{
-				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorActiveMultiSlider.Value + directorActiveMultiSlider.SelectedIndex);
+				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorIDActiveListSlider.Value + directorIDActiveListSlider.SelectedIndex);
 				drawActiveSet();
 			}
 		}
 
-		void actressActiveMultiSlider_QueryChanged(object sender, EventArgs e)
+		void actressIDActiveListSlider_QueryChanged(object sender, EventArgs e)
 		{
-			if (actressActiveMultiSlider.SelectedIndex < actressActiveMultiSlider.RangeOfValues.Count)
+			if (actressIDActiveListSlider.SelectedIndex < actressIDActiveListSlider.RangeOfValues.Count)
 			{
-				currentActressLabel.Text = movieHandler.updateActressFilter(actressActiveMultiSlider.Value + actressActiveMultiSlider.SelectedIndex);
+				currentActressLabel.Text = movieHandler.updateActressFilter(actressIDActiveListSlider.Value + actressIDActiveListSlider.SelectedIndex);
 				drawActiveSet();
 			}
 		}
-		
 
+        void actorDDListSlider_TextChanged(object sender, EventArgs e)
+        {
+            if (actorDDListSlider.SelectedIndex < actorDDListSlider.RangeOfValues.Count)
+            {
+                currentActorLabel.Text = movieHandler.updateActorFilter(actorDDListSlider.RangeOfValues[actorDDListSlider.SelectedIndex]);
+                drawActiveSet();
+            }
+        }
+
+        void actressDDListSlider_TextChanged(object sender, EventArgs e)
+        {
+            if (actressDDListSlider.SelectedIndex < actressDDListSlider.RangeOfValues.Count)
+            {
+                currentActressLabel.Text = movieHandler.updateActressFilter(actressDDListSlider.RangeOfValues[actressDDListSlider.SelectedIndex]);
+                drawActiveSet();
+            }
+        }
+
+        void directorDDListSlider_TextChanged(object sender, EventArgs e)
+        {
+            if (directorDDListSlider.SelectedIndex < directorDDListSlider.RangeOfValues.Count)
+            {
+                currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorDDListSlider.RangeOfValues[directorDDListSlider.SelectedIndex]);
+                drawActiveSet();
+            }
+        }
+
+        void actorDDActiveListSlider_QueryChanged(object sender, EventArgs e)
+        {
+            if (actorDDActiveListSlider.SelectedIndex < actorDDActiveListSlider.RangeOfValues.Count)
+            {
+                currentActorLabel.Text = movieHandler.updateActorFilter(actorDDActiveListSlider.Value + actorDDActiveListSlider.SelectedIndex);
+                drawActiveSet();
+            }
+        }
+
+        void directorDDActiveListSlider_QueryChanged(object sender, EventArgs e)
+        {
+            if (directorDDActiveListSlider.SelectedIndex < directorDDActiveListSlider.RangeOfValues.Count)
+            {
+                currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorDDActiveListSlider.Value + directorDDActiveListSlider.SelectedIndex);
+                drawActiveSet();
+            }
+        }
+
+        void actressDDActiveListSlider_QueryChanged(object sender, EventArgs e)
+        {
+            if (actressDDActiveListSlider.SelectedIndex < actressDDActiveListSlider.RangeOfValues.Count)
+            {
+                currentActressLabel.Text = movieHandler.updateActressFilter(actressDDActiveListSlider.Value + actressDDActiveListSlider.SelectedIndex);
+                drawActiveSet();
+            }
+        }
 		/// <summary>
 		/// This method is responsible for created a new window outlining information about a specific movie.
 		/// </summary>
@@ -825,94 +967,185 @@ namespace FilmFinder
 		/// <summary>
 		/// Hide the alphasliders
 		/// </summary>
-		private void hideAlphaSliders()
+		private void hideDDAlphaSliders()
 		{
-			actorAlphaSlider.Hide();
-			actressAlphaSlider.Hide();
-			directorAlphaSlider.Hide();
+			actorDDAlphaSlider.Hide();
+			actressDDAlphaSlider.Hide();
+			directorDDAlphaSlider.Hide();
 		}
 
 		/// <summary>
 		/// Show the alpha sliders
 		/// </summary>
-		private void showAlphaSliders()
+		private void showDDAlphaSliders()
 		{
-			actorAlphaSlider.Show();
-			actorAlphaSlider.Value = 0;
+			actorDDAlphaSlider.Show();
+			actorDDAlphaSlider.Value = 0;
 
-			actressAlphaSlider.Show();
-			actressAlphaSlider.Value = 0;
+			actressDDAlphaSlider.Show();
+			actressDDAlphaSlider.Value = 0;
 
-			directorAlphaSlider.Show();
-			directorAlphaSlider.Value = 0;
+			directorDDAlphaSlider.Show();
+			directorDDAlphaSlider.Value = 0;
 		}
 
-		private void hideActiveAreaSliders()
+		private void hideIDActiveAreaSliders()
 		{
-			actorActiveAreaSlider.Hide();
-			actressActiveAreaSlider.Hide();
-			directorActiveAreaSlider.Hide();
+			actorIDActiveAreaSlider.Hide();
+			actressIDActiveAreaSlider.Hide();
+			directorIDActiveAreaSlider.Hide();
 		}
 
-		private void showActiveAreaSliders()
+		private void showIDActiveAreaSliders()
 		{
-			actorActiveAreaSlider.Show();
-			actorActiveAreaSlider.Value = 0;
+			actorIDActiveAreaSlider.Show();
+			actorIDActiveAreaSlider.Value = 0;
 
-			actressActiveAreaSlider.Show();
-			actressActiveAreaSlider.Value = 0;
+			actressIDActiveAreaSlider.Show();
+			actressIDActiveAreaSlider.Value = 0;
 
-			directorActiveAreaSlider.Show();
-			directorActiveAreaSlider.Value = 0;
+			directorIDActiveAreaSlider.Show();
+			directorIDActiveAreaSlider.Value = 0;
 		}
 
-		private void hideMSVv3s()
+		private void hideIDListSliders()
 		{
-			actorMVSv3.Hide();
-			actressMVSv3.Hide();
-			directorMVSv3.Hide();
+			actorIDListSlider.Hide();
+			actressIDListSlider.Hide();
+			directorIDListSlider.Hide();
 		}
 
-		private void showMVSv3s()
+		private void showIDListSliders()
 		{
-			actorMVSv3.Show();
-			actorMVSv3.Value = 0;
+			actorIDListSlider.Show();
+			actorIDListSlider.Value = 0;
 
-			actressMVSv3.Show();
-			actressMVSv3.Value = 0;
+			actressIDListSlider.Show();
+			actressIDListSlider.Value = 0;
 
-			directorMVSv3.Show();
-			directorMVSv3.Value = 0;
+			directorIDListSlider.Show();
+			directorIDListSlider.Value = 0;
 		}
 
-		private void hideActiveMultiSliders()
+		private void hideIDActiveListSliders()
 		{
-			actorActiveMultiSlider.Hide();
-			actressActiveMultiSlider.Hide();
-			directorActiveMultiSlider.Hide();
+			actorIDActiveListSlider.Hide();
+			actressIDActiveListSlider.Hide();
+			directorIDActiveListSlider.Hide();
 		}
 
-		private void showActiveMultiSliders()
+		private void showIDActiveListSliders()
 		{
-			actorActiveMultiSlider.Show();
-			actorActiveMultiSlider.Value = 0;
+			actorIDActiveListSlider.Show();
+			actorIDActiveListSlider.Value = 0;
 
-			actressActiveMultiSlider.Show();
-			actressActiveMultiSlider.Value = 0;
+			actressIDActiveListSlider.Show();
+			actressIDActiveListSlider.Value = 0;
 
-			directorActiveMultiSlider.Show();
-			directorActiveMultiSlider.Value = 0;
+			directorIDActiveListSlider.Show();
+			directorIDActiveListSlider.Value = 0;
 		}
+
+        //
+        // Stuff for sliders made at purdue. Basically a copy past of the above 8 methods
+        //
+
+        /// <summary>
+        /// Hide the alphasliders
+        /// </summary>
+        private void hideIDAlphaSliders()
+        {
+            actorIDAlphaSlider.Hide();
+            actressIDAlphaSlider.Hide();
+            directorIDAlphaSlider.Hide();
+        }
+
+        /// <summary>
+        /// Show the alpha sliders
+        /// </summary>
+        private void showIDAlphaSliders()
+        {
+            actorIDAlphaSlider.Show();
+            actorIDAlphaSlider.Value = 0;
+
+            actressIDAlphaSlider.Show();
+            actressIDAlphaSlider.Value = 0;
+
+            directorIDAlphaSlider.Show();
+            directorIDAlphaSlider.Value = 0;
+        }
+
+        private void hideDDActiveAreaSliders()
+        {
+            actorDDActiveAreaSlider.Hide();
+            actressDDActiveAreaSlider.Hide();
+            directorDDActiveAreaSlider.Hide();
+        }
+
+        private void showDDActiveAreaSliders()
+        {
+            actorDDActiveAreaSlider.Show();
+            actorDDActiveAreaSlider.Value = 0;
+
+            actressDDActiveAreaSlider.Show();
+            actressDDActiveAreaSlider.Value = 0;
+
+            directorDDActiveAreaSlider.Show();
+            directorDDActiveAreaSlider.Value = 0;
+        }
+
+        private void hideDDListSliders()
+        {
+            actorDDListSlider.Hide();
+            actressDDListSlider.Hide();
+            directorDDListSlider.Hide();
+        }
+
+        private void showDDListSliders()
+        {
+            actorDDListSlider.Show();
+            actorDDListSlider.Value = 0;
+
+            actressDDListSlider.Show();
+            actressDDListSlider.Value = 0;
+
+            directorDDListSlider.Show();
+            directorDDListSlider.Value = 0;
+        }
+
+        private void hideDDActiveListSliders()
+        {
+            actorDDActiveListSlider.Hide();
+            actressDDActiveListSlider.Hide();
+            directorDDActiveListSlider.Hide();
+        }
+
+        private void showDDActiveListSliders()
+        {
+            actorDDActiveListSlider.Show();
+            actorDDActiveListSlider.Value = 0;
+
+            actressDDActiveListSlider.Show();
+            actressDDActiveListSlider.Value = 0;
+
+            directorDDActiveListSlider.Show();
+            directorDDActiveListSlider.Value = 0;
+        }
 
 		/// <summary>
 		/// hides all sliders
 		/// </summary>
 		private void hideAllSliders()
 		{
-			hideAlphaSliders();
-			hideActiveAreaSliders();
-			hideMSVv3s();
-			hideActiveMultiSliders();
+			hideDDAlphaSliders();
+			hideDDActiveAreaSliders();
+			hideDDListSliders();
+			hideDDActiveListSliders();
+
+            hideIDAlphaSliders();
+            hideIDActiveAreaSliders();
+            hideIDListSliders();
+            hideIDActiveListSliders();
 		}
 
 		private void nextSliderButton_Click(object sender, EventArgs e)
@@ -939,17 +1172,29 @@ namespace FilmFinder
 			switch (currSlider)
 			{
 				case 0:
-					showAlphaSliders();
+					showDDAlphaSliders();
 					break;
 				case 1:
-					showActiveAreaSliders();
+					showIDActiveAreaSliders();
 					break;
 				case 2:
-					showMVSv3s();
+					showIDListSliders();
 					break;
 				case 3:
-					showActiveMultiSliders();
+					showIDActiveListSliders();
 					break;
+                case 4:
+                    showIDAlphaSliders();
+                    break;
+                case 5:
+                    showDDActiveAreaSliders();
+                    break;
+                case 6:
+                    showDDListSliders();
+                    break;
+                case 7:
+                    showDDActiveListSliders();
+                    break;
 
 			}
 		}
@@ -997,7 +1242,7 @@ namespace FilmFinder
 
 			int randomQuery = 0;
 			List<string> currentCategory = new List<string>();
-			DensitySlider sliderToAccess; //will need to access some density information so I'll access a slider to do that. Since all sliders have the same distribution it doesn't matter which one I access
+			InputDistortionSlider sliderToAccess; //will need to access some density information so I'll access a slider to do that. Since all sliders have the same distribution it doesn't matter which one I access
 			List<uint> itemsPerIndex;
 			int largestIndex;
 			bool foundSatisfyingRandomNumber = false;
@@ -1011,17 +1256,17 @@ namespace FilmFinder
 			if (currentSearchCategory == SearchCategory.Actor)
 			{
 				currentCategory = movieHandler.UniqueActors;
-				sliderToAccess = actorActiveAreaSlider;
+				sliderToAccess = actorIDActiveAreaSlider;
 			}
 			else if (currentSearchCategory == SearchCategory.Actress)
 			{
 				currentCategory = movieHandler.UniqueActresses;
-				sliderToAccess = actressActiveAreaSlider;
+				sliderToAccess = actressIDActiveAreaSlider;
 			}
 			else
 			{
 				currentCategory = movieHandler.UniqueDirectors;
-				sliderToAccess = directorActiveAreaSlider;
+				sliderToAccess = directorIDActiveAreaSlider;
 			}
 
 			itemsPerIndex = sliderToAccess.ItemsInIndices;
@@ -1127,38 +1372,38 @@ namespace FilmFinder
 
 		private void disableAllSliders()
 		{
-			actorActiveAreaSlider.Enabled = false;
-			actorAlphaSlider.Enabled = false;
-			actorMVSv3.Enabled = false;
-			actorActiveMultiSlider.Enabled = false;
+			actorIDActiveAreaSlider.Enabled = false;
+			actorDDAlphaSlider.Enabled = false;
+			actorIDListSlider.Enabled = false;
+			actorIDActiveListSlider.Enabled = false;
 
-			directorActiveAreaSlider.Enabled = false;
-			directorAlphaSlider.Enabled = false;
-			directorMVSv3.Enabled = false;
-			directorActiveMultiSlider.Enabled = false;
+			directorIDActiveAreaSlider.Enabled = false;
+			directorDDAlphaSlider.Enabled = false;
+			directorIDListSlider.Enabled = false;
+			directorIDActiveListSlider.Enabled = false;
 
-			actressActiveAreaSlider.Enabled = false;
-			actressAlphaSlider.Enabled = false;
-			actressMVSv3.Enabled = false;
-			actressActiveMultiSlider.Enabled = false;
+			actressIDActiveAreaSlider.Enabled = false;
+			actressDDAlphaSlider.Enabled = false;
+			actressIDListSlider.Enabled = false;
+			actressIDActiveListSlider.Enabled = false;
 		}
 
 		private void enableAllSlider()
 		{
-			actorActiveAreaSlider.Enabled = true;
-			actorAlphaSlider.Enabled = true;
-			actorMVSv3.Enabled = true;
-			actorActiveMultiSlider.Enabled = true;
+			actorIDActiveAreaSlider.Enabled = true;
+			actorDDAlphaSlider.Enabled = true;
+			actorIDListSlider.Enabled = true;
+			actorIDActiveListSlider.Enabled = true;
 
-			directorActiveAreaSlider.Enabled = true;
-			directorAlphaSlider.Enabled = true;
-			directorMVSv3.Enabled = true;
-			directorActiveMultiSlider.Enabled = true;
+			directorIDActiveAreaSlider.Enabled = true;
+			directorDDAlphaSlider.Enabled = true;
+			directorIDListSlider.Enabled = true;
+			directorIDActiveListSlider.Enabled = true;
 
-			actressActiveAreaSlider.Enabled = true;
-			actressAlphaSlider.Enabled = true;
-			actressMVSv3.Enabled = true;
-			actressActiveMultiSlider.Enabled = true;
+			actressIDActiveAreaSlider.Enabled = true;
+			actressDDAlphaSlider.Enabled = true;
+			actressIDListSlider.Enabled = true;
+			actressIDActiveListSlider.Enabled = true;
 		}
 
 		public void setTrial()
@@ -1215,10 +1460,14 @@ namespace FilmFinder
 			List<int> topRow = new List<int>();
 
 			//generate the top row
-			topRow.Add(0);
 			topRow.Add(1);
-			topRow.Add(3);
 			topRow.Add(2);
+			topRow.Add(8);
+			topRow.Add(3);
+            topRow.Add(7);
+            topRow.Add(4);
+            topRow.Add(6);
+            topRow.Add(5);
 
 			if (topRow.Count % 2 == 1)
 				latinSquare = new int[2 * topRow.Count, topRow.Count];
@@ -1228,7 +1477,7 @@ namespace FilmFinder
 			//put top row into multidimen array
 			for (int i = 0; i < topRow.Count; i++)
 			{
-				latinSquare[0, i] = topRow[i];
+				latinSquare[0, i] = topRow[i] - 1;
 			}
 
 			//fill out rest of array

@@ -44,8 +44,7 @@
             // 
             // activeAreaSlider
             // 
-            this.activeAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.activeAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.activeAreaSlider.DrawSlider = true;
             this.activeAreaSlider.IndexCharacters = null;
@@ -54,7 +53,7 @@
             this.activeAreaSlider.MaxItemsPerSliderPixel = 2;
             this.activeAreaSlider.Name = "activeAreaSlider";
             this.activeAreaSlider.RollChangeValue = 1;
-            this.activeAreaSlider.Size = new System.Drawing.Size(440, 51);
+            this.activeAreaSlider.Size = new System.Drawing.Size(442, 51);
             this.activeAreaSlider.TabIndex = 0;
             this.activeAreaSlider.Text = "activeAreaSliderv21";
             this.activeAreaSlider.Value = 0;
@@ -66,7 +65,7 @@
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.activeAreaSlider);
             this.Name = "DDActiveListSlider";
-            this.Size = new System.Drawing.Size(458, 103);
+            this.Size = new System.Drawing.Size(448, 103);
             this.ResumeLayout(false);
 
         }

@@ -214,9 +214,9 @@ namespace CustomSlider
             GraphicsPath leftButton = new GraphicsPath();
 
             PointF topLeft = new PointF(ClientRectangle.X + 1, base.TrackYValue - buttonHeight / 2);
-            PointF topRight = new PointF(base.SlideArea.GetBounds().Left - base.SliderWidth / 2, base.TrackYValue - buttonHeight / 2);
+            PointF topRight = new PointF(base.SlideArea.GetBounds().Left, base.TrackYValue - buttonHeight / 2);
             PointF bottomLeft = new PointF(ClientRectangle.X + 1, base.TrackYValue + buttonHeight / 2);
-            PointF bottomRight = new PointF(base.SlideArea.GetBounds().Left - base.SliderWidth / 2, base.TrackYValue + buttonHeight / 2);
+            PointF bottomRight = new PointF(base.SlideArea.GetBounds().Left, base.TrackYValue + buttonHeight / 2);
 
             leftButton.AddLine(topLeft, topRight);
             leftButton.AddLine(topRight, bottomRight);
@@ -230,9 +230,9 @@ namespace CustomSlider
         {
             GraphicsPath rightButton = new GraphicsPath();
 
-            PointF topLeft = new PointF(base.SlideArea.GetBounds().Right + base.SliderWidth / 2, base.TrackYValue - buttonHeight / 2);
+            PointF topLeft = new PointF(base.SlideArea.GetBounds().Right, base.TrackYValue - buttonHeight / 2);
             PointF topRight = new PointF(ClientRectangle.Width - 1, base.TrackYValue - buttonHeight / 2);
-            PointF bottomLeft = new PointF(base.SlideArea.GetBounds().Right + base.SliderWidth / 2, base.TrackYValue + buttonHeight / 2);
+            PointF bottomLeft = new PointF(base.SlideArea.GetBounds().Right, base.TrackYValue + buttonHeight / 2);
             PointF bottomRight = new PointF(ClientRectangle.Width - 1, base.TrackYValue + buttonHeight / 2);
 
             rightButton.AddLine(topLeft, topRight); 

@@ -1,10 +1,10 @@
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Release\WindowsApplication.exe
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Release\WindowsApplication.pdb
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.IDActiveListSlider.resources
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.IDListSlider.resources
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\WindowsFormsApplication2.Form2.resources
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.csproj.GenerateResource.Cache
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\WindowsApplication.exe
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\WindowsApplication.pdb
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.csprojResolveAssemblyReference.cache
-C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.WindowsFormsApplication2.Properties.Resources.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.DDActiveListSlider.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.DDListSlider.resources
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Release\Sliders.dll
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\bin\Release\Sliders.pdb
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.dll
+C:\Users\nikon\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.pdb

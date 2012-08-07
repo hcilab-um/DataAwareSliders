@@ -20,6 +20,8 @@ namespace CustomSlider
         public new event MouseEventHandler MouseMove;
         public new event MouseEventHandler MouseDown;
 
+        public const int MINIMUM_SLIDER_WIDTH = 20;
+
         //The following is for changing the pointer speed
         private UInt32 defaultPointerSpeed = 10;
         private UInt32 slowedPointSpeed = 1;

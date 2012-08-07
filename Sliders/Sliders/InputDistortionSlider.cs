@@ -34,6 +34,12 @@ namespace CustomSlider
 
 		#region Getters and Setters
 
+        protected bool DrawSlider
+        {
+            get { return drawSlider; }
+            set { drawSlider = value; }
+        }
+
         protected bool NeedToDoPaintingMath
         {
             get { return needToDoPaintingMath; }
@@ -181,6 +187,7 @@ namespace CustomSlider
 			g.DrawPath(blackPen, currSliderGP);
 
 			SlideArea = generateSlideArea();
+            //g.DrawPath(new Pen(Color.Yellow, 2), SlideArea);
 
 		}//end paint
 
@@ -188,7 +195,7 @@ namespace CustomSlider
         {
             if (needToDoPaintingMath)
             {
-                base.SliderWidth = 30;
+                base.SliderWidth = Slider.MINIMUM_SLIDER_WIDTH;
                 base.SliderHeight = 15;
 
                 //track math
@@ -278,7 +285,7 @@ namespace CustomSlider
                     bool foundIndex = false;
                     int mouseIndex = -1;
                     GraphicsPath currSliderGP = CustomSliderGP == null ? SliderGP : CustomSliderGP;
-                    for (float i = SliderWidth / 2 + spaceBetweenTicks; i < ClientRectangle.Width - 1 && !foundIndex; i += spaceBetweenTicks)
+                    for (float i = base.TrackXStart + spaceBetweenTicks; i < ClientRectangle.Width - 1 && !foundIndex; i += spaceBetweenTicks)
                     {
                         mouseIndex++;
                         if (mouseLocation.X < i)
@@ -286,7 +293,7 @@ namespace CustomSlider
                     }
 
                     //Find mouse penetration
-                    float penetration = (mouseLocation.X - (spaceBetweenTicks * mouseIndex) - SliderWidth / 2) / spaceBetweenTicks;
+                    float penetration = (mouseLocation.X - (spaceBetweenTicks * mouseIndex) - base.TrackXStart) / spaceBetweenTicks;
 
                     //calculate value
                     int tempValue = calculateSum(mouseIndex - 1);
@@ -320,7 +327,7 @@ namespace CustomSlider
 			base.OnMouseUp(e);
 			Capture = false;
             base.ClickedOnSlider = false;
-			drawSlider = false;
+			drawSlider = true;
             base.DraggingSlider = false;
 
 			resetMouseSpeed();
@@ -443,10 +450,10 @@ namespace CustomSlider
 		{
 			GraphicsPath slideArea = new GraphicsPath();
 
-			PointF topLeft = new PointF(base.TrackXStart, TrackYValue - SliderHeight);
-			PointF topRight = new PointF(base.TrackXEnd, TrackYValue - SliderHeight);
-            PointF bottomLeft = new PointF(base.TrackXStart, TrackYValue + SliderHeight);
-            PointF bottomRight = new PointF(base.TrackXEnd, TrackYValue + SliderHeight);
+			PointF topLeft = new PointF(base.TrackXStart - base.SliderWidth / 2, TrackYValue - SliderHeight);
+			PointF topRight = new PointF(base.TrackXEnd + base.SliderWidth / 2, TrackYValue - SliderHeight);
+            PointF bottomLeft = new PointF(base.TrackXStart - base.SliderWidth / 2, TrackYValue + SliderHeight);
+            PointF bottomRight = new PointF(base.TrackXEnd + base.SliderWidth / 2, TrackYValue + SliderHeight);
 
 			slideArea.AddLine(topLeft, topRight);
 			slideArea.AddLine(topRight, bottomRight);

@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilmFinderGUI));
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.disableAllGenreButton = new System.Windows.Forms.Button();
             this.enableAllGenreButton = new System.Windows.Forms.Button();
@@ -62,21 +62,33 @@
             this.confirmSearchButton = new System.Windows.Forms.Button();
             this.searchConfirmLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.actressActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
-            this.directorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
-            this.actorActiveMultiSlider = new CustomSlider.ActiveMultiSlider();
-            this.directorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
-            this.actorAlphaSlider = new CustomSlider.AlphasliderV3();
-            this.actressAlphaSlider = new CustomSlider.AlphasliderV3();
-            this.directorAlphaSlider = new CustomSlider.AlphasliderV3();
-            this.actorActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
-            this.actressActiveAreaSlider = new CustomSlider.ActiveAreaSliderv2();
-            this.actorMVSv3 = new CustomSlider.MultiValueSliderV3();
-            this.actressMVSv3 = new CustomSlider.MultiValueSliderV3();
-            this.directorMVSv3 = new CustomSlider.MultiValueSliderV3();
+            this.actressDDActiveAreaSlider = new CustomSlider.DDActiveAreaSlider();
+            this.actorDDActiveAreaSlider = new CustomSlider.DDActiveAreaSlider();
+            this.actressIDActiveListSlider = new CustomSlider.IDActiveListSlider();
+            this.directorIDActiveListSlider = new CustomSlider.IDActiveListSlider();
+            this.actorIDActiveListSlider = new CustomSlider.IDActiveListSlider();
+            this.directorIDActiveAreaSlider = new CustomSlider.IDActiveAreaSlider();
+            this.actorDDAlphaSlider = new CustomSlider.DDAlphaslider();
+            this.actressDDAlphaSlider = new CustomSlider.DDAlphaslider();
+            this.directorDDAlphaSlider = new CustomSlider.DDAlphaslider();
+            this.actorIDActiveAreaSlider = new CustomSlider.IDActiveAreaSlider();
+            this.actressIDActiveAreaSlider = new CustomSlider.IDActiveAreaSlider();
+            this.actorIDListSlider = new CustomSlider.IDListSlider();
+            this.actressIDListSlider = new CustomSlider.IDListSlider();
+            this.directorIDListSlider = new CustomSlider.IDListSlider();
+            this.directorDDActiveAreaSlider = new CustomSlider.DDActiveAreaSlider();
+            this.actorDDListSlider = new CustomSlider.DDListSlider();
+            this.actressDDListSlider = new CustomSlider.DDListSlider();
+            this.directorDDListSlider = new CustomSlider.DDListSlider();
             this.ratingRangeSlider = new FilmFinder.RangeSlider();
             this.yearRangeSlider = new FilmFinder.RangeSlider();
             this.runningTimeRangeSlider = new FilmFinder.RangeSlider();
+            this.actorDDActiveListSlider = new CustomSlider.DDActiveListSlider();
+            this.actressDDActiveListSlider = new CustomSlider.DDActiveListSlider();
+            this.directorDDActiveListSlider = new CustomSlider.DDActiveListSlider();
+            this.actorIDAlphaSlider = new CustomSlider.IDAlphaslider();
+            this.directorIDAlphaSlider = new CustomSlider.IDAlphaslider();
+            this.actressIDAlphaSlider = new CustomSlider.IDAlphaslider();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.certifactionsPanel.SuspendLayout();
@@ -84,19 +96,19 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             resources.ApplyResources(this.chart1, "chart1");
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.MarkerColor = System.Drawing.Color.Red;
-            series1.MarkerSize = 3;
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.MarkerColor = System.Drawing.Color.Red;
+            series2.MarkerSize = 3;
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chart1_Click);
             // 
             // disableAllGenreButton
@@ -269,119 +281,179 @@
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // actressActiveMultiSlider
+            // actressDDActiveAreaSlider
             // 
-            this.actressActiveMultiSlider.Data = null;
-            this.actressActiveMultiSlider.IndexNames = null;
-            resources.ApplyResources(this.actressActiveMultiSlider, "actressActiveMultiSlider");
-            this.actressActiveMultiSlider.Name = "actressActiveMultiSlider";
-            this.actressActiveMultiSlider.Value = 0;
+            this.actressDDActiveAreaSlider.DrawSlider = true;
+            this.actressDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressDDActiveAreaSlider.IndexCharacters")));
+            this.actressDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressDDActiveAreaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.actressDDActiveAreaSlider, "actressDDActiveAreaSlider");
+            this.actressDDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.actressDDActiveAreaSlider.Name = "actressDDActiveAreaSlider";
+            this.actressDDActiveAreaSlider.RollChangeValue = 1;
+            this.actressDDActiveAreaSlider.Value = 0;
             // 
-            // directorActiveMultiSlider
+            // actorDDActiveAreaSlider
             // 
-            this.directorActiveMultiSlider.Data = null;
-            this.directorActiveMultiSlider.IndexNames = null;
-            resources.ApplyResources(this.directorActiveMultiSlider, "directorActiveMultiSlider");
-            this.directorActiveMultiSlider.Name = "directorActiveMultiSlider";
-            this.directorActiveMultiSlider.Value = 0;
+            this.actorDDActiveAreaSlider.DrawSlider = true;
+            this.actorDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorDDActiveAreaSlider.IndexCharacters")));
+            this.actorDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorDDActiveAreaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.actorDDActiveAreaSlider, "actorDDActiveAreaSlider");
+            this.actorDDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.actorDDActiveAreaSlider.Name = "actorDDActiveAreaSlider";
+            this.actorDDActiveAreaSlider.RollChangeValue = 1;
+            this.actorDDActiveAreaSlider.Value = 0;
             // 
-            // actorActiveMultiSlider
+            // actressIDActiveListSlider
             // 
-            this.actorActiveMultiSlider.Data = null;
-            this.actorActiveMultiSlider.IndexNames = null;
-            resources.ApplyResources(this.actorActiveMultiSlider, "actorActiveMultiSlider");
-            this.actorActiveMultiSlider.Name = "actorActiveMultiSlider";
-            this.actorActiveMultiSlider.Value = 0;
+            this.actressIDActiveListSlider.Data = null;
+            this.actressIDActiveListSlider.IndexCharacters = null;
+            this.actressIDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.actressIDActiveListSlider, "actressIDActiveListSlider");
+            this.actressIDActiveListSlider.Name = "actressIDActiveListSlider";
+            this.actressIDActiveListSlider.Value = 0;
             // 
-            // directorActiveAreaSlider
+            // directorIDActiveListSlider
             // 
-            resources.ApplyResources(this.directorActiveAreaSlider, "directorActiveAreaSlider");
-            this.directorActiveAreaSlider.DrawSlider = true;
-            this.directorActiveAreaSlider.IndexNames = null;
-            this.directorActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorActiveAreaSlider.ItemsInIndices")));
-            this.directorActiveAreaSlider.MaxItemsPerSliderPixel = 2;
-            this.directorActiveAreaSlider.Name = "directorActiveAreaSlider";
-            this.directorActiveAreaSlider.RollChangeValue = 1;
-            this.directorActiveAreaSlider.Value = 50;
+            this.directorIDActiveListSlider.Data = null;
+            this.directorIDActiveListSlider.IndexCharacters = null;
+            this.directorIDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.directorIDActiveListSlider, "directorIDActiveListSlider");
+            this.directorIDActiveListSlider.Name = "directorIDActiveListSlider";
+            this.directorIDActiveListSlider.Value = 0;
             // 
-            // actorAlphaSlider
+            // actorIDActiveListSlider
             // 
-            resources.ApplyResources(this.actorAlphaSlider, "actorAlphaSlider");
-            this.actorAlphaSlider.Data = null;
-            this.actorAlphaSlider.IndexNames = null;
-            this.actorAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorAlphaSlider.ItemsInIndices")));
-            this.actorAlphaSlider.Name = "actorAlphaSlider";
-            this.actorAlphaSlider.Value = 50;
+            this.actorIDActiveListSlider.Data = null;
+            this.actorIDActiveListSlider.IndexCharacters = null;
+            this.actorIDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.actorIDActiveListSlider, "actorIDActiveListSlider");
+            this.actorIDActiveListSlider.Name = "actorIDActiveListSlider";
+            this.actorIDActiveListSlider.Value = 0;
             // 
-            // actressAlphaSlider
+            // directorIDActiveAreaSlider
             // 
-            resources.ApplyResources(this.actressAlphaSlider, "actressAlphaSlider");
-            this.actressAlphaSlider.Data = null;
-            this.actressAlphaSlider.IndexNames = null;
-            this.actressAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressAlphaSlider.ItemsInIndices")));
-            this.actressAlphaSlider.Name = "actressAlphaSlider";
-            this.actressAlphaSlider.Value = 50;
+            resources.ApplyResources(this.directorIDActiveAreaSlider, "directorIDActiveAreaSlider");
+            this.directorIDActiveAreaSlider.DrawSlider = true;
+            this.directorIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorIDActiveAreaSlider.IndexCharacters")));
+            this.directorIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorIDActiveAreaSlider.ItemsInIndices")));
+            this.directorIDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.directorIDActiveAreaSlider.Name = "directorIDActiveAreaSlider";
+            this.directorIDActiveAreaSlider.RollChangeValue = 1;
+            this.directorIDActiveAreaSlider.Value = 50;
             // 
-            // directorAlphaSlider
+            // actorDDAlphaSlider
             // 
-            resources.ApplyResources(this.directorAlphaSlider, "directorAlphaSlider");
-            this.directorAlphaSlider.Data = null;
-            this.directorAlphaSlider.IndexNames = null;
-            this.directorAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorAlphaSlider.ItemsInIndices")));
-            this.directorAlphaSlider.Name = "directorAlphaSlider";
-            this.directorAlphaSlider.Value = 50;
+            resources.ApplyResources(this.actorDDAlphaSlider, "actorDDAlphaSlider");
+            this.actorDDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorDDAlphaSlider.IndexCharacters")));
+            this.actorDDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorDDAlphaSlider.ItemsInIndices")));
+            this.actorDDAlphaSlider.Name = "actorDDAlphaSlider";
+            this.actorDDAlphaSlider.Value = 50;
             // 
-            // actorActiveAreaSlider
+            // actressDDAlphaSlider
             // 
-            resources.ApplyResources(this.actorActiveAreaSlider, "actorActiveAreaSlider");
-            this.actorActiveAreaSlider.DrawSlider = true;
-            this.actorActiveAreaSlider.IndexNames = null;
-            this.actorActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorActiveAreaSlider.ItemsInIndices")));
-            this.actorActiveAreaSlider.MaxItemsPerSliderPixel = 2;
-            this.actorActiveAreaSlider.Name = "actorActiveAreaSlider";
-            this.actorActiveAreaSlider.RollChangeValue = 1;
-            this.actorActiveAreaSlider.Value = 50;
+            resources.ApplyResources(this.actressDDAlphaSlider, "actressDDAlphaSlider");
+            this.actressDDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressDDAlphaSlider.IndexCharacters")));
+            this.actressDDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressDDAlphaSlider.ItemsInIndices")));
+            this.actressDDAlphaSlider.Name = "actressDDAlphaSlider";
+            this.actressDDAlphaSlider.Value = 50;
             // 
-            // actressActiveAreaSlider
+            // directorDDAlphaSlider
             // 
-            resources.ApplyResources(this.actressActiveAreaSlider, "actressActiveAreaSlider");
-            this.actressActiveAreaSlider.DrawSlider = true;
-            this.actressActiveAreaSlider.IndexNames = null;
-            this.actressActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressActiveAreaSlider.ItemsInIndices")));
-            this.actressActiveAreaSlider.MaxItemsPerSliderPixel = 2;
-            this.actressActiveAreaSlider.Name = "actressActiveAreaSlider";
-            this.actressActiveAreaSlider.RollChangeValue = 1;
-            this.actressActiveAreaSlider.Value = 50;
+            resources.ApplyResources(this.directorDDAlphaSlider, "directorDDAlphaSlider");
+            this.directorDDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorDDAlphaSlider.IndexCharacters")));
+            this.directorDDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorDDAlphaSlider.ItemsInIndices")));
+            this.directorDDAlphaSlider.Name = "directorDDAlphaSlider";
+            this.directorDDAlphaSlider.Value = 50;
             // 
-            // actorMVSv3
+            // actorIDActiveAreaSlider
             // 
-            resources.ApplyResources(this.actorMVSv3, "actorMVSv3");
-            this.actorMVSv3.BackColor = System.Drawing.Color.Transparent;
-            this.actorMVSv3.IndexNames = null;
-            this.actorMVSv3.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actorMVSv3.List")));
-            this.actorMVSv3.Name = "actorMVSv3";
-            this.actorMVSv3.ShowLabel = false;
-            this.actorMVSv3.Value = 0;
+            resources.ApplyResources(this.actorIDActiveAreaSlider, "actorIDActiveAreaSlider");
+            this.actorIDActiveAreaSlider.DrawSlider = true;
+            this.actorIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorIDActiveAreaSlider.IndexCharacters")));
+            this.actorIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorIDActiveAreaSlider.ItemsInIndices")));
+            this.actorIDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.actorIDActiveAreaSlider.Name = "actorIDActiveAreaSlider";
+            this.actorIDActiveAreaSlider.RollChangeValue = 1;
+            this.actorIDActiveAreaSlider.Value = 50;
             // 
-            // actressMVSv3
+            // actressIDActiveAreaSlider
             // 
-            resources.ApplyResources(this.actressMVSv3, "actressMVSv3");
-            this.actressMVSv3.BackColor = System.Drawing.Color.Transparent;
-            this.actressMVSv3.IndexNames = null;
-            this.actressMVSv3.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actressMVSv3.List")));
-            this.actressMVSv3.Name = "actressMVSv3";
-            this.actressMVSv3.ShowLabel = false;
-            this.actressMVSv3.Value = 0;
+            resources.ApplyResources(this.actressIDActiveAreaSlider, "actressIDActiveAreaSlider");
+            this.actressIDActiveAreaSlider.DrawSlider = true;
+            this.actressIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressIDActiveAreaSlider.IndexCharacters")));
+            this.actressIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressIDActiveAreaSlider.ItemsInIndices")));
+            this.actressIDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.actressIDActiveAreaSlider.Name = "actressIDActiveAreaSlider";
+            this.actressIDActiveAreaSlider.RollChangeValue = 1;
+            this.actressIDActiveAreaSlider.Value = 50;
             // 
-            // directorMVSv3
+            // actorIDListSlider
             // 
-            resources.ApplyResources(this.directorMVSv3, "directorMVSv3");
-            this.directorMVSv3.BackColor = System.Drawing.Color.Transparent;
-            this.directorMVSv3.IndexNames = null;
-            this.directorMVSv3.List = ((System.Collections.Generic.List<string>)(resources.GetObject("directorMVSv3.List")));
-            this.directorMVSv3.Name = "directorMVSv3";
-            this.directorMVSv3.ShowLabel = false;
-            this.directorMVSv3.Value = 0;
+            resources.ApplyResources(this.actorIDListSlider, "actorIDListSlider");
+            this.actorIDListSlider.BackColor = System.Drawing.Color.Transparent;
+            this.actorIDListSlider.IndexNames = null;
+            this.actorIDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actorIDListSlider.List")));
+            this.actorIDListSlider.Name = "actorIDListSlider";
+            this.actorIDListSlider.ShowLabel = false;
+            this.actorIDListSlider.Value = 0;
+            // 
+            // actressIDListSlider
+            // 
+            resources.ApplyResources(this.actressIDListSlider, "actressIDListSlider");
+            this.actressIDListSlider.BackColor = System.Drawing.Color.Transparent;
+            this.actressIDListSlider.IndexNames = null;
+            this.actressIDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actressIDListSlider.List")));
+            this.actressIDListSlider.Name = "actressIDListSlider";
+            this.actressIDListSlider.ShowLabel = false;
+            this.actressIDListSlider.Value = 0;
+            // 
+            // directorIDListSlider
+            // 
+            resources.ApplyResources(this.directorIDListSlider, "directorIDListSlider");
+            this.directorIDListSlider.BackColor = System.Drawing.Color.Transparent;
+            this.directorIDListSlider.IndexNames = null;
+            this.directorIDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("directorIDListSlider.List")));
+            this.directorIDListSlider.Name = "directorIDListSlider";
+            this.directorIDListSlider.ShowLabel = false;
+            this.directorIDListSlider.Value = 0;
+            // 
+            // directorDDActiveAreaSlider
+            // 
+            this.directorDDActiveAreaSlider.DrawSlider = true;
+            this.directorDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorDDActiveAreaSlider.IndexCharacters")));
+            this.directorDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorDDActiveAreaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.directorDDActiveAreaSlider, "directorDDActiveAreaSlider");
+            this.directorDDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.directorDDActiveAreaSlider.Name = "directorDDActiveAreaSlider";
+            this.directorDDActiveAreaSlider.RollChangeValue = 1;
+            this.directorDDActiveAreaSlider.Value = 0;
+            // 
+            // actorDDListSlider
+            // 
+            this.actorDDListSlider.IndexNames = null;
+            this.actorDDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actorDDListSlider.List")));
+            resources.ApplyResources(this.actorDDListSlider, "actorDDListSlider");
+            this.actorDDListSlider.Name = "actorDDListSlider";
+            this.actorDDListSlider.ShowLabel = false;
+            this.actorDDListSlider.Value = 0;
+            // 
+            // actressDDListSlider
+            // 
+            this.actressDDListSlider.IndexNames = null;
+            this.actressDDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("actressDDListSlider.List")));
+            resources.ApplyResources(this.actressDDListSlider, "actressDDListSlider");
+            this.actressDDListSlider.Name = "actressDDListSlider";
+            this.actressDDListSlider.ShowLabel = false;
+            this.actressDDListSlider.Value = 0;
+            // 
+            // directorDDListSlider
+            // 
+            this.directorDDListSlider.IndexNames = null;
+            this.directorDDListSlider.List = ((System.Collections.Generic.List<string>)(resources.GetObject("directorDDListSlider.List")));
+            resources.ApplyResources(this.directorDDListSlider, "directorDDListSlider");
+            this.directorDDListSlider.Name = "directorDDListSlider";
+            this.directorDDListSlider.ShowLabel = false;
+            this.directorDDListSlider.Value = 0;
             // 
             // ratingRangeSlider
             // 
@@ -410,13 +482,76 @@
             this.runningTimeRangeSlider.UpperBound = 100;
             this.runningTimeRangeSlider.UpperRange = 100;
             // 
+            // actorDDActiveListSlider
+            // 
+            this.actorDDActiveListSlider.Data = null;
+            this.actorDDActiveListSlider.IndexCharacters = null;
+            this.actorDDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.actorDDActiveListSlider, "actorDDActiveListSlider");
+            this.actorDDActiveListSlider.Name = "actorDDActiveListSlider";
+            this.actorDDActiveListSlider.Value = 0;
+            // 
+            // actressDDActiveListSlider
+            // 
+            this.actressDDActiveListSlider.Data = null;
+            this.actressDDActiveListSlider.IndexCharacters = null;
+            this.actressDDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.actressDDActiveListSlider, "actressDDActiveListSlider");
+            this.actressDDActiveListSlider.Name = "actressDDActiveListSlider";
+            this.actressDDActiveListSlider.Value = 0;
+            // 
+            // directorDDActiveListSlider
+            // 
+            this.directorDDActiveListSlider.Data = null;
+            this.directorDDActiveListSlider.IndexCharacters = null;
+            this.directorDDActiveListSlider.IndexNames = null;
+            resources.ApplyResources(this.directorDDActiveListSlider, "directorDDActiveListSlider");
+            this.directorDDActiveListSlider.Name = "directorDDActiveListSlider";
+            this.directorDDActiveListSlider.Value = 0;
+            // 
+            // actorIDAlphaSlider
+            // 
+            this.actorIDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorIDAlphaSlider.IndexCharacters")));
+            this.actorIDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorIDAlphaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.actorIDAlphaSlider, "actorIDAlphaSlider");
+            this.actorIDAlphaSlider.Name = "actorIDAlphaSlider";
+            this.actorIDAlphaSlider.Value = 0;
+            // 
+            // directorIDAlphaSlider
+            // 
+            this.directorIDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorIDAlphaSlider.IndexCharacters")));
+            this.directorIDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorIDAlphaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.directorIDAlphaSlider, "directorIDAlphaSlider");
+            this.directorIDAlphaSlider.Name = "directorIDAlphaSlider";
+            this.directorIDAlphaSlider.Value = 0;
+            // 
+            // actressIDAlphaSlider
+            // 
+            this.actressIDAlphaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressIDAlphaSlider.IndexCharacters")));
+            this.actressIDAlphaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressIDAlphaSlider.ItemsInIndices")));
+            resources.ApplyResources(this.actressIDAlphaSlider, "actressIDAlphaSlider");
+            this.actressIDAlphaSlider.Name = "actressIDAlphaSlider";
+            this.actressIDAlphaSlider.Value = 0;
+            // 
             // FilmFinderGUI
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.actressActiveMultiSlider);
-            this.Controls.Add(this.directorActiveMultiSlider);
-            this.Controls.Add(this.actorActiveMultiSlider);
+            this.Controls.Add(this.actressIDAlphaSlider);
+            this.Controls.Add(this.directorIDAlphaSlider);
+            this.Controls.Add(this.actorIDAlphaSlider);
+            this.Controls.Add(this.directorDDActiveListSlider);
+            this.Controls.Add(this.actressDDActiveListSlider);
+            this.Controls.Add(this.actorDDActiveListSlider);
+            this.Controls.Add(this.directorDDListSlider);
+            this.Controls.Add(this.actressDDListSlider);
+            this.Controls.Add(this.actorDDListSlider);
+            this.Controls.Add(this.actressDDActiveAreaSlider);
+            this.Controls.Add(this.directorDDActiveAreaSlider);
+            this.Controls.Add(this.actorDDActiveAreaSlider);
+            this.Controls.Add(this.actressIDActiveListSlider);
+            this.Controls.Add(this.directorIDActiveListSlider);
+            this.Controls.Add(this.actorIDActiveListSlider);
             this.Controls.Add(this.searchConfirmLabel);
             this.Controls.Add(this.confirmSearchButton);
             this.Controls.Add(this.startSearchButton);
@@ -430,13 +565,13 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.directorActiveAreaSlider);
-            this.Controls.Add(this.actressActiveAreaSlider);
-            this.Controls.Add(this.actorActiveAreaSlider);
+            this.Controls.Add(this.directorIDActiveAreaSlider);
+            this.Controls.Add(this.actressIDActiveAreaSlider);
+            this.Controls.Add(this.actorIDActiveAreaSlider);
             this.Controls.Add(this.nextSliderButton);
-            this.Controls.Add(this.directorAlphaSlider);
-            this.Controls.Add(this.actressAlphaSlider);
-            this.Controls.Add(this.actorAlphaSlider);
+            this.Controls.Add(this.directorDDAlphaSlider);
+            this.Controls.Add(this.actressDDAlphaSlider);
+            this.Controls.Add(this.actorDDAlphaSlider);
             this.Controls.Add(this.ratingRangeLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ratingRangeSlider);
@@ -448,9 +583,9 @@
             this.Controls.Add(this.runningTimeRangeSlider);
             this.Controls.Add(this.newDataButton);
             this.Controls.Add(this.certifactionsPanel);
-            this.Controls.Add(this.actressMVSv3);
-            this.Controls.Add(this.directorMVSv3);
-            this.Controls.Add(this.actorMVSv3);
+            this.Controls.Add(this.actressIDListSlider);
+            this.Controls.Add(this.directorIDListSlider);
+            this.Controls.Add(this.actorIDListSlider);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -491,19 +626,19 @@
 		private System.Windows.Forms.Label ratingRangeLabel;
 		private System.Windows.Forms.Label label7;
 		private RangeSlider ratingRangeSlider;
-		private CustomSlider.AlphasliderV3 actorAlphaSlider;
-		private CustomSlider.AlphasliderV3 actressAlphaSlider;
-		private CustomSlider.AlphasliderV3 directorAlphaSlider;
+		private CustomSlider.DDAlphaslider actorDDAlphaSlider;
+        private CustomSlider.DDAlphaslider actressDDAlphaSlider;
+        private CustomSlider.DDAlphaslider directorDDAlphaSlider;
 		private System.Windows.Forms.Button nextSliderButton;
-		private CustomSlider.ActiveAreaSliderv2 actorActiveAreaSlider;
-		private CustomSlider.ActiveAreaSliderv2 actressActiveAreaSlider;
-		private CustomSlider.ActiveAreaSliderv2 directorActiveAreaSlider;
+		private CustomSlider.IDActiveAreaSlider actorIDActiveAreaSlider;
+        private CustomSlider.IDActiveAreaSlider actressIDActiveAreaSlider;
+        private CustomSlider.IDActiveAreaSlider directorIDActiveAreaSlider;
 		private System.Windows.Forms.Label currentActressLabel;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label6;
-		private CustomSlider.MultiValueSliderV3 actorMVSv3;
-		private CustomSlider.MultiValueSliderV3 actressMVSv3;
-		private CustomSlider.MultiValueSliderV3 directorMVSv3;
+		private CustomSlider.IDListSlider actorIDListSlider;
+        private CustomSlider.IDListSlider actressIDListSlider;
+        private CustomSlider.IDListSlider directorIDListSlider;
 		private System.Windows.Forms.Button previousSliderButton;
 		private System.Windows.Forms.Button startExperimentButton;
 		private System.Windows.Forms.Label pleaseFindLabel;
@@ -512,9 +647,21 @@
 		private System.Windows.Forms.Button confirmSearchButton;
 		private System.Windows.Forms.Label searchConfirmLabel;
 		private System.Windows.Forms.Label label9;
-		private CustomSlider.ActiveMultiSlider actorActiveMultiSlider;
-		private CustomSlider.ActiveMultiSlider directorActiveMultiSlider;
-		private CustomSlider.ActiveMultiSlider actressActiveMultiSlider;
+		private CustomSlider.IDActiveListSlider actorIDActiveListSlider;
+        private CustomSlider.IDActiveListSlider directorIDActiveListSlider;
+        private CustomSlider.IDActiveListSlider actressIDActiveListSlider;
+        private CustomSlider.DDActiveAreaSlider actorDDActiveAreaSlider;
+        private CustomSlider.DDActiveAreaSlider directorDDActiveAreaSlider;
+        private CustomSlider.DDActiveAreaSlider actressDDActiveAreaSlider;
+        private CustomSlider.DDListSlider actorDDListSlider;
+        private CustomSlider.DDListSlider actressDDListSlider;
+        private CustomSlider.DDListSlider directorDDListSlider;
+        private CustomSlider.DDActiveListSlider actorDDActiveListSlider;
+        private CustomSlider.DDActiveListSlider actressDDActiveListSlider;
+        private CustomSlider.DDActiveListSlider directorDDActiveListSlider;
+        private CustomSlider.IDAlphaslider actorIDAlphaSlider;
+        private CustomSlider.IDAlphaslider directorIDAlphaSlider;
+        private CustomSlider.IDAlphaslider actressIDAlphaSlider;
 
 
 	}
