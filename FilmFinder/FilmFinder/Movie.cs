@@ -16,8 +16,8 @@ namespace FilmFinder
 		private string genre;
 		private string director;
 		private string certificate;
-		private List<string> actor;
-		private List<string> actress;
+		private List<string> actors;
+		private List<string> actresses;
 		private List<string> actorCharacter;
 		private List<string> actressCharacter;
 		private int year;
@@ -33,8 +33,8 @@ namespace FilmFinder
 			genre = dummyValue;
 			director = dummyValue;
 			certificate = dummyValue;
-			actor = new List<string>();
-			actress = new List<string>();
+			actors = new List<string>();
+			actresses = new List<string>();
 			actorCharacter = new List<string>();
 			actressCharacter = new List<string>();
 		}
@@ -83,7 +83,7 @@ namespace FilmFinder
 
 		public void addActor(string name)
 		{
-			actor.Add(name);
+			actors.Add(name);
 		}
 		public void addActorCharacter(string name)
 		{
@@ -92,7 +92,7 @@ namespace FilmFinder
 
 		public void addActress(string name)
 		{
-			actress.Add(name);
+			actresses.Add(name);
 		}
 
 		public void addActressCharacter(string name)
@@ -102,8 +102,12 @@ namespace FilmFinder
 
 		public List<string> ActorList
 		{
-			get { return actor; }
-			set { actor = value; }
+			get { return actors; }
+			set 
+			{ 
+				actors = value;
+				actors.Sort();
+			}
 		}
 
 		public List<string> ActorCharacterList
@@ -114,8 +118,12 @@ namespace FilmFinder
 
 		public List<string> ActressList
 		{
-			get { return actress; }
-			set { actress = value; }
+			get { return actresses; }
+			set 
+			{ 
+				actresses = value;
+				actresses.Sort();
+			}
 		}
 
 		public List<string> ActressCharacterList
@@ -132,7 +140,7 @@ namespace FilmFinder
 
 		public bool isComplete()
 		{
-			return rating != -1 && !title.Equals(dummyValue) && year != -1 && runningTime != -1 && !genre.Equals(dummyValue) && !director.Equals(dummyValue) && !certificate.Equals(dummyValue) && actor.Count > 0 && actress.Count > 0;
+			return rating != -1 && !title.Equals(dummyValue) && year != -1 && runningTime != -1 && !genre.Equals(dummyValue) && !director.Equals(dummyValue) && !certificate.Equals(dummyValue) && actors.Count > 0 && actresses.Count > 0;
 		}
 
 		public Movie deepCopy()

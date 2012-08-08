@@ -110,7 +110,7 @@ namespace CustomSlider
 
 			itemsPerHistogramPixel = (float)ItemsInIndices[indexOfSlider] / spaceBetweenTicks;
 			double potentialWidth = Math.Round(itemsPerHistogramPixel + 0.5) / maxItemsPerSliderPixel;
-			SliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
+			base.SliderWidth = (int)Math.Max(MINIMUM_SLIDER_WIDTH, potentialWidth);
 			itemsPerSliderPixel = (int)Math.Round(itemsPerHistogramPixel / SliderWidth, MidpointRounding.ToEven);
 			if (itemsPerSliderPixel < 2)
 				itemsPerSliderPixel = 2;
@@ -129,7 +129,7 @@ namespace CustomSlider
 
 			if (clickedOnSecondarySlider || rolledMouseWheel || Value == 0 || Value == calculateMax())
 			{
-				secondarySliderHorizontalCenter = SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * SliderGP.GetBounds().Width;
+				secondarySliderHorizontalCenter = base.SliderGP.GetBounds().X + (Value - RangeOfValues[0]) / (RangeOfValues.Count * 1.0f - 1) * base.SliderGP.GetBounds().Width;
 
 				if (RangeOfValues.Count == 1)
 				{
@@ -158,8 +158,12 @@ namespace CustomSlider
 			secondarySliderGP = generateSecondarySliderPath(secondarySliderHorizontalCenter, secondarySliderY, secondarySliderWidth, secondarySliderHeight);
 			if (secondarySliderGP != null)
 			{
-				g.FillPath(new SolidBrush(Color.Red), secondarySliderGP);
+				g.SmoothingMode = SmoothingMode.AntiAlias;
+
+				g.FillPath(new SolidBrush(Color.FromArgb(191,63,65)), secondarySliderGP);
 				g.DrawPath(new Pen(Color.Black), secondarySliderGP);
+
+				g.SmoothingMode = SmoothingMode.Default;
 			}
 
 			NeedToDoPaintingMath = true;

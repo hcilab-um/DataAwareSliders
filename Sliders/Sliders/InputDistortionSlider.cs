@@ -16,6 +16,14 @@ namespace CustomSlider
 	{
 		#region Variables
 
+		private const int HISTOGRAM_DIFFERENCE = 30;
+		protected static readonly Color HISTOGRAM_FILL_COLOR = Color.FromArgb(80, 116, 143);
+		protected static readonly Color HISTOGRAM_OUTLINE_COLOR = Color.FromArgb(HISTOGRAM_FILL_COLOR.R - HISTOGRAM_DIFFERENCE,
+			HISTOGRAM_FILL_COLOR.G - HISTOGRAM_DIFFERENCE, HISTOGRAM_FILL_COLOR.B - HISTOGRAM_DIFFERENCE);
+		protected static readonly Color SLIDER_OUTLINE_COLOR = Color.FromArgb(71 ,27 , 9);
+		protected static readonly Color SLIDER_FILL_COLOR = Color.FromArgb(180, SLIDER_OUTLINE_COLOR.R, 
+			SLIDER_OUTLINE_COLOR.G, SLIDER_OUTLINE_COLOR.B);
+
 		protected float histogramMaxHeight = 0;
 		protected float histogramLowerY = 0;
 		protected float histogramUpperY = 0;
@@ -125,20 +133,21 @@ namespace CustomSlider
 
 			//This following code will draw ticks and the histograms above them
 			float histogramHeight;
-			SolidBrush histogramBrush = new SolidBrush(Color.FromArgb(30,70,173));
+			SolidBrush histogramBrush = new SolidBrush(HISTOGRAM_FILL_COLOR);
+			Pen histogramPen = new Pen(HISTOGRAM_OUTLINE_COLOR, 2);
 
-			Pen blackPen = new Pen(Color.Black, 2);
+			
 			Pen redPen = new Pen(Color.Red, 2);
 			int index = 0;
 			for (float i = TrackXStart; i < TrackXEnd - 1; i += spaceBetweenTicks)
 			{
 				//draw ticks
-				g.DrawLine(blackPen, i, TrackYValue, i, TrackYValue + 10); //ticks will be 10 pixels tall
+				g.DrawLine(histogramPen, i, TrackYValue, i, TrackYValue + 10); //ticks will be 10 pixels tall
 
 				//draw histogram
 				histogramHeight = getCurrHistogramHeight(index);
 				g.FillRectangle(histogramBrush, i, histogramLowerY - histogramHeight, spaceBetweenTicks, histogramHeight);
-				g.DrawRectangle(blackPen, i, histogramLowerY - histogramHeight, (float)(TrackWidth / (float)base.ItemsInIndices.Count), histogramHeight);
+				g.DrawRectangle(histogramPen, i, histogramLowerY - histogramHeight, (float)(TrackWidth / (float)base.ItemsInIndices.Count), histogramHeight);
 
                 if (base.IndexCharacters != null)
 				{
@@ -149,7 +158,7 @@ namespace CustomSlider
 			}
 
 			//draw track
-			g.DrawLine(blackPen, TrackXStart, TrackYValue, TrackXEnd, TrackYValue);
+			//g.DrawLine(blackPen, TrackXStart, TrackYValue, TrackXEnd, TrackYValue);
 
 			//Deal with slider positioning
 			GraphicsPath currSliderGP = SliderGP;
@@ -181,10 +190,12 @@ namespace CustomSlider
 				currSliderGP = CustomSliderGP;
 			}
 
-			g.DrawLine(redPen, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY - getCurrHistogramHeight(findIndexOfSliderValue()));
+			//g.DrawLine(redPen, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY, currSliderGP.GetBounds().X + currSliderGP.GetBounds().Width / 2, histogramLowerY - getCurrHistogramHeight(findIndexOfSliderValue()));
 
-			g.FillPath(new SolidBrush(Color.FromArgb(128, Color.Gray)), currSliderGP);
-			g.DrawPath(blackPen, currSliderGP);
+			Pen sliderOutlinePen = new Pen(SLIDER_OUTLINE_COLOR, 2);
+			Brush sliderBrush = new SolidBrush(SLIDER_FILL_COLOR);
+			g.FillPath(sliderBrush, currSliderGP);
+			g.DrawPath(sliderOutlinePen, currSliderGP);
 
 			SlideArea = generateSlideArea();
             //g.DrawPath(new Pen(Color.Yellow, 2), SlideArea);

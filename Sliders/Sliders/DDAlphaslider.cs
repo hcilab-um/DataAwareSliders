@@ -63,8 +63,12 @@ namespace CustomSlider
             g.DrawPath(blackPen, leftButton);
             g.DrawPath(blackPen, rightButton);
 
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+
             g.FillPath(blackBrush, rightArrow);
             g.FillPath(blackBrush, leftArrow);
+
+			g.SmoothingMode = SmoothingMode.Default;
 
             RectangleF sliderRectangle = base.SliderGP.GetBounds();
 

@@ -1244,10 +1244,10 @@ namespace FilmFinder
 			InputDistortionSlider sliderToAccess; //will need to access some density information so I'll access a slider to do that. Since all sliders have the same distribution it doesn't matter which one I access
 			List<uint> itemsPerIndex;
 			int largestIndex;
-			bool foundSatisfyingRandomNumber = false;
-			double targetLowerBound = 0.0;
-			double targetUpperBound = 1.0;
-			int indexOfRandomNumber;
+			//bool foundSatisfyingRandomNumber = false;
+			//double targetLowerBound = 0.0;
+			//double targetUpperBound = 1.0;
+			//int indexOfRandomNumber;
 
 			currentSearchCategory = (SearchCategory)arrayDataSize1[currIndex];
 

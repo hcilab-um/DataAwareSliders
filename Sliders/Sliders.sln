@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliders", "Sliders.csproj", "{592E5266-A0AC-4ABE-96B6-203D50E1A340}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{66404E06-E93C-46DB-9C9E-4FD06C334462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,16 +25,6 @@ Global
 		{592E5266-A0AC-4ABE-96B6-203D50E1A340}.Release|Mixed Platforms.Build.0 = Release|x86
 		{592E5266-A0AC-4ABE-96B6-203D50E1A340}.Release|x86.ActiveCfg = Release|x86
 		{592E5266-A0AC-4ABE-96B6-203D50E1A340}.Release|x86.Build.0 = Release|x86
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{66404E06-E93C-46DB-9C9E-4FD06C334462}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

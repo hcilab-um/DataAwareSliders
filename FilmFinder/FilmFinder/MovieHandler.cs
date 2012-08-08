@@ -570,19 +570,17 @@ namespace FilmFinder
         {
             addAllToActiveSet();
 
-            Movie temp, current;
-            for (int i = activeMovies.Count - 1; i >= 0; i--)
-            {
-                current = activeMovies[i];
-                if (testRatingRange(current) || testYearRange(current) ||  testRunningTime(current) || testActor(current) || testDirector(current) || testCertification(current) || testGenre(current) || testActress(current))
-                {
-                    temp = current;
-                    activeMovies.RemoveAt(i);
-                    inactiveMovies.Add(temp);
-                }
-            }
-
-
+			Movie temp, current;
+			for (int i = activeMovies.Count - 1; i >= 0; i--)
+			{
+				current = activeMovies[i];
+				if (testRatingRange(current) || testYearRange(current) || testRunningTime(current) || testActor(current) || testDirector(current) || testCertification(current) || testGenre(current) || testActress(current))
+				{
+					temp = current;
+					activeMovies.RemoveAt(i);
+					inactiveMovies.Add(temp);
+				}
+			}
         }
 
 
@@ -718,30 +716,6 @@ namespace FilmFinder
                 if (genre.Equals(movie.Genre) && year.Equals(movie.Year) && (rating.Equals(movie.Rating) || rating.Equals(movie.Rating - 0.01)))
                     result = movie.deepCopy();
             }
-
-
-            //if (result == null)
-            //{
-            //    Debug.WriteLine("searching inactive");
-            //    foreach (Movie movie in inactiveMovies)
-            //    {
-            //        if (/*genre.Equals(movie.GenreList[0]) &&*/ year.Equals(movie.Year) && rating.Equals(movie.Rating))
-            //            result = movie.deepCopy();
-            //    }
-            //}
-
-
-            //if (result == null)
-            //{
-            //    Debug.WriteLine("seraching active for just year");
-            //    foreach (Movie movie in activeMovies)
-            //        if (year.Equals(movie.Year))
-            //            Debug.WriteLine(movie);
-            //    Debug.WriteLine("searching active for just rating");
-            //    foreach (Movie movie in activeMovies)
-            //        if (rating.Equals(movie.Rating))
-            //            Debug.WriteLine(movie);
-            //}
 
             if (result == null)
             {

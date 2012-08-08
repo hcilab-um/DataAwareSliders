@@ -43,8 +43,8 @@ namespace CustomSlider
 
             doPaintingMath();
 
-            Pen blackPen = new Pen(Color.Black, 2);
-            Brush blackBrush = new SolidBrush(Color.Black);
+            Pen arrowPen = new Pen(Color.FromArgb(38,38,10), 2);
+            Brush arrowBrush = new SolidBrush(arrowPen.Color);
 
             base.TrackXStart += buttonWidth;
             base.TrackXEnd -= buttonWidth;
@@ -58,16 +58,22 @@ namespace CustomSlider
             leftArrow = makeLeftArrow();
             rightArrow = makeRightArrow();
 
-            //draw them all
-            g.DrawPath(blackPen, leftButton);
-            g.DrawPath(blackPen, rightButton);
+			
 
-            g.FillPath(blackBrush, rightArrow);
-            g.FillPath(blackBrush, leftArrow);
+            //draw them all
+            g.DrawPath(arrowPen, leftButton);
+            g.DrawPath(arrowPen, rightButton);
+
+			pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            g.FillPath(arrowBrush, rightArrow);
+            g.FillPath(arrowBrush, leftArrow);
+
+			pe.Graphics.SmoothingMode = SmoothingMode.Default;
 
             RectangleF sliderRectangle = base.SliderGP.GetBounds();
 
-            pe.Graphics.DrawLine(new Pen(Color.Black, 2), sliderRectangle.X, sliderRectangle.Y + sliderRectangle.Height / 2,
+			pe.Graphics.DrawLine(new Pen(SLIDER_OUTLINE_COLOR, 2), sliderRectangle.X, sliderRectangle.Y + sliderRectangle.Height / 2,
                 sliderRectangle.Right, sliderRectangle.Y + sliderRectangle.Height / 2);
 
             //Redraw mouse pointer over slider
