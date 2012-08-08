@@ -157,7 +157,8 @@ namespace CustomSlider
 		void activeAreaSlider_StartMouseWheel(object sender, EventArgs e)
 		{
 			int rollValueChange = 1;
-            int itemsInList = listBox.Items.Count;//Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel);
+			int itemsInList = listBox.Items.Count;
+			int desiredNumberOfItems = Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel);
 			MouseEventArgs mouseInformation;
 
 			if (e is MouseEventArgs)
@@ -182,15 +183,17 @@ namespace CustomSlider
 				}
 				else
 				{
+					//at beginning of pixel
 					if (Value == RangeOfValues[0])
 					{
-						//rollValueChange = itemsInList - 1;
                         rollValueChange = 1;
 					}
-					else if (Value - RangeOfValues[0] <= itemsInList)
+						//one roll away from being at the beginnig of pixel
+					else if (Value - RangeOfValues[0] < itemsInList || Value - RangeOfValues[0] < desiredNumberOfItems)
 					{
 						rollValueChange = Value - RangeOfValues[0];
 					}
+						//in middle of pixel
 					else
 					{
                         rollValueChange = Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel) -1;

@@ -243,7 +243,8 @@ namespace CustomSlider
                         //Value--; //causes repeated invalidation which is slow
 
                         tempValue--;
-                        updateRangeAroundValues(tempValue);
+                        //updateRangeAroundValues(tempValue);
+						base.updateOffset(tempValue);
                     }
                 }
                 else
@@ -252,7 +253,8 @@ namespace CustomSlider
                     {
                        // Value++;
                         tempValue++;
-                        updateRangeAroundValues(tempValue);
+                        //updateRangeAroundValues(tempValue);
+						base.updateOffset(tempValue);
                     }
                 }
 

@@ -18,4 +18,3 @@ C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Custo
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.csproj.GenerateResource.Cache
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\Sliders.pdb
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\Sliders\obj\x86\Release\CustomSlider.Form1.resources

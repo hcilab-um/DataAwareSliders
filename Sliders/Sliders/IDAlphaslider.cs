@@ -73,7 +73,7 @@ namespace CustomSlider
 
             RectangleF sliderRectangle = base.SliderGP.GetBounds();
 
-			pe.Graphics.DrawLine(new Pen(SLIDER_OUTLINE_COLOR, 2), sliderRectangle.X, sliderRectangle.Y + sliderRectangle.Height / 2,
+			pe.Graphics.DrawLine(new Pen(SLIDER_OUTLINE_COLOR, 4), sliderRectangle.X, sliderRectangle.Y + sliderRectangle.Height / 2,
                 sliderRectangle.Right, sliderRectangle.Y + sliderRectangle.Height / 2);
 
             //Redraw mouse pointer over slider

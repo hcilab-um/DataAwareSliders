@@ -250,34 +250,39 @@ namespace CustomSlider
             tempValue = Value;
 			if (newValue < RangeOfValues[0] || newValue > RangeOfValues[RangeOfValues.Count - 1])
 			{
-                drawSlider = true;
-                
-                if (newValue < RangeOfValues[0])
-                {
-                    while (tempValue > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
-                    {
-                        //Value--; //causes repeated invalidation which is slow
+				//drawSlider = true;
 
-                        tempValue--;
-                        updateRangeAroundValues(tempValue);
-                    }
-                }
-                else
-                {
-                    while (tempValue < calculateMax() && RangeOfValues[0] != newValue)
-                    {
-                       // Value++;
-                        tempValue++;
-                        updateRangeAroundValues(tempValue);
-                    }
-                }
+				if (newValue < RangeOfValues[0])
+				{
+					while (tempValue > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
+					{
+						//Value--; //causes repeated invalidation which is slow
 
-                Refresh();
+						tempValue--;
+						//updateRangeAroundValues(tempValue);
+						base.updateOffset(tempValue);
+					}
+
+				}
+				else
+				{
+					while (tempValue < calculateMax() && RangeOfValues[0] != newValue)
+					{
+						// Value++;
+						tempValue++;
+						//updateRangeAroundValues(tempValue);
+						base.updateOffset(tempValue);
+					}
+
+				}
+				Refresh();
 			}
 
-            drawSlider = false;
-            rolledMouseWheel = true;
+			base.DrawSlider = false;
+			rolledMouseWheel = true;
 			Value = newValue;
+
+            
 			
 		}
 
