@@ -1342,7 +1342,7 @@ namespace FilmFinder
 			startSearchButton.Enabled = true;
 			bool correctSearch = checkForCorrectSearch();
 
-			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + +arrayDistortionType[currIndex] + "," + stopwatch.ElapsedMilliseconds
+			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + /*arrayDistortionType[currIndex] + "," + */stopwatch.ElapsedMilliseconds
 				+ ","+ correctSearch;
 			file.WriteLine(statistics);
 
@@ -1373,38 +1373,68 @@ namespace FilmFinder
 
 		private void disableAllSliders()
 		{
+			actorIDAlphaSlider.Enabled = false;
 			actorIDActiveAreaSlider.Enabled = false;
-			actorDDAlphaSlider.Enabled = false;
 			actorIDListSlider.Enabled = false;
 			actorIDActiveListSlider.Enabled = false;
 
+			actorDDAlphaSlider.Enabled = false;
+			actorDDActiveAreaSlider.Enabled = false;
+			actorDDListSlider.Enabled = false;
+			actorDDActiveListSlider.Enabled = false;
+
+			directorIDAlphaSlider.Enabled = false;
 			directorIDActiveAreaSlider.Enabled = false;
-			directorDDAlphaSlider.Enabled = false;
 			directorIDListSlider.Enabled = false;
 			directorIDActiveListSlider.Enabled = false;
 
+			directorDDAlphaSlider.Enabled = false;
+			directorDDActiveAreaSlider.Enabled = false;
+			directorDDListSlider.Enabled = false;
+			directorDDActiveListSlider.Enabled = false;
+
+			actressIDAlphaSlider.Enabled = false;
 			actressIDActiveAreaSlider.Enabled = false;
-			actressDDAlphaSlider.Enabled = false;
 			actressIDListSlider.Enabled = false;
 			actressIDActiveListSlider.Enabled = false;
+
+			actressDDAlphaSlider.Enabled = false;
+			actressDDActiveAreaSlider.Enabled = false;
+			actressDDListSlider.Enabled = false;
+			actressDDActiveListSlider.Enabled = false;
 		}
 
 		private void enableAllSlider()
 		{
+			actorIDAlphaSlider.Enabled = true;
 			actorIDActiveAreaSlider.Enabled = true;
-			actorDDAlphaSlider.Enabled = true;
 			actorIDListSlider.Enabled = true;
 			actorIDActiveListSlider.Enabled = true;
 
+			actorDDAlphaSlider.Enabled = true;
+			actorDDActiveAreaSlider.Enabled = true;
+			actorDDListSlider.Enabled = true;
+			actorDDActiveListSlider.Enabled = true;
+
+			directorIDAlphaSlider.Enabled = true;
 			directorIDActiveAreaSlider.Enabled = true;
-			directorDDAlphaSlider.Enabled = true;
 			directorIDListSlider.Enabled = true;
 			directorIDActiveListSlider.Enabled = true;
 
+			directorDDAlphaSlider.Enabled = true;
+			directorDDActiveAreaSlider.Enabled = true;
+			directorDDListSlider.Enabled = true;
+			directorDDActiveListSlider.Enabled = true;
+
+			actressIDAlphaSlider.Enabled = true;
 			actressIDActiveAreaSlider.Enabled = true;
-			actressDDAlphaSlider.Enabled = true;
 			actressIDListSlider.Enabled = true;
 			actressIDActiveListSlider.Enabled = true;
+
+			actressDDAlphaSlider.Enabled = true;
+			actressDDActiveAreaSlider.Enabled = true;
+			actressDDListSlider.Enabled = true;
+			actressDDActiveListSlider.Enabled = true;
 		}
 
 		public void setTrial()

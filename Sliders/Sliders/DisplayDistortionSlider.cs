@@ -356,7 +356,7 @@ namespace CustomSlider
             base.OnMouseUp(e);
             Capture = false;
             base.ClickedOnSlider = false;
-            //drawSlider = true;
+            drawSlider = true;
             base.DraggingSlider = false;
 
             resetMouseSpeed();
