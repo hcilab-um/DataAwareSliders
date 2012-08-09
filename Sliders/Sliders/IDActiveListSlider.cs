@@ -100,8 +100,8 @@ namespace CustomSlider
             activeAreaSlider.MouseDown += new MouseEventHandler(activeAreaSlider_MouseDown);
             activeAreaSlider.MouseLeave += new EventHandler(activeAreaSlider_MouseLeave);
 
-            this.MouseClick += new MouseEventHandler(panel1_MouseClick);
-            this.MouseLeave += new EventHandler(ActiveMultiSlider_MouseLeave);
+            this.MouseClick += new MouseEventHandler(IDActiveListSlider_MouseClick);
+            this.MouseLeave += new EventHandler(IDActiveListSlider_MouseLeave);
 			listBox.SelectedIndexChanged += new EventHandler(listBox_SelectedIndexChanged);
             listBox.MouseLeave += new EventHandler(listBox_MouseLeave);
 			//activeAreaSlider.ItemsInIndices = new List<uint>(new uint[] { 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500, 1000, 5000, 2000, 4000, 3500 });
@@ -112,15 +112,15 @@ namespace CustomSlider
 
         void activeAreaSlider_MouseLeave(object sender, EventArgs e)
         {
-            ActiveMultiSlider_MouseLeave(sender, e);
+            IDActiveListSlider_MouseLeave(sender, e);
         }
 
         void listBox_MouseLeave(object sender, EventArgs e)
         {
-            ActiveMultiSlider_MouseLeave(sender, e);
+            IDActiveListSlider_MouseLeave(sender, e);
         }
 
-        void ActiveMultiSlider_MouseLeave(object sender, EventArgs e)
+        void IDActiveListSlider_MouseLeave(object sender, EventArgs e)
         {
             if (ClientRectangle.Contains(PointToClient( Cursor.Position)))
                 return;
@@ -128,7 +128,7 @@ namespace CustomSlider
                 listBox.Hide();
         }
 
-        void panel1_MouseClick(object sender, MouseEventArgs e)
+        void IDActiveListSlider_MouseClick(object sender, MouseEventArgs e)
         {
             if (!activeAreaSlider.ClientRectangle.Contains(e.Location))
             {

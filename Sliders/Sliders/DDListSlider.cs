@@ -17,6 +17,7 @@ namespace CustomSlider
 		private int distanceFromSliderToLabel = 10;
 		private int distanceFromSliderToListBox = 10;
 		private bool showLabel = false;
+		private bool valueRecentlyChanged = false;
 
         #region Getters and Setters
 
@@ -73,7 +74,11 @@ namespace CustomSlider
 		public int Value
 		{
 			get { return DDMultiValueSlider.Value; }
-			set { DDMultiValueSlider.Value = value; }
+			set 
+			{ 
+				DDMultiValueSlider.Value = value;
+				listBox.Hide();
+			}
 		}
 
 		public ListBox ListBox
@@ -94,8 +99,15 @@ namespace CustomSlider
 			InitializeComponent();
 
 			SetStyle(ControlStyles.Selectable | ControlStyles.ResizeRedraw | ControlStyles.UserMouse | ControlStyles.FixedHeight, true);
-			DDMultiValueSlider.ValueChanged += new EventHandler(multiValueSliderV21_ValueChanged);
-			DDMultiValueSlider.MouseMove += new MouseEventHandler(multiValueSliderV21_MouseMove);
+			DDMultiValueSlider.ValueChanged += new EventHandler(DDMultiValueSlider_ValueChanged);
+			DDMultiValueSlider.MouseUp += new MouseEventHandler(DDMultiValueSlider_MouseUp);
+			DDMultiValueSlider.MouseDown += new MouseEventHandler(DDMultiValueSlider_MouseDown);
+			DDMultiValueSlider.MouseLeave += new EventHandler(DDMultiValueSlider_MouseLeave);
+
+			this.MouseClick += new MouseEventHandler(DDListSlider_MouseClick);
+			this.MouseLeave += new EventHandler(DDListSlider_MouseLeave);
+
+			listBox.MouseLeave += new EventHandler(listBox_MouseLeave);
 
 			label.TextChanged += new EventHandler(label1_TextChanged);
 
@@ -109,19 +121,12 @@ namespace CustomSlider
 
 			
 		}
-		
-
-		void label1_TextChanged(object sender, EventArgs e)
-		{
-			if (TextChanged != null)
-				TextChanged(this, new EventArgs());
-		}
 
 		private void initializeListBox()
 		{
 			//listBox1.Hide();
 			listBox.ScrollAlwaysVisible = true;
-			listBox.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+			listBox.SelectedIndexChanged += new EventHandler(listBox_SelectedIndexChanged);
 			listBox.BackColor = Color.FromArgb(255, listBox.BackColor);
 			//listBox1.
 		}
@@ -189,15 +194,6 @@ namespace CustomSlider
 
 		#region Overridden Events
 
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			base.OnPaint(e);
-
-			//outline client rectangle
-			//Pen outlinePen = new Pen(Color.Red);
-			//e.Graphics.DrawRectangle(outlinePen, 0, 0, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-		}
-
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
 			base.OnMouseDown(e);
@@ -210,54 +206,13 @@ namespace CustomSlider
 			base.OnMouseWheel(e);
 		}
 
-		protected override void OnLostFocus(EventArgs e)
+		void label1_TextChanged(object sender, EventArgs e)
 		{
-			base.OnLostFocus(e);
+			if (TextChanged != null)
+				TextChanged(this, new EventArgs());
 		}
 
-		protected override void OnMouseLeave(EventArgs e)
-		{
-			//base.OnMouseLeave(e);
-			//listBox1.Hide();
-		}
-
-		protected override void OnMouseUp(MouseEventArgs e)
-		{
-			base.OnMouseUp(e);
-			listBox.Show();
-		}
-
-		protected override void OnMouseMove(MouseEventArgs e)
-		{
-			
-			if (e.X < 0 || e.X > ClientRectangle.Width || e.Y < 0 || e.Y > ClientRectangle.Height)
-			{
-				//listBox1.Hide();
-				if (showLabel)
-					label.Show();
-			}
-			else
-			{
-				if (e.Button == MouseButtons.Left)
-				{
-					//listBox1.Hide();
-				}
-				else
-				{
-					changeListBoxPosition();
-					listBox.Show();
-				}
-			}
-			base.OnMouseMove(e);
-		}
-
-		void multiValueSliderV21_MouseMove(object sender, MouseEventArgs e)
-		{
-			listBox.Show();
-		}
-
-
-		void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+		void listBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			string tempString = listBox.Items[listBox.SelectedIndex].ToString();
 			//if(showLabel) label1.Show();
@@ -266,10 +221,9 @@ namespace CustomSlider
 			//label1.Hide();
 		}
 
-		void multiValueSliderV21_ValueChanged(object sender, EventArgs e)
+		void DDMultiValueSlider_ValueChanged(object sender, EventArgs e)
 		{
-			DDMultiValueSlider.Refresh();
-			//multiValueSliderV21.Invalidate();
+			DDMultiValueSlider.Update();
 
 			updateListBoxConents();
 
@@ -278,6 +232,52 @@ namespace CustomSlider
 			//changeLabelPosition();
 			changeListBoxPosition();
 			Invalidate();
+
+			valueRecentlyChanged = true;
+		}
+
+		void DDMultiValueSlider_MouseLeave(object sender, EventArgs e)
+		{
+			DDListSlider_MouseLeave(sender, e);
+		}
+
+		void listBox_MouseLeave(object sender, EventArgs e)
+		{
+			DDListSlider_MouseLeave(sender, e);
+		}
+
+		void DDListSlider_MouseLeave(object sender, EventArgs e)
+		{
+			if (ClientRectangle.Contains(PointToClient(Cursor.Position)))
+				return;
+			else
+				listBox.Hide();
+		}
+
+		void DDListSlider_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (!DDMultiValueSlider.ClientRectangle.Contains(e.Location))
+			{
+				listBox.Hide();
+			}
+		}
+
+		void DDMultiValueSlider_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (DDMultiValueSlider.SliderGP.GetBounds().Contains(e.Location))
+				listBox.Hide();
+		}
+
+		void DDMultiValueSlider_MouseUp(object sender, MouseEventArgs e)
+		{
+			if (valueRecentlyChanged || DDMultiValueSlider.SliderGP.GetBounds().Contains(e.Location))
+			{
+				listBox.Show();
+			}
+			else
+				listBox.Hide();
+
+			valueRecentlyChanged = false;
 		}
 		#endregion
     }

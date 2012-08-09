@@ -30,8 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IDListSlider));
 			this.label1 = new System.Windows.Forms.Label();
-			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.multiValueSliderV21 = new CustomSlider.IDMultiValueSlider();
+			this.listBox = new System.Windows.Forms.ListBox();
+			this.IDMultiValueSlider = new CustomSlider.IDMultiValueSlider();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -45,36 +45,36 @@
 			// 
 			// listBox1
 			// 
-			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-			this.listBox1.BackColor = System.Drawing.SystemColors.Control;
-			this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(38, 3);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(120, 78);
-			this.listBox1.TabIndex = 3;
+			this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+			this.listBox.BackColor = System.Drawing.SystemColors.Control;
+			this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.listBox.FormattingEnabled = true;
+			this.listBox.Location = new System.Drawing.Point(38, 3);
+			this.listBox.Name = "listBox1";
+			this.listBox.Size = new System.Drawing.Size(120, 78);
+			this.listBox.TabIndex = 3;
 			// 
 			// multiValueSliderV21
 			// 
-			this.multiValueSliderV21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.IDMultiValueSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.multiValueSliderV21.IndexCharacters = null;
-			this.multiValueSliderV21.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("multiValueSliderV21.ItemsInIndices")));
-			this.multiValueSliderV21.Location = new System.Drawing.Point(3, 3);
-			this.multiValueSliderV21.Name = "multiValueSliderV21";
-			this.multiValueSliderV21.Size = new System.Drawing.Size(492, 45);
-			this.multiValueSliderV21.TabIndex = 0;
-			this.multiValueSliderV21.Text = "multiValueSliderV21";
-			this.multiValueSliderV21.Value = 0;
+			this.IDMultiValueSlider.IndexCharacters = null;
+			this.IDMultiValueSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("multiValueSliderV21.ItemsInIndices")));
+			this.IDMultiValueSlider.Location = new System.Drawing.Point(3, 3);
+			this.IDMultiValueSlider.Name = "multiValueSliderV21";
+			this.IDMultiValueSlider.Size = new System.Drawing.Size(492, 45);
+			this.IDMultiValueSlider.TabIndex = 0;
+			this.IDMultiValueSlider.Text = "multiValueSliderV21";
+			this.IDMultiValueSlider.Value = 0;
 			// 
 			// MultiValueSliderV3
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Transparent;
-			this.Controls.Add(this.listBox1);
+			this.Controls.Add(this.listBox);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.multiValueSliderV21);
+			this.Controls.Add(this.IDMultiValueSlider);
 			this.Name = "MultiValueSliderV3";
 			this.Size = new System.Drawing.Size(498, 81);
 			this.ResumeLayout(false);
@@ -84,8 +84,8 @@
 
 		#endregion
 
-		private IDMultiValueSlider multiValueSliderV21;
+		private IDMultiValueSlider IDMultiValueSlider;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.ListBox listBox;
 	}
 }
