@@ -278,9 +278,9 @@ namespace CustomSlider
 
 		}
 
-        private void processMouseLocation(Point mouseLocation)
+        public void processMouseLocation(Point mouseLocation)
         {
-            if (Capture && base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
+            if (base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
             {
                 if (mouseLocation.X < 0)
                     Value = 0;

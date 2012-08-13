@@ -323,9 +323,9 @@ namespace CustomSlider
 
         }
 
-        private void processMouseLocation(Point e)
+        protected void processMouseLocation(Point e)
         {
-            if (Capture && base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
+            if (base.ClickedOnSlider && !lastMousePosition.Equals(Cursor.Position))
             {
                 if (e.X < base.SlideArea.GetBounds().X + base.SliderWidth / 2)
                     Value = minimum;

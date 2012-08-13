@@ -202,8 +202,43 @@ namespace CustomSlider
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
 			listBox.Show();
-			listBox.Focus();
-			base.OnMouseWheel(e);
+
+			listBox.BeginUpdate();
+
+			if (e.Delta > 0)
+			{
+				if (listBox.SelectedIndex > 0)
+					listBox.SelectedIndex--;
+				else
+				{
+					if (DDMultiValueSlider.RangeOfValues[0] != 0)
+					{
+						RectangleF slider = DDMultiValueSlider.SliderGP.GetBounds();
+						Point simulatedMouseLocation = new Point((int)Math.Round(slider.X + slider.Width / 2) - 1, (int)Math.Round(slider.Y + slider.Height / 2));
+						DDMultiValueSlider.processMouseLocation(simulatedMouseLocation);
+						listBox.SelectedIndex = listBox.Items.Count - 1;
+					}
+				}
+			}
+			else
+			{
+				if (listBox.SelectedIndex < listBox.Items.Count - 1)
+					listBox.SelectedIndex++;
+				else
+				{
+					if (DDMultiValueSlider.RangeOfValues[DDMultiValueSlider.RangeOfValues.Count - 1] != DDMultiValueSlider.calculateMax())
+					{
+						RectangleF slider = DDMultiValueSlider.SliderGP.GetBounds();
+						Point simulatedMouseLocation = new Point((int)Math.Round(slider.X + slider.Width / 2) + 1, (int)Math.Round(slider.Y + slider.Height / 2));
+						DDMultiValueSlider.processMouseLocation(simulatedMouseLocation);
+					}
+				}
+			}
+
+			listBox.EndUpdate();
+
+			//Having "Invalidate();" wouldn't update the position of the scrollbar. A test with refresh did allow the scrollbar to move.
+			Refresh();
 		}
 
 		void label1_TextChanged(object sender, EventArgs e)

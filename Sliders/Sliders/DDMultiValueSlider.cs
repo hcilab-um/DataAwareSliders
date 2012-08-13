@@ -37,5 +37,12 @@ namespace CustomSlider
 		{
 			return base.calculateMax();
 		}
+
+		public new void processMouseLocation(Point mouseLocation)
+		{
+			base.ClickedOnSlider = true;
+			base.processMouseLocation(mouseLocation);
+			base.ClickedOnSlider = false;
+		}
     }
 }
