@@ -30,7 +30,7 @@
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IDActiveListSlider));
             this.listBox = new System.Windows.Forms.ListBox();
-            this.activeAreaSlider = new CustomSlider.IDActiveAreaSlider();
+            this.IDActiveAreaSlider = new CustomSlider.IDActiveAreaSlider();
             this.SuspendLayout();
             // 
             // listBox
@@ -44,26 +44,26 @@
             // 
             // activeAreaSlider
             // 
-            this.activeAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.IDActiveAreaSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.activeAreaSlider.DrawSlider = true;
-            this.activeAreaSlider.IndexCharacters = null;
-            this.activeAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSlider.ItemsInIndices")));
-            this.activeAreaSlider.Location = new System.Drawing.Point(8, 12);
-            this.activeAreaSlider.MaxItemsPerSliderPixel = 2;
-            this.activeAreaSlider.Name = "activeAreaSlider";
-            this.activeAreaSlider.RollChangeValue = 1;
-            this.activeAreaSlider.Size = new System.Drawing.Size(440, 46);
-            this.activeAreaSlider.TabIndex = 0;
-            this.activeAreaSlider.Text = "activeAreaSliderv21";
-            this.activeAreaSlider.Value = 0;
+            this.IDActiveAreaSlider.DrawSlider = true;
+            this.IDActiveAreaSlider.IndexCharacters = null;
+            this.IDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("activeAreaSlider.ItemsInIndices")));
+            this.IDActiveAreaSlider.Location = new System.Drawing.Point(8, 12);
+            this.IDActiveAreaSlider.MaxItemsPerSliderPixel = 2;
+            this.IDActiveAreaSlider.Name = "activeAreaSlider";
+            this.IDActiveAreaSlider.RollChangeValue = 1;
+            this.IDActiveAreaSlider.Size = new System.Drawing.Size(440, 46);
+            this.IDActiveAreaSlider.TabIndex = 0;
+            this.IDActiveAreaSlider.Text = "activeAreaSliderv21";
+            this.IDActiveAreaSlider.Value = 0;
             // 
             // IDActiveListSlider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listBox);
-            this.Controls.Add(this.activeAreaSlider);
+            this.Controls.Add(this.IDActiveAreaSlider);
             this.Name = "IDActiveListSlider";
             this.Size = new System.Drawing.Size(458, 103);
             this.ResumeLayout(false);
@@ -73,7 +73,7 @@
 		#endregion
 
         private System.Windows.Forms.ListBox listBox;
-        private IDActiveAreaSlider activeAreaSlider;
+        private IDActiveAreaSlider IDActiveAreaSlider;
 
     }
 }

@@ -254,7 +254,7 @@ namespace CustomSlider
 
 				if (newValue < RangeOfValues[0])
 				{
-					while (tempValue > 0 && RangeOfValues[RangeOfValues.Count - 1] != newValue)
+					while (tempValue > 0 && RangeOfValues[RangeOfValues.Count - 1] > newValue)
 					{
 						//Value--; //causes repeated invalidation which is slow
 
@@ -266,7 +266,7 @@ namespace CustomSlider
 				}
 				else
 				{
-					while (tempValue < calculateMax() && RangeOfValues[0] != newValue)
+					while (tempValue < calculateMax() && RangeOfValues[0] < newValue)
 					{
 						// Value++;
 						tempValue++;
@@ -286,6 +286,11 @@ namespace CustomSlider
 			
 		}
 
+		public void simulateMouseWheel(MouseEventArgs e)
+		{
+			OnMouseWheel(e);
+		}
+
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			//base.OnKeyDown(e);
@@ -295,11 +300,13 @@ namespace CustomSlider
 			{
 				case Keys.Down:
 				case Keys.Left:
-					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0,0,-120));
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, -120));
+					//Value--;
 					break;
 				case Keys.Up:
 				case Keys.Right:
-					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0,0,120));
+					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, 120));
+					//Value++;
 					break;
 			}
 		}

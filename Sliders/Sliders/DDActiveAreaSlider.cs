@@ -267,6 +267,11 @@ namespace CustomSlider
 			
 		}
 
+		public void simulateMouseWheel(MouseEventArgs e)
+		{
+			OnMouseWheel(e);
+		}
+
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			//base.OnKeyDown(e);
@@ -277,10 +282,12 @@ namespace CustomSlider
 				case Keys.Down:
 				case Keys.Left:
 					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, -120));
+					//Value--;
 					break;
 				case Keys.Up:
 				case Keys.Right:
 					OnMouseWheel(new MouseEventArgs(System.Windows.Forms.MouseButtons.None, 0, 0, 0, 120));
+					//Value++;
 					break;
 			}
 		}

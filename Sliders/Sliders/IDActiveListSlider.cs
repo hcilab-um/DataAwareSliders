@@ -35,32 +35,32 @@ namespace CustomSlider
 
 		public int Value
 		{
-			get { return activeAreaSlider.Value; }
+			get { return IDActiveAreaSlider.Value; }
 			set 
 			{
-				activeAreaSlider.DrawSlider = true;
-				activeAreaSlider.Value = value;
+				IDActiveAreaSlider.DrawSlider = true;
+				IDActiveAreaSlider.Value = value;
                 listBox.Hide();
 			}
 		}
 
 		public List<uint> ItemsInIndices
 		{
-			set { activeAreaSlider.ItemsInIndices = value; }
+			set { IDActiveAreaSlider.ItemsInIndices = value; }
 		}
 
 		public List<char> IndexNames
 		{
-			get { return activeAreaSlider.IndexCharacters; }
+			get { return IDActiveAreaSlider.IndexCharacters; }
 			set
 			{
-				activeAreaSlider.IndexCharacters = value;
+				IDActiveAreaSlider.IndexCharacters = value;
 			}
 		}
 
 		public List<int> RangeOfValues
 		{
-			get { return activeAreaSlider.RangeOfValues; }
+			get { return IDActiveAreaSlider.RangeOfValues; }
 		}
 
 		public int SelectedIndex
@@ -81,10 +81,10 @@ namespace CustomSlider
 
         public List<char> IndexCharacters
         {
-            get { return activeAreaSlider.IndexCharacters; }
+            get { return IDActiveAreaSlider.IndexCharacters; }
             set
             {
-                activeAreaSlider.IndexCharacters = value;
+                IDActiveAreaSlider.IndexCharacters = value;
             }
         }
 
@@ -93,12 +93,12 @@ namespace CustomSlider
 		public IDActiveListSlider()
 		{
 			InitializeComponent();
-			activeAreaSlider.MaxItemsPerSliderPixel = 7;
-			activeAreaSlider.ValueChanged += new EventHandler(activeAreaSlider_ValueChanged);
-			activeAreaSlider.StartMouseWheel += new EventHandler(activeAreaSlider_StartMouseWheel);
-            activeAreaSlider.MouseUp += new MouseEventHandler(activeAreaSlider_MouseUp);
-            activeAreaSlider.MouseDown += new MouseEventHandler(activeAreaSlider_MouseDown);
-            activeAreaSlider.MouseLeave += new EventHandler(activeAreaSlider_MouseLeave);
+			IDActiveAreaSlider.MaxItemsPerSliderPixel = 7;
+			IDActiveAreaSlider.ValueChanged += new EventHandler(activeAreaSlider_ValueChanged);
+			IDActiveAreaSlider.StartMouseWheel += new EventHandler(activeAreaSlider_StartMouseWheel);
+            IDActiveAreaSlider.MouseUp += new MouseEventHandler(activeAreaSlider_MouseUp);
+            IDActiveAreaSlider.MouseDown += new MouseEventHandler(activeAreaSlider_MouseDown);
+            IDActiveAreaSlider.MouseLeave += new EventHandler(activeAreaSlider_MouseLeave);
 
             this.MouseClick += new MouseEventHandler(IDActiveListSlider_MouseClick);
             this.MouseLeave += new EventHandler(IDActiveListSlider_MouseLeave);
@@ -130,7 +130,7 @@ namespace CustomSlider
 
         void IDActiveListSlider_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!activeAreaSlider.ClientRectangle.Contains(e.Location))
+            if (!IDActiveAreaSlider.ClientRectangle.Contains(e.Location))
             {
                 listBox.Hide();
             }
@@ -138,13 +138,13 @@ namespace CustomSlider
 
         void activeAreaSlider_MouseDown(object sender, MouseEventArgs e)
         {
-            if (activeAreaSlider.SliderGP.GetBounds().Contains(e.Location))
+            if (IDActiveAreaSlider.SliderGP.GetBounds().Contains(e.Location))
                 listBox.Show();
         }
 
         void activeAreaSlider_MouseUp(object sender, MouseEventArgs e)
         {
-            if (valueRecentlyChanged || activeAreaSlider.SliderGP.GetBounds().Contains(e.Location))
+            if (valueRecentlyChanged || IDActiveAreaSlider.SliderGP.GetBounds().Contains(e.Location))
             {
                 listBox.Show();
             }
@@ -158,13 +158,12 @@ namespace CustomSlider
 		{
 			int rollValueChange = 1;
 			int itemsInList = listBox.Items.Count;
-			int desiredNumberOfItems = Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel);
-			MouseEventArgs mouseInformation;
+			int desiredNumberOfItems = Math.Max(MINIMUM_ITEMS_IN_LIST, IDActiveAreaSlider.ItemsPerSliderPixel);
+			MouseEventArgs mouseInformation = e as MouseEventArgs;
 
-			if (e is MouseEventArgs)
+			if (mouseInformation != null)
 			{
                 listBox.Show();
-				mouseInformation = (MouseEventArgs)e;
 
 				if (mouseInformation.Delta > 0)
 				{
@@ -172,9 +171,10 @@ namespace CustomSlider
                     {
                         rollValueChange = 1;
                     }
+						//last item in the list is the last value in the RangeOfValues
 					else if (RangeOfValues[RangeOfValues.Count - 1] - Value < itemsInList)
 					{
-						rollValueChange = RangeOfValues[RangeOfValues.Count - 1] - Value;
+						rollValueChange = RangeOfValues[RangeOfValues.Count - 1] - Value + 1;
 					}
 					else
 					{
@@ -186,23 +186,23 @@ namespace CustomSlider
 					//at beginning of pixel
 					if (Value == RangeOfValues[0])
 					{
-                        rollValueChange = 1;
+						rollValueChange = 1;
 					}
-						//one roll away from being at the beginnig of pixel
+					//one roll away from being at the beginnig of pixel
 					else if (Value - RangeOfValues[0] < itemsInList || Value - RangeOfValues[0] < desiredNumberOfItems)
 					{
 						rollValueChange = Value - RangeOfValues[0];
 					}
-						//in middle of pixel
+					//in middle of pixel
 					else
 					{
-                        rollValueChange = Math.Max(MINIMUM_ITEMS_IN_LIST, activeAreaSlider.ItemsPerSliderPixel) -1;
+						rollValueChange = desiredNumberOfItems - 1;
 					}
 				}
 				
 			}
 
-			activeAreaSlider.RollChangeValue = rollValueChange;
+			IDActiveAreaSlider.RollChangeValue = rollValueChange;
 		}
 
 		void listBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -212,7 +212,7 @@ namespace CustomSlider
 
 		void activeAreaSlider_ValueChanged(object sender, EventArgs e)
 		{
-            activeAreaSlider.Update();
+            IDActiveAreaSlider.Update();
 
 			updateListBox();
 			changeListBoxPosition();
@@ -230,15 +230,19 @@ namespace CustomSlider
 
 				listBox.BeginUpdate();
 				listBox.Items.Clear();
-				for (int i = 0; i < Math.Max(activeAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST); i++)
+				for (int i = 0; i < Math.Max(IDActiveAreaSlider.ItemsPerSliderPixel, MINIMUM_ITEMS_IN_LIST); i++)
 				{
-                    if (activeAreaSlider.Value + i <= activeAreaSlider.RangeOfValues[activeAreaSlider.RangeOfValues.Count - 1])
+                    if (IDActiveAreaSlider.Value + i <= IDActiveAreaSlider.RangeOfValues[IDActiveAreaSlider.RangeOfValues.Count - 1])
                     {
-                        itemBeingAdded = data[activeAreaSlider.Value + i].ToString();
+                        itemBeingAdded = data[IDActiveAreaSlider.Value + i].ToString();
                         listBox.Items.Add(itemBeingAdded);
                     }
 				}
-				listBox.SelectedIndex = 0;
+
+				if (listBox.Items.Count > 0)
+					listBox.SelectedIndex = 0;
+				else
+					listBox.SelectedIndex = -1;
 				listBox.EndUpdate();
 
 				OnQueryChanged();
@@ -250,15 +254,15 @@ namespace CustomSlider
 			int listBoxWidth = listBox.Width;
 			int newX = listBox.Location.X;
 
-			if (activeAreaSlider.SliderGP != null)
+			if (IDActiveAreaSlider.SliderGP != null)
             {
-                PointF sliderLocationPointF = activeAreaSlider.SliderGP.GetBounds().Location;
-                int sliderX = (int)sliderLocationPointF.X + activeAreaSlider.Location.X;
+                PointF sliderLocationPointF = IDActiveAreaSlider.SliderGP.GetBounds().Location;
+                int sliderX = (int)sliderLocationPointF.X + IDActiveAreaSlider.Location.X;
 
-				if (sliderX + activeAreaSlider.SliderGP.GetBounds().Width + DISTANCE_FROM_SLIDER_TO_LISTBOX + listBoxWidth > ClientRectangle.Width)
+				if (sliderX + IDActiveAreaSlider.SliderGP.GetBounds().Width + DISTANCE_FROM_SLIDER_TO_LISTBOX + listBoxWidth > ClientRectangle.Width)
 					newX = sliderX - DISTANCE_FROM_SLIDER_TO_LISTBOX - listBoxWidth;
 				else
-					newX = sliderX + (int)activeAreaSlider.SliderGP.GetBounds().Width + DISTANCE_FROM_SLIDER_TO_LISTBOX;
+					newX = sliderX + (int)IDActiveAreaSlider.SliderGP.GetBounds().Width + DISTANCE_FROM_SLIDER_TO_LISTBOX;
 			}
 			listBox.Location = new Point(newX, listBox.Location.Y);
 		}
@@ -273,7 +277,7 @@ namespace CustomSlider
 		{
 			if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down)
 			{
-				activeAreaSlider.simulateKeyDown(keyData);
+				IDActiveAreaSlider.simulateKeyDown(keyData);
 				return true;
 			}
 
