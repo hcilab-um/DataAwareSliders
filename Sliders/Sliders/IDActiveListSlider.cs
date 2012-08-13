@@ -139,7 +139,7 @@ namespace CustomSlider
         void activeAreaSlider_MouseDown(object sender, MouseEventArgs e)
         {
             if (activeAreaSlider.SliderGP.GetBounds().Contains(e.Location))
-                listBox.Hide();
+                listBox.Show();
         }
 
         void activeAreaSlider_MouseUp(object sender, MouseEventArgs e)

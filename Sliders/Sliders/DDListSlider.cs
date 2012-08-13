@@ -265,7 +265,7 @@ namespace CustomSlider
 		void DDMultiValueSlider_MouseDown(object sender, MouseEventArgs e)
 		{
 			if (DDMultiValueSlider.SliderGP.GetBounds().Contains(e.Location))
-				listBox.Hide();
+				listBox.Show();
 		}
 
 		void DDMultiValueSlider_MouseUp(object sender, MouseEventArgs e)
