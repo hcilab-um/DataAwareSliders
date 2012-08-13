@@ -58,5 +58,5 @@ C:\Users\nikon\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\R
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.FilmFinderGUI.af-ZA.resources
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.csproj.GenerateResource.Cache
 C:\Users\nikon\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\af-ZA\FilmFinder.resources.dll
-C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\Sliders.dll
 C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\Sliders.pdb
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\Sliders.dll
