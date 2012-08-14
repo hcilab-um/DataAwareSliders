@@ -12,10 +12,14 @@ namespace FilmFinder
 {
     public class MovieHandler
     {
+		public event EventHandler MoviesJustFiltered;
         private MovieList activeMovies, inactiveMovies;
         private List<string> disabledGenres, disabledCertifications, uniqueActors, uniqueDirectors, uniqueActresses;
         int runningTimeMin, runningTimeMax, yearMin, yearMax;
         double ratingMin, ratingMax;
+
+		Timer defferalTimer = new Timer() { Enabled = false, Interval = 62 };
+		bool timerJustTicked = false;
 
 		Random random = new Random();
 
@@ -23,10 +27,7 @@ namespace FilmFinder
 
         public MovieHandler()
         {
-			Stopwatch temp = new Stopwatch();
-			temp.Start();
-
-            activeMovies = new MovieList();
+			activeMovies = new MovieList();
             inactiveMovies = new MovieList();
             disabledGenres = new List<string>();
             uniqueActors = new List<string>();
@@ -41,14 +42,21 @@ namespace FilmFinder
 			//readXML("movies.xml");
 			getMoviesFromDB();
 
-
             getUniqueActors();
-
 			getUniqueActresses();
-
             getUniqueDirectors();
 
+			defferalTimer.Tick += new EventHandler(defferalTimer_Tick);
+
         }
+
+		void defferalTimer_Tick(object sender, EventArgs e)
+		{
+			defferalTimer.Enabled = false;
+			timerJustTicked = true;
+			filterMovies();
+			timerJustTicked = false;
+		}
 
 		//public void readXML(String fileName)
 		//{
@@ -426,6 +434,7 @@ namespace FilmFinder
                     disabledGenres.Add(str);
 
             removeAllFromActiveSet();
+			filterMovies();
         }
 
 
@@ -568,18 +577,28 @@ namespace FilmFinder
 
         private void filterMovies()
         {
-            addAllToActiveSet();
-
-			Movie temp, current;
-			for (int i = activeMovies.Count - 1; i >= 0; i--)
+			if (timerJustTicked && !defferalTimer.Enabled)
 			{
-				current = activeMovies[i];
-				if (testRatingRange(current) || testYearRange(current) || testRunningTime(current) || testActor(current) || testDirector(current) || testCertification(current) || testGenre(current) || testActress(current))
+				addAllToActiveSet();
+
+				Movie temp, current;
+				for (int i = activeMovies.Count - 1; i >= 0; i--)
 				{
-					temp = current;
-					activeMovies.RemoveAt(i);
-					inactiveMovies.Add(temp);
+					current = activeMovies[i];
+					if (testRatingRange(current) || testYearRange(current) || testRunningTime(current) || testActor(current) || testDirector(current) || testCertification(current) || testGenre(current) || testActress(current))
+					{
+						temp = current;
+						activeMovies.RemoveAt(i);
+						inactiveMovies.Add(temp);
+					}
 				}
+
+				if (MoviesJustFiltered != null)
+					MoviesJustFiltered(this, new EventArgs());
+			}
+			else if(!timerJustTicked && !defferalTimer.Enabled)
+			{
+				defferalTimer.Enabled = true;
 			}
         }
 

@@ -48,6 +48,7 @@ namespace FilmFinder
             genreCheckBoxList = new List<CheckBox>();
             certificationCheckBoxList = new List<CheckBox>();
 			this.movieHandler = app;
+			this.movieHandler.MoviesJustFiltered += new EventHandler(movieHandler_MoviesJustFiltered);
 
 			genreList = movieHandler.getUniqueGenres();
 			createAllSeries();
@@ -73,6 +74,8 @@ namespace FilmFinder
 			initializeFileWriting();
 			setTrial();
 		}
+
+		
 
 		private void initializeFileWriting()
 		{
@@ -142,6 +145,11 @@ namespace FilmFinder
 			label2.Text = "" + activeMovies.Count;
 
 			
+		}
+		
+		void movieHandler_MoviesJustFiltered(object sender, EventArgs e)
+		{
+			drawActiveSet();
 		}
 
 		#region Initialization of controls
@@ -500,7 +508,7 @@ namespace FilmFinder
 			chart1.ChartAreas[0].AxisX.Maximum = maxYear + (chart1.ChartAreas[0].AxisX.Interval - maxYear % chart1.ChartAreas[0].AxisX.Interval); //I want the axis to look good so I had to do some math.
 												//I want my scale to end as a multiple of my interval. To do that, I need to find out far away my max value is from the next multiple. This is done in the brackets	
             
-            drawActiveSet();
+            //drawActiveSet();
 		}
 
         /// <summary>
@@ -604,7 +612,7 @@ namespace FilmFinder
 
 			//disable those movies and then draw the active set of movies
 			movieHandler.disableAllGenres(temp);
-			drawActiveSet();
+			//drawActiveSet();
 		}
 
         /// <summary>
@@ -620,7 +628,7 @@ namespace FilmFinder
             }
 
 			movieHandler.enableAllGenres();
-			drawActiveSet();
+			//drawActiveSet();
 		}
 
 		/// <summary>
@@ -642,7 +650,7 @@ namespace FilmFinder
 
 			//disable those movies and then draw the active set of movies
 			movieHandler.disableAllCertifications(temp);
-			drawActiveSet();
+			//drawActiveSet();
 		}
 
 		/// <summary>
@@ -658,7 +666,7 @@ namespace FilmFinder
 			}
 
 			movieHandler.enableAllCertifications();
-			drawActiveSet();
+			//drawActiveSet();
 		}
 
         /// <summary>
@@ -675,7 +683,7 @@ namespace FilmFinder
             else if (toHandle.CheckState == CheckState.Unchecked)
                 movieHandler.disableGenre(toHandle.Name);
 
-            drawActiveSet();
+            //drawActiveSet();
 		}
 
 		/// <summary>
@@ -691,7 +699,7 @@ namespace FilmFinder
             else if (toHandle.CheckState == CheckState.Unchecked)
                 movieHandler.disableCertification(toHandle.Name);
 
-            drawActiveSet();
+            //drawActiveSet();
         }
 
 		/// <summary>
@@ -716,7 +724,7 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentActorLabel.Text = movieHandler.updateActorFilter(value);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -740,7 +748,7 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(value);
-				drawActiveSet();
+				//drawActiveSet();
 			}
         }
 
@@ -759,7 +767,7 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentActressLabel.Text = movieHandler.updateActressFilter(value);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -768,7 +776,7 @@ namespace FilmFinder
 			if (actorIDListSlider.SelectedIndex < actorIDListSlider.RangeOfValues.Count)
 			{
 				currentActorLabel.Text = movieHandler.updateActorFilter(actorIDListSlider.RangeOfValues[actorIDListSlider.SelectedIndex]);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -777,7 +785,7 @@ namespace FilmFinder
 			if (actressIDListSlider.SelectedIndex < actressIDListSlider.RangeOfValues.Count)
 			{
 				currentActressLabel.Text = movieHandler.updateActressFilter(actressIDListSlider.RangeOfValues[actressIDListSlider.SelectedIndex]);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -786,7 +794,7 @@ namespace FilmFinder
 			if (directorIDListSlider.SelectedIndex < directorIDListSlider.RangeOfValues.Count)
 			{
 				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorIDListSlider.RangeOfValues[directorIDListSlider.SelectedIndex]);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -795,7 +803,7 @@ namespace FilmFinder
 			if (actorIDActiveListSlider.SelectedIndex < actorIDActiveListSlider.RangeOfValues.Count)
 			{
 				currentActorLabel.Text = movieHandler.updateActorFilter(actorIDActiveListSlider.Value + actorIDActiveListSlider.SelectedIndex);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -804,7 +812,7 @@ namespace FilmFinder
 			if (directorIDActiveListSlider.SelectedIndex < directorIDActiveListSlider.RangeOfValues.Count)
 			{
 				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorIDActiveListSlider.Value + directorIDActiveListSlider.SelectedIndex);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -813,7 +821,7 @@ namespace FilmFinder
 			if (actressIDActiveListSlider.SelectedIndex < actressIDActiveListSlider.RangeOfValues.Count)
 			{
 				currentActressLabel.Text = movieHandler.updateActressFilter(actressIDActiveListSlider.Value + actressIDActiveListSlider.SelectedIndex);
-				drawActiveSet();
+				//drawActiveSet();
 			}
 		}
 
@@ -822,7 +830,7 @@ namespace FilmFinder
             if (actorDDListSlider.SelectedIndex < actorDDListSlider.RangeOfValues.Count)
             {
                 currentActorLabel.Text = movieHandler.updateActorFilter(actorDDListSlider.RangeOfValues[actorDDListSlider.SelectedIndex]);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 
@@ -831,7 +839,7 @@ namespace FilmFinder
             if (actressDDListSlider.SelectedIndex < actressDDListSlider.RangeOfValues.Count)
             {
                 currentActressLabel.Text = movieHandler.updateActressFilter(actressDDListSlider.RangeOfValues[actressDDListSlider.SelectedIndex]);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 
@@ -840,7 +848,7 @@ namespace FilmFinder
             if (directorDDListSlider.SelectedIndex < directorDDListSlider.RangeOfValues.Count)
             {
                 currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorDDListSlider.RangeOfValues[directorDDListSlider.SelectedIndex]);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 
@@ -849,7 +857,7 @@ namespace FilmFinder
             if (actorDDActiveListSlider.SelectedIndex < actorDDActiveListSlider.RangeOfValues.Count)
             {
                 currentActorLabel.Text = movieHandler.updateActorFilter(actorDDActiveListSlider.Value + actorDDActiveListSlider.SelectedIndex);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 
@@ -858,7 +866,7 @@ namespace FilmFinder
             if (directorDDActiveListSlider.SelectedIndex < directorDDActiveListSlider.RangeOfValues.Count)
             {
                 currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorDDActiveListSlider.Value + directorDDActiveListSlider.SelectedIndex);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 
@@ -867,7 +875,7 @@ namespace FilmFinder
             if (actressDDActiveListSlider.SelectedIndex < actressDDActiveListSlider.RangeOfValues.Count)
             {
                 currentActressLabel.Text = movieHandler.updateActressFilter(actressDDActiveListSlider.Value + actressDDActiveListSlider.SelectedIndex);
-                drawActiveSet();
+                //drawActiveSet();
             }
         }
 		/// <summary>
@@ -909,7 +917,7 @@ namespace FilmFinder
         {
 			movieHandler.updateRunningTimeRange(runningTimeRangeSlider.LowerBound, runningTimeRangeSlider.UpperBound);
 			runningTimeRangeLabel.Text = runningTimeRangeSlider.LowerBound + " - " + runningTimeRangeSlider.UpperBound;
-			drawActiveSet();
+			//drawActiveSet();
         }
 
 		/// <summary>
@@ -921,7 +929,7 @@ namespace FilmFinder
         {
             movieHandler.updateYearRange(yearRangeSlider.LowerBound, yearRangeSlider.UpperBound);
 			yearRangeLabel.Text = yearRangeSlider.LowerBound + " - " + yearRangeSlider.UpperBound;
-			drawActiveSet();
+			//drawActiveSet();
         }
 
 		/// <summary>
@@ -933,7 +941,7 @@ namespace FilmFinder
         {
 			movieHandler.updateRatingRange(ratingRangeSlider.LowerBound, ratingRangeSlider.UpperBound);
 			ratingRangeLabel.Text = ratingRangeSlider.LowerBound / 10.0 + " - " + ratingRangeSlider.UpperBound / 10.0;
-            drawActiveSet();
+            //drawActiveSet();
 		}
 
 		#endregion
@@ -941,6 +949,7 @@ namespace FilmFinder
 		private void newDataButton_Click(object sender, EventArgs e)
 		{
 			movieHandler = new MovieHandler();
+			movieHandler.MoviesJustFiltered += new EventHandler(movieHandler_MoviesJustFiltered);
 
 			genreList = movieHandler.getUniqueGenres();
 			createAllSeries();
@@ -956,7 +965,7 @@ namespace FilmFinder
 			createGenreCheckBoxes();
 			createCertificationCheckBoxes();
 
-			drawActiveSet();
+			//drawActiveSet();
 
 			Debug.WriteLine(movieHandler.UniqueActors.Count + "\t\t" + movieHandler.UniqueActresses.Count + "\t\t" + movieHandler.UniqueDirectors.Count);
 		}

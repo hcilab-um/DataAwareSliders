@@ -411,6 +411,13 @@ namespace CustomSlider
 			rightX = sliderCenterX + SliderWidth / 2;
 			topY = sliderCenterY - SliderHeight / 2;
 			bottomY = sliderCenterY + SliderHeight / 2;
+
+			if (leftX < ClientRectangle.X + 1)
+				leftX = ClientRectangle.X + 1;
+
+			if (rightX > ClientRectangle.Width - 1)
+				rightX = ClientRectangle.Width - 1;
+
 			// slider starts as nothing
 
 
