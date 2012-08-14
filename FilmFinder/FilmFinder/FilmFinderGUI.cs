@@ -20,7 +20,7 @@ namespace FilmFinder
 	public partial class FilmFinderGUI : Form
 	{
 		private static Random randomGenerator = new Random();
-		private const int NUMBER_OF_SLIDERS = 8;
+		private const int NUMBER_OF_SLIDERS = 6;
 
 		private MovieHandler movieHandler;
 		private List<string> genreList;
@@ -1176,22 +1176,22 @@ namespace FilmFinder
 				case 1:
 					showIDActiveAreaSliders();
 					break;
+				//case 2:
+				//    showIDListSliders();
+				//    break;
 				case 2:
-					showIDListSliders();
-					break;
-				case 3:
 					showIDActiveListSliders();
 					break;
-                case 4:
+                case 3:
                     showDDAlphaSliders();
                     break;
-                case 5:
+                case 4:
                     showDDActiveAreaSliders();
                     break;
-                case 6:
-                    showDDListSliders();
-                    break;
-                case 7:
+				//case 6:
+				//    showDDListSliders();
+				//    break;
+                case 5:
                     showDDActiveListSliders();
                     break;
 
@@ -1444,7 +1444,7 @@ namespace FilmFinder
 			int numOfBlocks = 1;
 			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
-			int trialPerCondition = 3;
+			int trialPerCondition = 4;
 			int numDifferentDataSize = 3;
 			int numOfDistortionTypes = 1; //There are two types of distortion. BUT, I've created a different class for each slider. This means that I have 8 different sliders instead of 4.
 
@@ -1492,12 +1492,10 @@ namespace FilmFinder
 			//generate the top row
 			topRow.Add(1);
 			topRow.Add(2);
-			topRow.Add(8);
+			topRow.Add(6);
 			topRow.Add(3);
-            topRow.Add(7);
-            topRow.Add(4);
-            topRow.Add(6);
             topRow.Add(5);
+            topRow.Add(4);
 
 			if (topRow.Count % 2 == 1)
 				latinSquare = new int[2 * topRow.Count, topRow.Count];

@@ -73,7 +73,7 @@ namespace FilmFinder
 
 			foreach (Movie m in collection.FindAll())
 			{
-				if (random.NextDouble() < 0.05)
+				if (random.NextDouble() < 0.1)
 				{
 					activeMovies.Add(m);
 				}

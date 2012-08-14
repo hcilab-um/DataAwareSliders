@@ -14,7 +14,7 @@ namespace CustomSlider
         public event EventHandler QueryChanged;
 
 		private const int LISTBOX_Y = 0;
-		private const int DISTANCE_FROM_SLIDER_TO_LISTBOX = 10;
+		private const int DISTANCE_FROM_SLIDER_TO_LISTBOX = 20;
 		private const int MINIMUM_ITEMS_IN_LIST = 5;
 
 		private List<string> data = null;
