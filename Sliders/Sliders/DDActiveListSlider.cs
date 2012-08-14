@@ -164,7 +164,7 @@ namespace CustomSlider
 			{
                 listBox.Show();
 
-				if (mouseInformation.Delta > 0)
+				if (mouseInformation.Delta < 0)
 				{
                     if (Value == RangeOfValues[RangeOfValues.Count - 1])
                     {
@@ -200,7 +200,7 @@ namespace CustomSlider
 				
 			}
 
-			DDActiveAreaSlider.RollChangeValue = rollValueChange;
+			DDActiveAreaSlider.RollChangeValue = -rollValueChange;
 		}
 
 		void listBox_SelectedIndexChanged(object sender, EventArgs e)

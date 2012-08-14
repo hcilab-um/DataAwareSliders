@@ -1351,8 +1351,8 @@ namespace FilmFinder
 			startSearchButton.Enabled = true;
 			bool correctSearch = checkForCorrectSearch();
 
-			string statistics = currIndex + "," + currSlider + "," + currentSearchCategory.ToString() + "," + /*arrayDistortionType[currIndex] + "," + */stopwatch.ElapsedMilliseconds
-				+ ","+ correctSearch;
+			string statistics = currIndex + "," + (currSlider % 3) + "," + currentSearchCategory.ToString() + "," + /*arrayDistortionType[currIndex] + "," + */stopwatch.ElapsedMilliseconds
+				+ ","+ correctSearch + "," + (currSlider < 3? "Input Distortion": "Display Distortion");
 			file.WriteLine(statistics);
 
 			currIndex++;
@@ -1495,16 +1495,21 @@ namespace FilmFinder
 
 		private int[,] generateLatinSquare()
 		{
+			//
+			// Had to customize functionality. The giant commented portion is the true algorithm
+			//
+
 			int[,] latinSquare;
 			List<int> topRow = new List<int>();
 
+			/*
 			//generate the top row
 			topRow.Add(1);
-			topRow.Add(2);
-			topRow.Add(6);
+			topRow.Add(4);
 			topRow.Add(3);
+			topRow.Add(6);
+            topRow.Add(2);
             topRow.Add(5);
-            topRow.Add(4);
 
 			if (topRow.Count % 2 == 1)
 				latinSquare = new int[2 * topRow.Count, topRow.Count];
@@ -1541,6 +1546,55 @@ namespace FilmFinder
 						latinSquare[i, j] = latinSquare[i - topRow.Count, topRow.Count - 1 - j];
 					}
 				}
+			}
+			 */
+
+			//generate the top row
+			topRow.Add(1);
+			topRow.Add(3);
+			topRow.Add(2);
+
+			latinSquare = new int[2 * topRow.Count, 2*topRow.Count];
+
+			//put top row into multidimen array
+			for (int i = 0; i < topRow.Count; i++)
+			{
+				latinSquare[0, 2*i] = topRow[i] - 1; //Have to subtract 1 for the mod function in the next loop to work properly
+				latinSquare[0, 2 * i + 1] = topRow[i] + 3 - 1;
+			}
+
+			//fill out rest of array
+			for (int i = 1; i < topRow.Count; i++)
+			{
+				for (int j = 0; j < 2 * topRow.Count; j++)
+					latinSquare[i, j] = (latinSquare[i - 1, j] + 1) % (topRow.Count * 2);
+			}
+
+			//increment all values by one
+			for (int i = 0; i < 2* topRow.Count; i++)
+			{
+				for (int j = 0; j < 2 * topRow.Count; j++)
+					latinSquare[i, j]++;
+			}
+
+			//take left-right mirror of top half and put in bottom half
+			if (topRow.Count % 2 == 1)
+			{
+				for (int i = topRow.Count; i < 2 * topRow.Count; i++)
+				{
+					for (int j = 0; j < 2*topRow.Count; j++)
+					{
+						latinSquare[i, j] = latinSquare[2*topRow.Count - i - 1, 2*topRow.Count - 1 - j];
+					}
+				}
+			}
+			for (int i = 0; i < latinSquare.GetLength(0); i++)
+			{
+				for (int j = 0; j < latinSquare.GetLength(1); j++)
+				{
+					Debug.Write(latinSquare[i, j] + ", ");
+				}
+				Debug.WriteLine("");
 			}
 
 			return latinSquare;
