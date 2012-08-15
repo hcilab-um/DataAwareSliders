@@ -366,51 +366,6 @@
   <data name="certifactionsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;disableAllCertificationsButton.Name" xml:space="preserve">
-    <value>disableAllCertificationsButton</value>
-  </data>
-  <data name="&gt;&gt;disableAllCertificationsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;disableAllCertificationsButton.Parent" xml:space="preserve">
-    <value>certifactionsPanel</value>
-  </data>
-  <data name="&gt;&gt;disableAllCertificationsButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;enableAllCertificationsButton.Name" xml:space="preserve">
-    <value>enableAllCertificationsButton</value>
-  </data>
-  <data name="&gt;&gt;enableAllCertificationsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enableAllCertificationsButton.Parent" xml:space="preserve">
-    <value>certifactionsPanel</value>
-  </data>
-  <data name="&gt;&gt;enableAllCertificationsButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="certifactionsPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>648, 633</value>
-  </data>
-  <data name="certifactionsPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 70</value>
-  </data>
-  <data name="certifactionsPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;certifactionsPanel.Name" xml:space="preserve">
-    <value>certifactionsPanel</value>
-  </data>
-  <data name="&gt;&gt;certifactionsPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;certifactionsPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;certifactionsPanel.ZOrder" xml:space="preserve">
-    <value>45</value>
-  </data>
   <data name="disableAllCertificationsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -464,6 +419,27 @@
   </data>
   <data name="&gt;&gt;enableAllCertificationsButton.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="certifactionsPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>648, 633</value>
+  </data>
+  <data name="certifactionsPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>475, 70</value>
+  </data>
+  <data name="certifactionsPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;certifactionsPanel.Name" xml:space="preserve">
+    <value>certifactionsPanel</value>
+  </data>
+  <data name="&gt;&gt;certifactionsPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;certifactionsPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;certifactionsPanel.ZOrder" xml:space="preserve">
+    <value>45</value>
   </data>
   <data name="newDataButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4559,9 +4535,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1138, 717</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1154, 726</value>

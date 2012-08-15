@@ -19,6 +19,9 @@ namespace FilmFinder
 {
 	public partial class FilmFinderGUI : Form
 	{
+		private bool training;
+
+
 		private static Random randomGenerator = new Random();
 		private const int NUMBER_OF_SLIDERS = 6;
 
@@ -44,6 +47,8 @@ namespace FilmFinder
 		public FilmFinderGUI(MovieHandler app)
 		{
 			InitializeComponent();
+			training = Settings.Default.Training;
+			this.Text = "FilmFinder - " + (training ? "TRAINING" : "EXPERIMENT");
 
             genreCheckBoxList = new List<CheckBox>();
             certificationCheckBoxList = new List<CheckBox>();
@@ -1185,9 +1190,6 @@ namespace FilmFinder
 				case 1:
 					showIDActiveAreaSliders();
 					break;
-				//case 2:
-				//    showIDListSliders();
-				//    break;
 				case 2:
 					showIDActiveListSliders();
 					break;
@@ -1197,9 +1199,6 @@ namespace FilmFinder
                 case 4:
                     showDDActiveAreaSliders();
                     break;
-				//case 6:
-				//    showDDListSliders();
-				//    break;
                 case 5:
                     showDDActiveListSliders();
                     break;
@@ -1243,6 +1242,7 @@ namespace FilmFinder
 				MessageBox.Show("Horray you're done!");
 				file.Flush();
 				Settings.Default.ParticipantNumber = Settings.Default.ParticipantNumber + 1;
+				Settings.Default.Training = !Settings.Default.Training;
 				Settings.Default.Save();
 				file.Close();
 				Environment.Exit(1);
@@ -1449,11 +1449,12 @@ namespace FilmFinder
 		public void setTrial()
 		{
 			int[,] latinSquare;
-			int index;
+			int index = -1;
 			int numOfBlocks = 1;
 			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
-			int trialPerCondition = 4;
+			int desiredTrialPerCondition = 4;
+			int trialPerCondition;
 			int numDifferentDataSize = 3;
 			int numOfDistortionTypes = 1; //There are two types of distortion. BUT, I've created a different class for each slider. This means that I have 8 different sliders instead of 4.
 
@@ -1466,23 +1467,40 @@ namespace FilmFinder
 
 			for (int q = 0; q < numOfBlocks; q++)
 				for (int i = 0; i < numOfTechnique; i++)
+				{
+					int offsetTech = (userId - 1) % latinSquare.GetLength(0);
+					int new_i = latinSquare[offsetTech, i] - 1;
+
 					for (int k = 0; k < numDifferentDataSize; k++)
 						for (int s = 0; s < numOfDistortionTypes; s++)
 							for (int t = 0; t < numOfTask; t++)
+							{
+								if (training)
+								{
+									if (new_i == 0 || new_i == 3)
+										trialPerCondition = 1;
+									else
+										trialPerCondition = desiredTrialPerCondition + 1;
+								}
+								else
+								{
+									trialPerCondition = desiredTrialPerCondition;
+								}
 								for (int j = 0; j < trialPerCondition; j++)
 								{
 
-									index = q * numOfTechnique * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
-															 i * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
-																				   k * numOfDistortionTypes * numOfTask * trialPerCondition +
-																										s * numOfTask * trialPerCondition +
-																													t * trialPerCondition +
-																																		j;
+									//index = q * numOfTechnique * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+									//                         i * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+									//                                               k * numOfDistortionTypes * numOfTask * trialPerCondition +
+									//                                                                    s * numOfTask * trialPerCondition +
+									//                                                                                t * trialPerCondition +
+									//                                                                                                    j;
+									index++;
+
 									if (index > maxIndex)
 										maxIndex = index;
 
-									int offsetTech = (userId - 1) % latinSquare.GetLength(0);
-									int new_i = latinSquare[offsetTech, i] - 1;
+									
 									arrayTechnique1[index] = new_i;
 
 									arrayDataSize1[index] = k;
@@ -1490,6 +1508,8 @@ namespace FilmFinder
 									arrayTask1[index] = t;
 
 								}
+							}
+				}
 
 		}
 
