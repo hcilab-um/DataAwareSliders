@@ -239,7 +239,7 @@ namespace CustomSlider
 			base.OnMouseWheel(e);
 			int newValue, tempValue;
 
-			if (e.Delta < 0)
+			if (e.Delta > 0)
 			{
 				newValue = Value - rollChangeValue;
 			}

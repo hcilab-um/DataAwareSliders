@@ -204,7 +204,7 @@ namespace CustomSlider
 				
 			}
 
-			IDActiveAreaSlider.RollChangeValue = -1 * rollValueChange;
+			IDActiveAreaSlider.RollChangeValue = rollValueChange;
 		}
 
 		void listBox_SelectedIndexChanged(object sender, EventArgs e)
