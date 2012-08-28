@@ -81,7 +81,7 @@ namespace FilmFinder
 
 			foreach (Movie m in collection.FindAll())
 			{
-				if (random.NextDouble() < 0.1)
+				if (random.NextDouble() < 0.35)
 				{
 					activeMovies.Add(m);
 				}
@@ -528,7 +528,7 @@ namespace FilmFinder
         {
 			actorFilter = uniqueActors[index];
 
-            filterMovies();
+            //filterMovies();
 
             return actorFilter;
         }

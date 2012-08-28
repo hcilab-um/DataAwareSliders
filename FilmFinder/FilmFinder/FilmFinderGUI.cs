@@ -40,6 +40,7 @@ namespace FilmFinder
 		private int[] arrayDataSize1;
 		private int[] arrayDistortionType;
 		private int[] arrayTask1;
+		private int[] arrayLocalDensity;
 		private int maxIndex = 0;
 		private int currIndex = 0;
 		private bool experimentStarted = false;
@@ -154,7 +155,7 @@ namespace FilmFinder
 		
 		void movieHandler_MoviesJustFiltered(object sender, EventArgs e)
 		{
-			drawActiveSet();
+			//drawActiveSet();
 		}
 
 		#region Initialization of controls
@@ -1253,10 +1254,10 @@ namespace FilmFinder
 			InputDistortionSlider sliderToAccess; //will need to access some density information so I'll access a slider to do that. Since all sliders have the same distribution it doesn't matter which one I access
 			List<uint> itemsPerIndex;
 			int largestIndex;
-			//bool foundSatisfyingRandomNumber = false;
-			//double targetLowerBound = 0.0;
-			//double targetUpperBound = 1.0;
-			//int indexOfRandomNumber;
+			bool foundSatisfyingRandomNumber = false;
+			double targetLowerBound = 0.0;
+			double targetUpperBound = 1.0;
+			int indexOfRandomNumber;
 
 			currentSearchCategory = (SearchCategory)arrayDataSize1[currIndex];
 
@@ -1281,31 +1282,33 @@ namespace FilmFinder
 			largestIndex = sliderToAccess.findLargestIndex();
 
 			//find a satisfying person based on whether we want the target to be in a dense area, sparse area or somewhere in between
-			//while (!foundSatisfyingRandomNumber)
-			//{
-			//	randomQuery = randomGenerator.Next(1, currentCategory.Count);
+			while (!foundSatisfyingRandomNumber)
+			{
+				randomQuery = randomGenerator.Next(1, currentCategory.Count);
 
-			//	if (arrayDistortionType[currIndex] == 0)
-			//	{
-			//		targetLowerBound = 0.0;
-			//		targetUpperBound = 1.0 / 3.0;
-			//	}
-			//	else if (arrayDistortionType[currIndex] == 1)
-			//	{
-			//		targetLowerBound = 1.0 / 3.0;
-			//		targetUpperBound = 2.0 / 3.0;
-			//	}
-			//	else if (arrayDistortionType[currIndex] == 2)
-			//	{
-			//		targetLowerBound = 2.0 / 3.0;
-			//		targetUpperBound = 1.0;
-			//	}
+				if (arrayLocalDensity[currIndex] == 0)
+				{
+					targetLowerBound = 0.0;
+					targetUpperBound = 1.0 / 3.0;
+					Debug.WriteLine("low density");
+				}
+				//else if (arrayDistortionType[currIndex] == 1)
+				//{
+				//    targetLowerBound = 1.0 / 3.0;
+				//    targetUpperBound = 2.0 / 3.0;
+				//}
+				else if (arrayLocalDensity[currIndex] == 1)
+				{
+					targetLowerBound = 2.0 / 3.0;
+					targetUpperBound = 1.0;
+					Debug.WriteLine("high density");
+				}
 
-			//	indexOfRandomNumber = findIndexOfNumber(randomQuery, itemsPerIndex);
+				indexOfRandomNumber = findIndexOfNumber(randomQuery, itemsPerIndex);
 
-			//	if (itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] <= targetUpperBound && itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] >= targetLowerBound)
-			//		foundSatisfyingRandomNumber = true;
-			//}
+				if (itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] <= targetUpperBound && itemsPerIndex[indexOfRandomNumber] * 1.0 / itemsPerIndex[largestIndex] >= targetLowerBound)
+					foundSatisfyingRandomNumber = true;
+			}
 
 			//Generate search target
 			randomQuery = randomGenerator.Next(1, currentCategory.Count);
@@ -1455,8 +1458,9 @@ namespace FilmFinder
 			int numOfTask = 1;
 			int desiredTrialPerCondition = 4;
 			int trialPerCondition;
-			int numDifferentDataSize = 3;
+			int numDifferentDataSize = 1;
 			int numOfDistortionTypes = 1; //There are two types of distortion. BUT, I've created a different class for each slider. This means that I have 8 different sliders instead of 4.
+			int numLocalDensity = 2;
 
 			latinSquare = generateLatinSquare();
 
@@ -1464,6 +1468,7 @@ namespace FilmFinder
 			arrayDataSize1 = new int[1000];
 			arrayDistortionType = new int[1000];
 			arrayTask1 = new int[1000];
+			arrayLocalDensity = new int[1000];
 
 			for (int q = 0; q < numOfBlocks; q++)
 				for (int i = 0; i < numOfTechnique; i++)
@@ -1472,43 +1477,50 @@ namespace FilmFinder
 					int new_i = latinSquare[offsetTech, i] - 1;
 
 					for (int k = 0; k < numDifferentDataSize; k++)
-						for (int s = 0; s < numOfDistortionTypes; s++)
-							for (int t = 0; t < numOfTask; t++)
-							{
-								if (training)
+						for (int p = 0; p < numLocalDensity; p++)
+							for (int s = 0; s < numOfDistortionTypes; s++)
+								for (int t = 0; t < numOfTask; t++)
 								{
-									if (new_i == 0 || new_i == 3)
-										trialPerCondition = 1;
-									else
-										trialPerCondition = desiredTrialPerCondition + 1;
-								}
-								else
-								{
+									//
+									// Following code was used when we wanted variable technique training in training mode
+									//
+									//if (training)
+									//{
+									//    if (new_i == 0 || new_i == 3)
+									//        trialPerCondition = 1;
+									//    else
+									//        trialPerCondition = desiredTrialPerCondition + 1;
+									//}
+									//else
+									//{
+									//    trialPerCondition = desiredTrialPerCondition;
+									//}
+
 									trialPerCondition = desiredTrialPerCondition;
+
+									for (int j = 0; j < trialPerCondition; j++)
+									{
+
+										//index = q * numOfTechnique * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+										//                         i * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
+										//                                               k * numOfDistortionTypes * numOfTask * trialPerCondition +
+										//                                                                    s * numOfTask * trialPerCondition +
+										//                                                                                t * trialPerCondition +
+										//                                                                                                    j;
+										index++;
+
+										if (index > maxIndex)
+											maxIndex = index;
+
+
+										arrayTechnique1[index] = new_i;
+										arrayLocalDensity[index] = p;
+										arrayDataSize1[index] = k;
+										arrayDistortionType[index] = s;
+										arrayTask1[index] = t;
+
+									}
 								}
-								for (int j = 0; j < trialPerCondition; j++)
-								{
-
-									//index = q * numOfTechnique * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
-									//                         i * numDifferentDataSize * numOfDistortionTypes * numOfTask * trialPerCondition +
-									//                                               k * numOfDistortionTypes * numOfTask * trialPerCondition +
-									//                                                                    s * numOfTask * trialPerCondition +
-									//                                                                                t * trialPerCondition +
-									//                                                                                                    j;
-									index++;
-
-									if (index > maxIndex)
-										maxIndex = index;
-
-									
-									arrayTechnique1[index] = new_i;
-
-									arrayDataSize1[index] = k;
-									arrayDistortionType[index] = s;
-									arrayTask1[index] = t;
-
-								}
-							}
 				}
 
 		}
