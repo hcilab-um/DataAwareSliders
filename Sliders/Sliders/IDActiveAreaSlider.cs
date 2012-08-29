@@ -21,7 +21,7 @@ namespace CustomSlider
         //private const int MINIMUM_SLIDER_WIDTH = 20;
         private float itemsPerHistogramPixel = 0;
         //private new int SliderWidth = 0;
-        private int maxItemsPerSliderPixel = 2; //equivalent of max items per thumb pixel
+        private int maxItemsPerSliderPixel = 4; //equivalent of max items per thumb pixel
         private int itemsPerSliderPixel = 0;
         private int rollChangeValue = 1;
 
