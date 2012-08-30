@@ -1281,7 +1281,7 @@ namespace FilmFinder
 			itemsPerIndex = sliderToAccess.ItemsInIndices;
 			largestIndex = sliderToAccess.findLargestIndex();
 
-			//find a satisfying person based on whether we want the target to be in a dense area, sparse area or somewhere in between
+			//find a satisfying person based on whether we want the target to be in a dense area, "sparse" area or somewhere in between
 			while (!foundSatisfyingRandomNumber)
 			{
 				randomQuery = randomGenerator.Next(1, currentCategory.Count);
@@ -1354,7 +1354,7 @@ namespace FilmFinder
 			startSearchButton.Enabled = true;
 			bool correctSearch = checkForCorrectSearch();
 
-			string statistics = Settings.Default.ParticipantNumber + "," + currIndex + "," + (currSlider % 3) + "," + currentSearchCategory.ToString() + "," + arrayLocalDensity[currIndex] + "," + stopwatch.ElapsedMilliseconds
+			string statistics = currIndex + "," + Settings.Default.ParticipantNumber + "," + (currSlider % 3) + "," + currentSearchCategory.ToString() + "," + arrayLocalDensity[currIndex] + "," + stopwatch.ElapsedMilliseconds
 				+ "," + correctSearch + "," + (currSlider < 3 ? 0 : 1).ToString(); //(currSlider < 3? "Input Distortion": "Display Distortion")
 			file.WriteLine(statistics);
 
