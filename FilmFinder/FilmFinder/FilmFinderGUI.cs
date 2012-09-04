@@ -1456,7 +1456,7 @@ namespace FilmFinder
 			int numOfBlocks = 1;
 			int numOfTechnique = NUMBER_OF_SLIDERS;
 			int numOfTask = 1;
-			int desiredTrialPerCondition = 4;
+			int desiredTrialPerCondition = 6;
 			int trialPerCondition;
 			int numDifferentDataSize = 1;
 			int numOfDistortionTypes = 1; //There are two types of distortion. BUT, I've created a different class for each slider. This means that I have 8 different sliders instead of 4.
