@@ -340,7 +340,7 @@
     <value>NoControl</value>
   </data>
   <data name="currentDirectorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>695, 286</value>
+    <value>695, 319</value>
   </data>
   <data name="currentDirectorLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>18, 13</value>
@@ -652,7 +652,7 @@
     <value>NoControl</value>
   </data>
   <data name="nextSliderButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 421</value>
+    <value>749, 138</value>
   </data>
   <data name="nextSliderButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -685,7 +685,7 @@
     <value>NoControl</value>
   </data>
   <data name="currentActressLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>691, 135</value>
+    <value>691, 168</value>
   </data>
   <data name="currentActressLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>18, 13</value>
@@ -751,7 +751,7 @@
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 286</value>
+    <value>651, 319</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 13</value>
@@ -778,7 +778,7 @@
     <value>NoControl</value>
   </data>
   <data name="previousSliderButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 421</value>
+    <value>645, 138</value>
   </data>
   <data name="previousSliderButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 23</value>
@@ -805,7 +805,7 @@
     <value>NoControl</value>
   </data>
   <data name="startExperimentButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>861, 421</value>
+    <value>864, 138</value>
   </data>
   <data name="startExperimentButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 23</value>
@@ -838,7 +838,7 @@
     <value>NoControl</value>
   </data>
   <data name="pleaseFindLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>644, 421</value>
+    <value>647, 138</value>
   </data>
   <data name="pleaseFindLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 20</value>
@@ -871,7 +871,7 @@
     <value>NoControl</value>
   </data>
   <data name="searchLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>727, 421</value>
+    <value>730, 138</value>
   </data>
   <data name="searchLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 20</value>
@@ -898,7 +898,7 @@
     <value>NoControl</value>
   </data>
   <data name="startSearchButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1039, 421</value>
+    <value>1042, 138</value>
   </data>
   <data name="startSearchButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -925,7 +925,7 @@
     <value>NoControl</value>
   </data>
   <data name="confirmSearchButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>958, 421</value>
+    <value>961, 138</value>
   </data>
   <data name="confirmSearchButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -955,7 +955,7 @@
     <value>NoControl</value>
   </data>
   <data name="searchConfirmLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>970, 421</value>
+    <value>973, 138</value>
   </data>
   <data name="searchConfirmLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 13</value>
@@ -988,7 +988,7 @@
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>648, 135</value>
+    <value>648, 168</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -1031,7 +1031,7 @@
 </value>
   </data>
   <data name="actressDDActiveAreaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 157</value>
+    <value>651, 190</value>
   </data>
   <data name="actressDDActiveAreaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 50</value>
@@ -1098,7 +1098,7 @@
     <value>11</value>
   </data>
   <data name="actressIDActiveListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 151</value>
+    <value>642, 184</value>
   </data>
   <data name="actressIDActiveListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 119</value>
@@ -1119,7 +1119,7 @@
     <value>12</value>
   </data>
   <data name="directorIDActiveListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
+    <value>642, 335</value>
   </data>
   <data name="directorIDActiveListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 119</value>
@@ -1183,7 +1183,7 @@
 </value>
   </data>
   <data name="directorIDActiveAreaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
+    <value>642, 335</value>
   </data>
   <data name="directorIDActiveAreaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 45</value>
@@ -1275,7 +1275,7 @@
 </value>
   </data>
   <data name="actressDDAlphaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 157</value>
+    <value>642, 190</value>
   </data>
   <data name="actressDDAlphaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 45</value>
@@ -1321,7 +1321,7 @@
 </value>
   </data>
   <data name="directorDDAlphaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
+    <value>642, 335</value>
   </data>
   <data name="directorDDAlphaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 45</value>
@@ -1413,7 +1413,7 @@
 </value>
   </data>
   <data name="actressIDActiveAreaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 157</value>
+    <value>642, 190</value>
   </data>
   <data name="actressIDActiveAreaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 45</value>
@@ -2344,7 +2344,7 @@
 </value>
   </data>
   <data name="actressIDListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>639, 157</value>
+    <value>639, 190</value>
   </data>
   <data name="actressIDListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 114</value>
@@ -2808,7 +2808,7 @@
 </value>
   </data>
   <data name="directorIDListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>639, 302</value>
+    <value>639, 335</value>
   </data>
   <data name="directorIDListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 114</value>
@@ -2848,7 +2848,7 @@
 </value>
   </data>
   <data name="directorDDActiveAreaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 302</value>
+    <value>651, 335</value>
   </data>
   <data name="directorDDActiveAreaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 51</value>
@@ -3773,7 +3773,7 @@
 </value>
   </data>
   <data name="actressDDListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 151</value>
+    <value>651, 184</value>
   </data>
   <data name="actressDDListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>484, 109</value>
@@ -4234,7 +4234,7 @@
 </value>
   </data>
   <data name="directorDDListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 305</value>
+    <value>651, 338</value>
   </data>
   <data name="directorDDListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>484, 109</value>
@@ -4357,7 +4357,7 @@
     <value>5</value>
   </data>
   <data name="actressDDActiveListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 151</value>
+    <value>642, 184</value>
   </data>
   <data name="actressDDActiveListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>493, 103</value>
@@ -4378,7 +4378,7 @@
     <value>4</value>
   </data>
   <data name="directorDDActiveListSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
+    <value>642, 335</value>
   </data>
   <data name="directorDDActiveListSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>493, 103</value>
@@ -4461,7 +4461,7 @@
 </value>
   </data>
   <data name="directorIDAlphaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 302</value>
+    <value>642, 335</value>
   </data>
   <data name="directorIDAlphaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 63</value>
@@ -4504,7 +4504,7 @@
 </value>
   </data>
   <data name="actressIDAlphaSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 151</value>
+    <value>642, 184</value>
   </data>
   <data name="actressIDAlphaSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>475, 63</value>

@@ -287,6 +287,7 @@
 			this.actressDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressDDActiveAreaSlider.IndexCharacters")));
 			this.actressDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressDDActiveAreaSlider.ItemsInIndices")));
 			resources.ApplyResources(this.actressDDActiveAreaSlider, "actressDDActiveAreaSlider");
+			this.actressDDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.actressDDActiveAreaSlider.Name = "actressDDActiveAreaSlider";
 			this.actressDDActiveAreaSlider.RollChangeValue = 1;
 			this.actressDDActiveAreaSlider.Value = 0;
@@ -297,6 +298,7 @@
 			this.actorDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorDDActiveAreaSlider.IndexCharacters")));
 			this.actorDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorDDActiveAreaSlider.ItemsInIndices")));
 			resources.ApplyResources(this.actorDDActiveAreaSlider, "actorDDActiveAreaSlider");
+			this.actorDDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.actorDDActiveAreaSlider.Name = "actorDDActiveAreaSlider";
 			this.actorDDActiveAreaSlider.RollChangeValue = 1;
 			this.actorDDActiveAreaSlider.Value = 0;
@@ -334,6 +336,7 @@
 			this.directorIDActiveAreaSlider.DrawSlider = true;
 			this.directorIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorIDActiveAreaSlider.IndexCharacters")));
 			this.directorIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorIDActiveAreaSlider.ItemsInIndices")));
+			this.directorIDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.directorIDActiveAreaSlider.Name = "directorIDActiveAreaSlider";
 			this.directorIDActiveAreaSlider.RollChangeValue = 1;
 			this.directorIDActiveAreaSlider.Value = 50;
@@ -368,6 +371,7 @@
 			this.actorIDActiveAreaSlider.DrawSlider = true;
 			this.actorIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actorIDActiveAreaSlider.IndexCharacters")));
 			this.actorIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actorIDActiveAreaSlider.ItemsInIndices")));
+			this.actorIDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.actorIDActiveAreaSlider.Name = "actorIDActiveAreaSlider";
 			this.actorIDActiveAreaSlider.RollChangeValue = 1;
 			this.actorIDActiveAreaSlider.Value = 50;
@@ -378,6 +382,7 @@
 			this.actressIDActiveAreaSlider.DrawSlider = true;
 			this.actressIDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("actressIDActiveAreaSlider.IndexCharacters")));
 			this.actressIDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("actressIDActiveAreaSlider.ItemsInIndices")));
+			this.actressIDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.actressIDActiveAreaSlider.Name = "actressIDActiveAreaSlider";
 			this.actressIDActiveAreaSlider.RollChangeValue = 1;
 			this.actressIDActiveAreaSlider.Value = 50;
@@ -418,6 +423,7 @@
 			this.directorDDActiveAreaSlider.IndexCharacters = ((System.Collections.Generic.List<char>)(resources.GetObject("directorDDActiveAreaSlider.IndexCharacters")));
 			this.directorDDActiveAreaSlider.ItemsInIndices = ((System.Collections.Generic.List<uint>)(resources.GetObject("directorDDActiveAreaSlider.ItemsInIndices")));
 			resources.ApplyResources(this.directorDDActiveAreaSlider, "directorDDActiveAreaSlider");
+			this.directorDDActiveAreaSlider.MaxItemsPerSliderPixel = 4;
 			this.directorDDActiveAreaSlider.Name = "directorDDActiveAreaSlider";
 			this.directorDDActiveAreaSlider.RollChangeValue = 1;
 			this.directorDDActiveAreaSlider.Value = 0;
