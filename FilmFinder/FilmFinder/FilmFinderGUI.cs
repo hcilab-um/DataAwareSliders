@@ -155,7 +155,7 @@ namespace FilmFinder
 		
 		void movieHandler_MoviesJustFiltered(object sender, EventArgs e)
 		{
-			//drawActiveSet();
+			drawActiveSet();
 		}
 
 		#region Initialization of controls
