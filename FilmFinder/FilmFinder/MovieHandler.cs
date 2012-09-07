@@ -528,7 +528,7 @@ namespace FilmFinder
         {
 			actorFilter = uniqueActors[index];
 
-            filterMovies();
+            //filterMovies();
 
             return actorFilter;
         }
