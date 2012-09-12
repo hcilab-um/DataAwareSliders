@@ -18,7 +18,7 @@ namespace FilmFinder
         int runningTimeMin, runningTimeMax, yearMin, yearMax;
         double ratingMin, ratingMax;
 
-		Timer defferalTimer = new Timer() { Enabled = false, Interval = 62 };
+		Timer defferalTimer = new Timer() { Enabled = false, Interval = 50 };
 		bool timerJustTicked = false;
 
 		Random random = new Random();
@@ -528,7 +528,7 @@ namespace FilmFinder
         {
 			actorFilter = uniqueActors[index];
 
-            //filterMovies();
+            filterMovies();
 
             return actorFilter;
         }

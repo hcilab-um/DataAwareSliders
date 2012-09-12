@@ -155,7 +155,7 @@ namespace FilmFinder
 		
 		void movieHandler_MoviesJustFiltered(object sender, EventArgs e)
 		{
-			//drawActiveSet();
+			drawActiveSet();
 		}
 
 		#region Initialization of controls
@@ -730,7 +730,6 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentActorLabel.Text = movieHandler.updateActorFilter(value);
-				//drawActiveSet();
 			}
 		}
 
@@ -754,7 +753,6 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentDirectorLabel.Text = movieHandler.updateDirectorFilter(value);
-				//drawActiveSet();
 			}
         }
 
@@ -773,7 +771,6 @@ namespace FilmFinder
 			if (value != Int32.MinValue)
 			{
 				currentActressLabel.Text = movieHandler.updateActressFilter(value);
-				//drawActiveSet();
 			}
 		}
 
