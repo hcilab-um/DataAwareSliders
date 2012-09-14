@@ -49,7 +49,7 @@ namespace FilmFinder
 		{
 			InitializeComponent();
 			training = Settings.Default.Training;
-			this.Text = "FilmFinder - " + (training ? "TRAINING" : "EXPERIMENT");
+            this.Text = "FilmFinder";// - " +(training ? "TRAINING" : "EXPERIMENT");
 
             genreCheckBoxList = new List<CheckBox>();
             certificationCheckBoxList = new List<CheckBox>();
