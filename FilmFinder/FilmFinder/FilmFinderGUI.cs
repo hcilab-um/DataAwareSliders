@@ -23,7 +23,7 @@ namespace FilmFinder
 
 
 		private static Random randomGenerator = new Random();
-		private const int NUMBER_OF_SLIDERS = 6;
+		private const int NUMBER_OF_SLIDERS = 7;
 
 		private MovieHandler movieHandler;
 		private List<string> genreList;
@@ -78,7 +78,7 @@ namespace FilmFinder
 			stopwatch = new Stopwatch();
 
 			initializeFileWriting();
-			setTrial();
+			//setTrial();
 		}
 
 		
@@ -274,7 +274,17 @@ namespace FilmFinder
             actorDDActiveListSlider.IndexNames = firstCharacters;
             actorDDActiveListSlider.Value = 0;
             actorDDActiveListSlider.QueryChanged += new EventHandler(actorDDActiveListSlider_QueryChanged);
+
+            //Actor track bar
+            actorTrackBar.Minimum = 0;
+            actorTrackBar.Maximum = uniqueActors.Count - 1;
+            actorTrackBar.ValueChanged += new EventHandler(actorTrackBar_ValueChanged);
 		}
+
+        void actorTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            currentActorLabel.Text = movieHandler.updateActorFilter(actorTrackBar.Value);
+        }
 
 
 		/// <summary>
@@ -1143,6 +1153,17 @@ namespace FilmFinder
             directorDDActiveListSlider.Value = 0;
         }
 
+        private void hideActorTrackBar()
+        {
+            actorTrackBar.Hide();
+        }
+
+        private void showActorTrackBar()
+        {
+            actorTrackBar.Value = 0;
+            actorTrackBar.Show();
+        }
+
 		/// <summary>
 		/// hides all sliders
 		/// </summary>
@@ -1157,6 +1178,8 @@ namespace FilmFinder
             hideIDActiveAreaSliders();
             hideIDListSliders();
             hideIDActiveListSliders();
+
+            hideActorTrackBar();
 		}
 
 		private void nextSliderButton_Click(object sender, EventArgs e)
@@ -1199,6 +1222,9 @@ namespace FilmFinder
                     break;
                 case 5:
                     showDDActiveListSliders();
+                    break;
+                case 6:
+                    showActorTrackBar();
                     break;
 
 			}
