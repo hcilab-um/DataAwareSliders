@@ -368,7 +368,16 @@ namespace FilmFinder
             directorDDActiveListSlider.IndexNames = firstCharacters;
             directorDDActiveListSlider.Value = 0;
             directorDDActiveListSlider.QueryChanged += new EventHandler(directorDDActiveListSlider_QueryChanged);
+
+			directorTrackBar.Minimum = 0;
+			directorTrackBar.Maximum = uniqueDirectors.Count - 1;
+			directorTrackBar.ValueChanged += new EventHandler(directorTrackBar_ValueChanged);
         }
+
+		void directorTrackBar_ValueChanged(object sender, EventArgs e)
+		{
+			currentDirectorLabel.Text = movieHandler.updateDirectorFilter(directorTrackBar.Value);
+		}
 
 		private void initializeActressSlider()
 		{
@@ -447,7 +456,17 @@ namespace FilmFinder
             actressDDActiveListSlider.IndexNames = firstCharacters;
             actressDDActiveListSlider.Value = 0;
             actressDDActiveListSlider.QueryChanged += new EventHandler(actressDDActiveListSlider_QueryChanged);
+
+			actressTrackBar.Minimum = 0;
+			actressTrackBar.Maximum = uniqueActresses.Count - 1;
+			actressTrackBar.ValueChanged += new EventHandler(actressTrackBar_ValueChanged);
+        }
+
+		void actressTrackBar_ValueChanged(object sender, EventArgs e)
+		{
+			currentActressLabel.Text = movieHandler.updateActressFilter(actressTrackBar.Value);
 		}
+
 
 		
 
@@ -1156,12 +1175,20 @@ namespace FilmFinder
         private void hideActorTrackBar()
         {
             actorTrackBar.Hide();
+			directorTrackBar.Hide();
+			actressTrackBar.Hide();
         }
 
         private void showActorTrackBar()
         {
             actorTrackBar.Value = 0;
             actorTrackBar.Show();
+
+			directorTrackBar.Value = 0;
+			directorTrackBar.Show();
+
+			actressTrackBar.Value = 0;
+			actressTrackBar.Show();
         }
 
 		/// <summary>

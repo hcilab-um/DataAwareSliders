@@ -62,6 +62,5 @@ C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Rel
 C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\MongoDB.Bson.xml
 C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\MongoDB.Driver.pdb
 C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\bin\Release\MongoDB.Driver.xml
-C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Users\Paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.csprojResolveAssemblyReference.cache
+C:\Users\paymahn\Documents\GitHub\DataAwareSliders\FilmFinder\FilmFinder\obj\x86\Release\FilmFinder.csproj.GenerateResource.Cache
